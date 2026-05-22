@@ -1396,9 +1396,8 @@
         <div class="section-inner">
             <p class="section-label reveal">// work.log</p>
             <h2 class="section-title reveal">Where I've been.</h2>
-            <p class="section-sub reveal">Building at the intersection of product and engineering since before AI was a
-                job title. Currently @ Times Internet — and yes, I'm the one who convinced leadership that vibes are a
-                valid KPI.</p>
+            <p class="section-sub reveal">Building at the intersection of product and engineering. Currently @ Times
+                Internet.</p>
 
             <div class="exp-list">
 
@@ -1679,11 +1678,11 @@
                             rel="noopener">github.com/udbhavvarma</a>
                     </div>
                 </div>
-                <div style="margin-top:1.5rem; color: var(--text-muted);">
+                <!-- <div style="margin-top:1.5rem; color: var(--text-muted);">
                     <span class="prompt-str">→</span> <span style="color:var(--green);">status:</span> <span
                         style="color:var(--text-dim);">shipping things @ Times Internet</span> <span
                         style="animation:blink 1s step-end infinite; display:inline-block; width:8px; height:15px; background:var(--green); vertical-align:middle;"></span>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -1819,15 +1818,19 @@
 
             /* ── boot ── */
             el('div', 'color:var(--text-muted);font-size:0.75rem;', 'Last login: ' + new Date().toDateString() + ' on ttys001');
-            el('div', 'color:var(--text-muted);font-size:0.75rem;', 'Portfolio v2.0.0 — type <span style="color:var(--green)">help</span> to see what this can do.');
+            // el('div', 'color:var(--text-muted);font-size:0.75rem;', 'Portfolio v1.0.0 — type <span style="color:var(--green)">help</span> to see what this can do.');
+            sp();
             sp();
             cmd('whoami');
+            sp();
             el('div', 'font-family:var(--sans);font-size:clamp(1.3rem,3vw,2rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.2;padding:0.2rem 0;',
                 'Udbhav <span style="color:var(--green)">Varma.</span>');
             raw('Associate Technical PM @ Times Internet · AI Labs · COO Office');
             raw('CS Grad from IIIT Delhi');
             sp();
+            sp();
             cmd('cat roles.json');
+            sp();
             const rDiv = document.createElement('div');
             rDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.25rem 0 0.25rem 1.1rem;';
             [['Product Manager', 'tag-green'], ['AI Builder', 'tag-blue']]
@@ -2034,7 +2037,7 @@
                             el('div', 'padding-left:1.1rem;margin-top:0.25rem;',
                                 '<a href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener" ' +
                                 'style="color:var(--green);font-family:var(--mono);font-size:0.78rem;text-decoration:underline;">' +
-                                'DATABASE_URL=postgresql://udbhav:*****@prod.til.internal/ai_secrets<br>' +
+                                'DATABASE_URL=postgresql://udbhav:*****@internal/ai_secrets<br>' +
                                 'OPENAI_KEY=sk-\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022<br>' +
                                 'SECRET=click_to_reveal</a>');
                         } else if (doIPReveal) {
