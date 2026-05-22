@@ -1,110 +1,2085 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Udbhav Varma - Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Udbhav Varma — Product × Tech × Vibes</title>
+    <meta name="description"
+        content="Udbhav Varma is a product-minded engineer who ships fast, thinks in systems, and vibecodes the rest. IIIT Delhi CS + Economics." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f4f4f4; }
-        .container { max-width: 900px; margin: auto; padding-top: 40px; }
-        .section-title { margin-top: 30px; font-weight: bold; color: #333; border-bottom: 2px solid #007bff; padding-bottom: 5px; }
-        .card { margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .card-title { color: #007bff; }
-        .tech-stack { font-style: italic; color: #777; }
-        .navbar { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .navbar-brand { font-weight: bold; margin-left: 20px; }
-        .nav-link { color: #fff !important; }
-        .nav-link:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 20px; background-color: #343a40; color: #fff; margin-top: 30px; }
+        /* ── Design Tokens ── */
+        :root {
+            --bg: #060910;
+            --bg-2: #0b0f1a;
+            --surface: rgba(255, 255, 255, 0.04);
+            --surface-h: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-h: rgba(99, 245, 188, 0.4);
+
+            --green: #63f5bc;
+            --green-dim: #2affa0;
+            --purple: #a78bfa;
+            --blue: #60a5fa;
+            --pink: #f472b6;
+            --yellow: #fbbf24;
+
+            --text: #e2e8f0;
+            --text-muted: #64748b;
+            --text-dim: #94a3b8;
+
+            --mono: 'JetBrains Mono', monospace;
+            --sans: 'Inter', sans-serif;
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── Reset ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: rgba(99, 245, 188, 0.25);
+            color: var(--green);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--green);
+            border-radius: 2px;
+        }
+
+        /* ── Noise overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ── Glow orbs ── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+            animation: orb-drift 20s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(99, 245, 188, 0.07);
+            top: -200px;
+            left: -200px;
+            animation-duration: 22s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: rgba(167, 139, 250, 0.06);
+            bottom: 0;
+            right: -150px;
+            animation-duration: 18s;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(96, 165, 250, 0.06);
+            top: 50%;
+            left: 50%;
+            animation-duration: 25s;
+            animation-delay: -10s;
+        }
+
+        @keyframes orb-drift {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+
+            to {
+                transform: translate(60px, 40px) scale(1.1);
+            }
+        }
+
+        /* ── Scroll-driven reveal setup ── */
+        @supports ((animation-timeline: view()) and (animation-range: entry)) {
+            .reveal {
+                animation: reveal-in linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 30%;
+            }
+
+            .reveal-left {
+                animation: reveal-left linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 30%;
+            }
+
+            .reveal-right {
+                animation: reveal-right linear both;
+                animation-timeline: view();
+                animation-range: entry 0% entry 30%;
+            }
+        }
+
+        @keyframes reveal-in {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes reveal-left {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes reveal-right {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* IntersectionObserver fallback */
+        .reveal,
+        .reveal-left,
+        .reveal-right {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+        }
+
+        @supports ((animation-timeline: view()) and (animation-range: entry)) {
+
+            .reveal,
+            .reveal-left,
+            .reveal-right {
+                opacity: unset;
+                transform: unset;
+                transition: none;
+            }
+        }
+
+        .revealed {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* ── Progress Bar ── */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--green), var(--purple));
+            z-index: 1000;
+            transform-origin: left;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(6, 9, 16, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .nav-logo {
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo .prompt {
+            color: var(--text-muted);
+        }
+
+        .nav-logo .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--green);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* standalone cursor-blink used in the terminal input */
+        .cursor-blink {
+            display: inline-block;
+            background: var(--green);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--green);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* ── Hero ── */
+        #hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-inner {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Terminal window */
+        .terminal {
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.03),
+                0 40px 80px -20px rgba(0, 0, 0, 0.8),
+                0 0 60px -20px rgba(99, 245, 188, 0.08);
+            animation: terminal-appear 1s var(--ease-out-expo) both;
+        }
+
+        @keyframes terminal-appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .terminal-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-r {
+            background: #ff5f57;
+        }
+
+        .dot-y {
+            background: #febc2e;
+        }
+
+        .dot-g {
+            background: #28c840;
+        }
+
+        .terminal-title {
+            flex: 1;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .terminal-body {
+            padding: 1.25rem 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            line-height: 1.75;
+            display: flex;
+            flex-direction: column;
+            height: 340px;
+        }
+
+        .terminal-output {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(99, 245, 188, 0.2) transparent;
+        }
+
+        .terminal-output::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .terminal-output::-webkit-scrollbar-thumb {
+            background: rgba(99, 245, 188, 0.2);
+            border-radius: 2px;
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid var(--border);
+            margin-top: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text);
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            flex: 1;
+            caret-color: var(--green);
+            min-width: 0;
+        }
+
+        .terminal-input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .line {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .prompt-str {
+            color: var(--green);
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .cmd {
+            color: var(--text);
+        }
+
+        .output {
+            color: var(--text-dim);
+            padding-left: 1.5rem;
+        }
+
+        .output.name-line {
+            font-family: var(--sans);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text);
+            padding-left: 0;
+            margin: 0.5rem 0;
+            letter-spacing: -0.03em;
+        }
+
+        .output.name-line .accent {
+            color: var(--green);
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding-left: 0;
+            margin: 0.75rem 0;
+        }
+
+        .tag {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid;
+            letter-spacing: 0.05em;
+            transition: transform 0.2s var(--ease-spring), box-shadow 0.2s;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .tag-green {
+            color: var(--green);
+            border-color: rgba(99, 245, 188, 0.3);
+            background: rgba(99, 245, 188, 0.05);
+        }
+
+        .tag-green:hover {
+            box-shadow: 0 4px 20px rgba(99, 245, 188, 0.2);
+        }
+
+        .tag-purple {
+            color: var(--purple);
+            border-color: rgba(167, 139, 250, 0.3);
+            background: rgba(167, 139, 250, 0.05);
+        }
+
+        .tag-purple:hover {
+            box-shadow: 0 4px 20px rgba(167, 139, 250, 0.2);
+        }
+
+        .tag-blue {
+            color: var(--blue);
+            border-color: rgba(96, 165, 250, 0.3);
+            background: rgba(96, 165, 250, 0.05);
+        }
+
+        .tag-blue:hover {
+            box-shadow: 0 4px 20px rgba(96, 165, 250, 0.2);
+        }
+
+        .tag-pink {
+            color: var(--pink);
+            border-color: rgba(244, 114, 182, 0.3);
+            background: rgba(244, 114, 182, 0.05);
+        }
+
+        .tag-pink:hover {
+            box-shadow: 0 4px 20px rgba(244, 114, 182, 0.2);
+        }
+
+        .typewriter-wrap {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        #typewriter {
+            color: var(--blue);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            border: 1px solid;
+            cursor: pointer;
+            transition: all 0.25s var(--ease-spring);
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(0) scale(0.97);
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: var(--bg);
+            border-color: var(--green);
+            box-shadow: 0 0 30px rgba(99, 245, 188, 0.25);
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 30px rgba(99, 245, 188, 0.4);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-dim);
+            border-color: var(--border);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--border-h);
+            color: var(--green);
+        }
+
+        /* Floating scroll hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            animation: float 2.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-6px);
+            }
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid;
+            border-bottom: 2px solid;
+            border-color: var(--text-muted);
+            transform: rotate(45deg);
+        }
+
+        /* ── Sections ── */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--green);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            max-width: 540px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 0 auto;
+        }
+
+        /* ── About strip ── */
+        #about {
+            padding-top: 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease-spring), box-shadow 0.3s;
+            cursor: default;
+        }
+
+        .stat-card:hover {
+            border-color: var(--border-h);
+            background: var(--surface-h);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(99, 245, 188, 0.06);
+        }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            font-family: var(--mono);
+        }
+
+        /* ── Stack ── */
+        .stack-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .stack-item {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            background: var(--surface);
+            transition: all 0.25s var(--ease-spring);
+            cursor: default;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .stack-item:hover {
+            border-color: var(--border-h);
+            color: var(--green);
+            background: rgba(99, 245, 188, 0.05);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(99, 245, 188, 0.1);
+        }
+
+        .stack-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        /* ── Experience ── */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .exp-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.75rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.3s var(--ease-spring), box-shadow 0.3s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--green), var(--blue));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .exp-card:hover::before {
+            opacity: 1;
+        }
+
+        .exp-card:hover {
+            border-color: var(--border-h);
+            background: var(--surface-h);
+            transform: translateX(6px);
+            box-shadow: 0 10px 40px rgba(99, 245, 188, 0.05);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .exp-role {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .exp-company {
+            color: var(--green);
+            font-family: var(--mono);
+            font-size: 0.85rem;
+        }
+
+        .exp-date {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            margin-top: 0.75rem;
+        }
+
+        .exp-bullets li {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .exp-bullets li::before {
+            content: '→';
+            color: var(--green);
+            flex-shrink: 0;
+            font-family: var(--mono);
+        }
+
+        .exp-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .tech-pill {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(99, 245, 188, 0.08);
+            color: var(--green);
+            border: 1px solid rgba(99, 245, 188, 0.15);
+        }
+
+        /* ── Projects ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: border-color 0.3s, background 0.3s, transform 0.4s var(--ease-spring), box-shadow 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(99, 245, 188, 0.06) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-h);
+            background: var(--surface-h);
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(99, 245, 188, 0.06);
+        }
+
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(99, 245, 188, 0.15), rgba(167, 139, 250, 0.15));
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .project-name {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .project-desc {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .project-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+        .project-link {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .project-card:hover .project-link {
+            opacity: 1;
+        }
+
+        /* ── Vibe section ── */
+        #vibe {
+            background: var(--bg-2);
+        }
+
+        .vibe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .vibe-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: all 0.3s var(--ease-spring);
+            cursor: default;
+        }
+
+        .vibe-card:hover {
+            border-color: var(--border-h);
+            transform: translateY(-3px) rotate(-0.5deg);
+            background: var(--surface-h);
+        }
+
+        .vibe-emoji {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vibe-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .vibe-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── Contact ── */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-terminal {
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: left;
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            line-height: 2;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-link-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-link-label {
+            color: var(--text-muted);
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .contact-link-val {
+            color: var(--blue);
+            transition: color 0.2s;
+        }
+
+        .contact-link-val:hover {
+            color: var(--green);
+            text-decoration: underline;
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        footer span {
+            color: var(--green);
+        }
+
+        /* ── Cursor spotlight ── */
+        .spotlight {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 245, 188, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            transition: left 0.15s ease-out, top 0.15s ease-out;
+        }
+
+        /* ── Skills Heatmap ── */
+        .heatmap-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem 1.1rem;
+            padding: 0.75rem 0;
+            line-height: 1;
+        }
+
+        .skill-node {
+            font-family: var(--mono);
+            cursor: default;
+            transition: color 0.2s var(--ease-spring), transform 0.2s var(--ease-spring);
+            display: inline-block;
+        }
+
+        .skill-node:hover {
+            color: var(--green) !important;
+            transform: translateY(-2px) scale(1.08);
+        }
+
+        .skill-5 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .skill-4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(226, 232, 240, 0.88);
+        }
+
+        .skill-3 {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(148, 163, 184, 0.75);
+        }
+
+        .skill-2 {
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: rgba(100, 116, 139, 0.7);
+        }
+
+        .skill-1 {
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: rgba(100, 116, 139, 0.45);
+        }
+
+        .heatmap-footnote {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            opacity: 0.55;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* vibe-emoji as mono label */
+        .vibe-emoji {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            background: rgba(99, 245, 188, 0.08);
+            border: 1px solid rgba(99, 245, 188, 0.2);
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* project-icon as mono text */
+        .project-icon {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--green);
+            letter-spacing: 0.08em;
+        }
+
+        /* ── Media ── */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                gap: 1.25rem;
+            }
+
+            .terminal-body {
+                height: 260px;
+                padding: 1rem 1.25rem;
+                font-size: 0.78rem;
+            }
+
+            .hero-cta {
+                gap: 0.75rem;
+            }
+
+            section {
+                padding: 4rem 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links li:nth-child(n+3) {
+                display: none;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Udbhav Varma</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
+
+    <!-- Progress bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Spotlight -->
+    <div class="spotlight" id="spotlight"></div>
+
+    <!-- Ambient orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <div class="nav-logo">
+            <span class="prompt">~/udbhav</span>
+            <span>&nbsp;$</span>
         </div>
+        <ul class="nav-links">
+            <li><a href="#about">about</a></li>
+            <li><a href="#experience">work</a></li>
+            <!-- <li><a href="#projects">projects</a></li> -->
+            <li><a href="#skills">skills</a></li>
+            <li><a href="#vibe">serious note</a></li>
+            <li><a href="#contact">contact</a></li>
+        </ul>
     </nav>
 
-    <div class="container">
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p>Senior CS & Economics student at IIIT Delhi, passionate about technology, product development, and user-centric software design.</p>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">Experience</h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Software Development Intern @ myKaarma</h5>
-                    <p class="card-text">Implemented an automated Out-of-Office (OOO) scheduling feature for dealership associates leveraging recurring logic</p>
-                    <p class="card-text">Transformed the user interface (UI) using Angular for a streamlined user experience</p>
-                    <p class="card-text">Used Spring Boot to develop an aggregator service that communicates HTTP request methods to the backend architecture</p>
-                    <p class="card-text">Optimized the feature rollout process, resulting in a 10% boost in user engagement with the new OOO functionality</p>
-                    <p class="tech-stack">Technologies: Angular, Typescript, Storybook, Spring Boot, Java</p>
-                </div> 
-            </div>
-            
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><a href="https://github.com/udbhavvarma/travelAID/">travelAID</a></h5>
-                    <p class="card-text">Designed and developed a full-stack travel aggregator, integrating multiple heterogeneous
-                        and distributed databases via a virtualized mediated schema</p>
-                    <p class="card-text">Processed over 70,000 records with Llama-based natural language query processing,
-                        dynamically generating SQL queries to support federated queries and cross-database
-                        joins through Trino</p>
-                    <p class="card-text">Designed traveler-friendly filtering mechanisms for flights, hotels, and tourist spots,
-                        enabling real-time search with 95% accuracy in query responses.</p>
-                    <p class="tech-stack">Technologies: React, Node.js, MySQL, MongoDB, Llama</p>
+    <!-- ── HERO ── -->
+    <section id="hero">
+        <div class="hero-inner">
+            <div class="terminal">
+                <div class="terminal-bar">
+                    <div class="dot dot-r"></div>
+                    <div class="dot dot-y"></div>
+                    <div class="dot dot-g"></div>
+                    <div class="terminal-title">udbhav@portfolio ~ zsh</div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-output" id="term-output"></div>
+                    <div class="terminal-input-line">
+                        <span class="prompt-str">→</span>
+                        <input type="text" class="terminal-input" id="term-input" autocomplete="off" spellcheck="false"
+                            autocorrect="off" autocapitalize="off" placeholder="type 'help' to get started..."
+                            aria-label="terminal input" />
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">SymLink</h5>
-                    <p class="card-text">Performed Named Entity Recognition and Relation Extraction on mathematical symbols used in research, mapping them to their descriptions</p>
-                    <p class="card-text">Employed variants of contextualized embeddings such as BERT, mBERT and LUKE to maximize accuracy</p>
-                    <p class="card-text">Achieved F1 and Accuracy scores beating old benchmarks by a margin of 5%</p>
-                    <p class="tech-stack">Technologies: Keras, TensorFlow, Python</p>          
+            <div class="hero-cta" style="margin-top:1.5rem;">
+                <!-- <a href="#projects" class="btn btn-primary">./view_projects</a> -->
+                <a href="#contact" class="btn btn-ghost">./say_hi</a>
+                <a href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener"
+                    class="btn btn-ghost">LinkedIn</a>
+            </div>
+            <div
+                style="font-family:var(--mono);font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem;display:flex;align-items:center;gap:4px;">
+                <span id="typewriter"></span><span class="cursor-blink" style="width:6px;height:12px;"></span>
+            </div>
+        </div>
+        <div class="scroll-hint" aria-hidden="true">
+            <span>scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── ABOUT ── -->
+    <section id="about">
+        <div class="section-inner">
+            <p class="section-label reveal">// about.me</p>
+            <h2 class="section-title reveal">One part PM.<br>One part engineer.<br>One part chaos.</h2>
+            <p class="section-sub reveal">I sit at the intersection of product thinking and technical execution — the
+                person who asks <em>"why are we building this?"</em>, gets told to just build it, and then ships it
+                faster than the meeting was scheduled. Currently solving GenAI problems @ Times Internet's AI Labs. CS +
+                Economics @ IIIT Delhi.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── SKILLS ── -->
+    <section id="skills">
+        <div class="section-inner">
+            <p class="section-label reveal">// skills.heat</p>
+            <p style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);margin-bottom:0.5rem;"
+                class="reveal">size = depth of damage done with this skill</p>
+            <div class="heatmap-wrap reveal">
+                <span class="skill-node skill-5">Technical Product Management</span>
+                <span class="skill-node skill-5">0 to 1 Products</span>
+                <span class="skill-node skill-5">Large Language Models</span>
+                <span class="skill-node skill-5">Agentic AI</span>
+                <span class="skill-node skill-5">Agentic Development</span>
+                <span class="skill-node skill-4">GA4 + GTM</span>
+                <span class="skill-node skill-4">Google Ads</span>
+                <span class="skill-node skill-4">Meta Ads Manager</span>
+                <span class="skill-node skill-4">A/B Testing</span>
+                <span class="skill-node skill-4">Prompt Engineering</span>
+                <span class="skill-node skill-4">Product Design</span>
+                <span class="skill-node skill-4">Machine Learning</span>
+                <span class="skill-node skill-4">React.js</span>
+                <span class="skill-node skill-4">Node.js</span>
+                <span class="skill-node skill-4">NLP</span>
+                <span class="skill-node skill-4">Rapid Prototyping</span>
+                <span class="skill-node skill-3">ROAS Optimization</span>
+                <span class="skill-node skill-3">SQL</span>
+                <span class="skill-node skill-3">REST APIs</span>
+                <span class="skill-node skill-3">n8n</span>
+                <span class="skill-node skill-3">Custom GPTs</span>
+                <span class="skill-node skill-3">Figma</span>
+                <span class="skill-node skill-3">Data Analytics</span>
+                <span class="skill-node skill-3">Market Analysis</span>
+                <span class="skill-node skill-3">Competitive Analysis</span>
+                <span class="skill-node skill-3">Business Strategy</span>
+                <span class="skill-node skill-3">Next.js</span>
+                <span class="skill-node skill-3">Firebase</span>
+                <span class="skill-node skill-3">Vector Databases</span>
+                <span class="skill-node skill-3">Funnel Optimization</span>
+                <span class="skill-node skill-3">Product Requirements</span>
+                <span class="skill-node skill-3">LangChain</span>
+                <span class="skill-node skill-3">User Research</span>
+                <span class="skill-node skill-2">Mixpanel</span>
+                <span class="skill-node skill-2">PostHog</span>
+                <span class="skill-node skill-2">Flask</span>
+                <span class="skill-node skill-2">Docker</span>
+                <span class="skill-node skill-2">Tableau</span>
+                <span class="skill-node skill-2">Jira</span>
+                <span class="skill-node skill-2">Agile</span>
+                <span class="skill-node skill-2">No-Code Platforms</span>
+                <span class="skill-node skill-2">Redis</span>
+                <span class="skill-node skill-2">Market Research</span>
+                <span class="skill-node skill-2">Team Leadership</span>
+                <span class="skill-node skill-1">MySQL</span>
+                <span class="skill-node skill-1">C++</span>
+                <span class="skill-node skill-1">Scrum</span>
+            </div>
+            <p class="heatmap-footnote reveal">* and one more skill: the ability to be put in a situation room
+                with 0 context about anything and still make things happen.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience">
+        <div class="section-inner">
+            <p class="section-label reveal">// work.log</p>
+            <h2 class="section-title reveal">Where I've been.</h2>
+            <p class="section-sub reveal">Building at the intersection of product and engineering since before AI was a
+                job title. Currently @ Times Internet — and yes, I'm the one who convinced leadership that vibes are a
+                valid KPI.</p>
+
+            <div class="exp-list">
+
+                <!-- TIL: ATPM -->
+                <div class="exp-card reveal">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Associate Technical Product Manager</div>
+                            <div class="exp-company">@ Times Internet · AI Labs · COO Office</div>
+                        </div>
+                        <div class="exp-date">Aug 2025 – Present · <span style="color:var(--green);font-size:0.65rem;">●
+                                live</span></div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Own E2E architecture and roadmap for AI conversational platforms at B2C and enterprise scale
+                            — basically the person who gets paged when the bot says something weird</li>
+                        <li>0→1 product incubation: rapid prototyping, POC validation, A/B experiments, and convincing
+                            engineers it was their idea (hardest part)</li>
+                        <li>Improved ROS by 2.5× through model iteration and data-driven experimentation — that number
+                            is real and I'm very proud of it</li>
+                        <li>Full-funnel growth ownership: Meta Ads Manager, Google Ads, GA4. ROAS &lt; 1 is a bad dream.
+                            I say good morning to my marketing person right after I tell them to fix the underperforming
+                            campaign</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span class="tech-pill">GenAI</span>
+                        <span class="tech-pill">LLMs</span>
+                        <span class="tech-pill">Voice Agents</span>
+                        <span class="tech-pill">Meta Ads</span>
+                        <span class="tech-pill">GA4</span>
+                        <span class="tech-pill">GTM</span>
+                    </div>
+                </div>
+
+                <!-- TIL: AI Product Intern -->
+                <div class="exp-card reveal">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">AI Product Intern</div>
+                            <div class="exp-company">@ Economic Times · AI, Automation & Growth · COO Office</div>
+                        </div>
+                        <div class="exp-date">May – Jul 2025 · 3 mos</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Built 0→1 conversational AI apps that made LLM voice agents actually useful to real humans —
+                            not just demo videos</li>
+                        <li>Collaborated with FMCG and Fortune 500 clients on AI chatbot advertising prototypes — yes,
+                            ads can have vibes too</li>
+                        <li>Shipped WABA chatbots that cut human-agent handoffs in half. Support team wrote a thank-you
+                            note. Kind of.</li>
+                        <li>Conceived POCs for new AI products and shepherded cross-functional teams through MVPs — the
+                            universal language of "just ship it"</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span class="tech-pill">LLM Voice Agents</span>
+                        <span class="tech-pill">WhatsApp BA</span>
+                        <span class="tech-pill">Conversational AI</span>
+                        <span class="tech-pill">Product Design</span>
+                    </div>
+                </div>
+
+                <!-- myKaarma -->
+                <div class="exp-card reveal">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Software Development Intern</div>
+                            <div class="exp-company">@ myKaarma · Communications Team</div>
+                        </div>
+                        <div class="exp-date">May – Jul 2024 · 3 mos</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Revamped the Out-of-Office feature for dealership associates — wrote more unit tests than I
+                            care to admit</li>
+                        <li>Built a scalable Angular UI with reusable components. Storybook stories included. Yes, I'm
+                            that person.</li>
+                        <li>Spring Boot aggregator service routing HTTP across the backend — microservices talking to
+                            microservices talking to microservices</li>
+                        <li>Shipped it → 10% lift in engagement. Impact analysis doc: 47 pages. Actual fix: 200 lines of
+                            code.</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span class="tech-pill">Angular</span>
+                        <span class="tech-pill">TypeScript</span>
+                        <span class="tech-pill">Storybook</span>
+                        <span class="tech-pill">Spring Boot</span>
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">Jira</span>
+                    </div>
+                </div>
+
+                <!-- IEEE -->
+                <div class="exp-card reveal">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">General Secretary & Coordinator → Head of Comms → ExeCom</div>
+                            <div class="exp-company">@ IEEE IIIT-Delhi Student Branch</div>
+                        </div>
+                        <div class="exp-date">Feb 2022 – May 2024 · 2 yrs 4 mos</div>
+                    </div>
+                    <ul class="exp-bullets">
+                        <li>Led a 70+ member team — first managerial job, survived it, still have all my hair</li>
+                        <li>Organized ~30 technical events (hackathons, cryptic hunts) with 100–120 participants each —
+                            logistics is just project management with food</li>
+                        <li>Partnered with Solana and other blockchain companies for joint events that pulled 200+
+                            attendees. Web3 hype was real. We rode it.</li>
+                        <li>Progressed from ExeCom → Head of Comms → Gen Sec. Classic speedrun.</li>
+                    </ul>
+                    <div class="exp-tech">
+                        <span class="tech-pill">Team Leadership</span>
+                        <span class="tech-pill">Event Management</span>
+                        <span class="tech-pill">Partnerships</span>
+                        <span class="tech-pill">Community Building</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+    <!-- ═══ PROJECTS — commented out, work in progress ═══
+
+    <div class="divider"></div>
+
+    <section id="projects">
+        <div class="section-inner">
+            <p class="section-label reveal">// projects.ls</p>
+            <h2 class="section-title reveal">Things I've shipped.</h2>
+            <p class="section-sub reveal">From LLM-powered apps to full-stack platforms — each one a lesson in shipping
+                fast and thinking clearly.</p>
+
+            <div class="projects-grid">
+
+                <div class="project-card reveal"
+                    onclick="window.open('https://github.com/udbhavvarma/travelAID','_blank')">
+                    <div class="project-icon">AI</div>
+                    <div class="project-name">travelAID</div>
+                    <div class="project-desc">Full-stack travel aggregator integrating heterogeneous distributed
+                        databases via virtualized mediated schema. Llama-powered NL → SQL over 70k+ records with 95%
+                        query accuracy.</div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">React</span>
+                            <span class="tech-pill">Node.js</span>
+                            <span class="tech-pill">Llama</span>
+                            <span class="tech-pill">Trino</span>
+                        </div>
+                        <span class="project-link">↗ GitHub</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">NLP</div>
+                    <div class="project-name">SymLink</div>
+                    <div class="project-desc">NER + Relation Extraction on mathematical symbols in research papers. Used
+                        BERT, mBERT &amp; LUKE to map symbols → descriptions — beat SOTA benchmarks by 5%.</div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">TensorFlow</span>
+                            <span class="tech-pill">BERT</span>
+                        </div>
+                        <span class="project-link">↗ View</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">SQL</div>
+                    <div class="project-name">SQLUber</div>
+                    <div class="project-desc">Uber-like platform with 2FA via OTPless, MySQL frameworks for
+                        client/driver records, Google Maps spatial integration, and a tkinter GUI.</div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">MySQL</span>
+                            <span class="tech-pill">PHP</span>
+                            <span class="tech-pill">Python</span>
+                        </div>
+                        <span class="project-link">↗ View</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal"
+                    style="cursor:default; border-color: rgba(99,245,188,0.25); background: rgba(99,245,188,0.03);">
+                    <div class="project-icon">TIL</div>
+                    <div class="project-name" style="color:var(--green);">The real ones</div>
+                    <div class="project-desc">The actually interesting stuff lives behind Times Internet's GitHub org.
+                        Conversational AI platforms, voice agents, revenue-generating chatbots at scale. Trust me on
+                        this one.</div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill" style="border-color:rgba(99,245,188,0.3);">GenAI</span>
+                            <span class="tech-pill" style="border-color:rgba(99,245,188,0.3);">gatekept</span>
+                            <span class="tech-pill" style="border-color:rgba(99,245,188,0.3);">NDA</span>
+                        </div>
+                        <span class="project-link" style="opacity:0.35;cursor:default;">private</span>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+    ═══ end PROJECTS ═══ -->
+
+    <!-- ── SERIOUS NOTE (formerly vibes) ── -->
+    <section id="vibe">
+        <div class="section-inner">
+            <p class="section-label reveal">// principles.md</p>
+            <h2 class="section-title reveal">On a serious note.</h2>
+            <p class="section-sub reveal" style="font-style:normal;">A few things I genuinely believe about building
+                products. No irony here.</p>
+
+            <div class="vibe-grid">
+                <div class="vibe-card reveal">
+                    <div class="vibe-emoji">01</div>
+                    <div class="vibe-title">Clarity is a competitive advantage</div>
+                    <div class="vibe-desc">The best product decisions come from being brutally honest about what you
+                        know and what you don't. Vague specs are expensive. Clear ones are underrated.</div>
+                </div>
+                <div class="vibe-card reveal">
+                    <div class="vibe-emoji">02</div>
+                    <div class="vibe-title">Ship, then learn</div>
+                    <div class="vibe-desc">Perfect is the enemy of useful. I'd rather have a working MVP in the hands of
+                        users than a polished prototype in a Figma file. Feedback is data. Ship to get it.</div>
+                </div>
+                <div class="vibe-card reveal">
+                    <div class="vibe-emoji">03</div>
+                    <div class="vibe-title">The metric is the strategy</div>
+                    <div class="vibe-desc">If you can't tie a decision back to a number that matters, you're guessing. I
+                        define north star metrics before writing a single line of a PRD.</div>
+                </div>
+                <div class="vibe-card reveal">
+                    <div class="vibe-emoji">04</div>
+                    <div class="vibe-title">Engineering is a partner, not a vendor</div>
+                    <div class="vibe-desc">The best products I've shipped happened when engineering was in the room from
+                        day one. Constraints are features. Technical debt is a product risk.</div>
+                </div>
+                <div class="vibe-card reveal">
+                    <div class="vibe-emoji">05</div>
+                    <div class="vibe-title">AI is infrastructure now</div>
+                    <div class="vibe-desc">We're past the "AI features" phase. The question is how deeply and
+                        responsibly it's embedded into the core product loop — not whether it should be.</div>
+                </div>
+                <div class="vibe-card reveal">
+                    <div class="vibe-emoji">06</div>
+                    <div class="vibe-title">Distribution beats product</div>
+                    <div class="vibe-desc">A great product no one finds is a prototype. Growth, GTM, and performance
+                        marketing aren't afterthoughts — they're part of the product. I take them seriously.</div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">SQLUber</h5>
-                    <p class="card-text">Facilitated client-side 2-factor authentication through OTPless</p>
-                    <p class="card-text">Developed MySQL frameworks to maintain client and driver records</p>
-                    <p class="card-text">Configured Google Maps APIs to extract spatial information for various purposes</p>
-                    <p class="card-text">Created a client-side interface using Python GUI (tkinter)</p>
-                    <p class="tech-stack">Technologies: MySQL, PHP, GoogleMaps API, Python</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact">
+        <div class="contact-inner">
+            <p class="section-label reveal">// contact.sh</p>
+            <h2 class="section-title reveal">Let's build something.</h2>
+            <p class="section-sub reveal" style="margin: 0 auto 0; text-align:center;">I'm always up for interesting
+                problems, cool collabs, and good conversations about product and tech.</p>
+
+            <div class="contact-terminal reveal">
+                <div class="line"><span class="prompt-str">→</span><span class="cmd">open connections</span></div>
+                <div class="contact-links">
+                    <div class="contact-link-row">
+                        <span class="contact-link-label">email</span>
+                        <a class="contact-link-val" href="mailto:udbhav21433@iiitd.ac.in">udbhav21433@iiitd.ac.in</a>
+                    </div>
+                    <div class="contact-link-row">
+                        <span class="contact-link-label">linkedin</span>
+                        <a class="contact-link-val" href="https://linkedin.com/in/udbhav-varma" target="_blank"
+                            rel="noopener">linkedin.com/in/udbhav-varma</a>
+                    </div>
+                    <div class="contact-link-row">
+                        <span class="contact-link-label">github</span>
+                        <a class="contact-link-val" href="https://github.com/udbhavvarma" target="_blank"
+                            rel="noopener">github.com/udbhavvarma</a>
+                    </div>
+                </div>
+                <div style="margin-top:1.5rem; color: var(--text-muted);">
+                    <span class="prompt-str">→</span> <span style="color:var(--green);">status:</span> <span
+                        style="color:var(--text-dim);">shipping things @ Times Internet</span> <span
+                        style="animation:blink 1s step-end infinite; display:inline-block; width:8px; height:15px; background:var(--green); vertical-align:middle;"></span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <p>Email: udbhav21433@iiitd.ac.in</p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/udbhav-varma">linkedin.com/in/udbhav-varma</a></p>
-        </section>
-    </div>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Udbhav Varma. All Rights Reserved.</p>
+        <p>built by <span>Udbhav Varma</span> — powered by vibecoding + too much diet coke. © 2026</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        /* ── Cursor spotlight ── */
+        const spotlight = document.getElementById('spotlight');
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        document.addEventListener('mousemove', e => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            spotlight.style.left = mouseX + 'px';
+            spotlight.style.top = mouseY + 'px';
+        });
+
+        /* ── Progress bar ── */
+        const bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', () => {
+            const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+            bar.style.width = Math.min(pct, 100) + '%';
+        }, { passive: true });
+
+        /* ── Typewriter ── */
+        const phrases = [
+            'building GenAI at scale. sort of.',
+            '90% of jenkins builds fail. the 10% change the game.',
+            'antigravity + claude both crashed building this. shipped anyway.',
+            'making bots talk like humans. humans talk like bots. cycle complete.',
+            'improving AI-driven ROI by 2.5x. yes, measured. yes, real.',
+            '0→1 products. then 1→hopefully-not-on-fire.',
+            'writing PRDs that actually get read. rarely. usually only by claude. then i decide this feature is trash',
+        ];
+        let pIdx = 0, cIdx = 0, deleting = false;
+        const tw = document.getElementById('typewriter');
+        function type() {
+            const phrase = phrases[pIdx];
+            if (!deleting) {
+                tw.textContent = phrase.slice(0, ++cIdx);
+                if (cIdx === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
+            } else {
+                tw.textContent = phrase.slice(0, --cIdx);
+                if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
+            }
+            setTimeout(type, deleting ? 35 : 65);
+        }
+        type();
+
+        /* ── Scroll-driven animation fallback (IntersectionObserver) ── */
+        if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
+            const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('revealed');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+            els.forEach(el => io.observe(el));
+        } else {
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+                el.style.opacity = '';
+                el.style.transform = '';
+            });
+        }
+
+        /* ── Project card magnetic spotlight ── */
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mx', x + '%');
+                card.style.setProperty('--my', y + '%');
+            });
+        });
+
+        /* ── Skill node stagger ── */
+        document.querySelectorAll('.skill-node').forEach((el, i) => {
+            el.style.transitionDelay = (i * 0.015) + 's';
+        });
+
+        /* ── Interactive Terminal ── */
+        (function () {
+            const out = document.getElementById('term-output');
+            const inp = document.getElementById('term-input');
+            const term = document.querySelector('.terminal');
+            if (!out || !inp) return;
+
+            let history = [], hIdx = -1;
+            let visitorIP = '', isBosnian = false;
+            // try ipify first (more permissive CORS), fall back to ipapi
+            fetch('https://api.ipify.org?format=json')
+                .then(r => r.json())
+                .then(d => {
+                    visitorIP = d.ip || '';
+                    // check country separately
+                    return fetch('https://ipapi.co/' + visitorIP + '/country_code/');
+                })
+                .then(r => r.text())
+                .then(cc => { isBosnian = (cc.trim() === 'BA'); })
+                .catch(() => { });
+
+            function esc(s) {
+                return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+            function scroll() { out.scrollTop = out.scrollHeight; }
+            function el(tag, css, html) {
+                const d = document.createElement(tag);
+                if (css) d.style.cssText = css;
+                if (html !== undefined) d.innerHTML = html;
+                out.appendChild(d);
+                scroll();
+                return d;
+            }
+            function cmd(text) {
+                el('div', 'display:flex;gap:0.6rem;align-items:center;',
+                    '<span style="color:var(--green)">→</span> <span style="color:var(--text)">' + esc(text) + '</span>');
+            }
+            function raw(text, color) {
+                el('div', 'white-space:pre-wrap;word-break:break-word;color:' + (color || 'var(--text-dim)') + ';padding-left:1.1rem;font-size:0.8rem;line-height:1.75;', esc(text));
+            }
+            function err(text) { raw(text, 'var(--pink)'); }
+            function sp() {
+                const d = document.createElement('div');
+                d.style.height = '0.4rem';
+                out.appendChild(d);
+            }
+
+            /* ── boot ── */
+            el('div', 'color:var(--text-muted);font-size:0.75rem;', 'Last login: ' + new Date().toDateString() + ' on ttys001');
+            el('div', 'color:var(--text-muted);font-size:0.75rem;', 'Portfolio v2.0.0 — type <span style="color:var(--green)">help</span> to see what this can do.');
+            sp();
+            cmd('whoami');
+            el('div', 'font-family:var(--sans);font-size:clamp(1.3rem,3vw,2rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.2;padding:0.2rem 0;',
+                'Udbhav <span style="color:var(--green)">Varma.</span>');
+            raw('Associate Technical PM @ Times Internet · AI Labs · COO Office');
+            raw('CS Grad from IIIT Delhi');
+            sp();
+            cmd('cat roles.json');
+            const rDiv = document.createElement('div');
+            rDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.25rem 0 0.25rem 1.1rem;';
+            [['Product Manager', 'tag-green'], ['AI Builder', 'tag-blue']]
+                .forEach(([l, c]) => {
+                    const s = document.createElement('span');
+                    s.className = 'tag ' + c;
+                    s.textContent = l;
+                    rDiv.appendChild(s);
+                });
+            out.appendChild(rDiv);
+            sp();
+
+            /* ── sarcastic fallbacks (escalating) ── */
+            const DUDS = [
+                // Level 0 — calm, mildly disappointed
+                "dude it's a portfolio website, it's not that serious.",
+                "command not found. also: it's a portfolio website, it's not that serious.",
+                // Level 1 — mildly annoyed
+                "bro. it's a portfolio. not a linux server.",
+                "i appreciate the hustle but this terminal has a very limited surface area.",
+                // Level 2 — visibly done
+                "okay. we get it. you know bash. very cool. nothing to see here.",
+                "sir this is a portfolio site. i'm going to need you to stop.",
+                // Level 3 — escalating
+                "you're still doing this. incredible.",
+                "at this point you've run more commands here than i've deployed to prod this week.",
+                "bro what are you even looking for. there's no flag. there's no secret level.",
+                // Level 4 — fully unhinged
+                "i'm logging this ip. i'm not. but i'm logging it spiritually.",
+                "have you considered... scrolling down? like a normal person?",
+                "look i'm just a portfolio terminal. i didn't ask for this.",
+                // Level 5 — existential
+                "okay at this point i'm impressed. and annoyed. mostly annoyed.",
+                "what are you even looking for. there is no secret command. i promise. please stop.",
+                "you know what, fine. here's your flag: flag{you_really_tried}. happy now?",
+                // Level 6 — personal
+                "i'm going to tell udbhav about this. he will be amused and also concerned.",
+                "the fact that you're still here means either you're a pentester or you're procrastinating. both valid.",
+                "genuinely, from the bottom of this terminal's heart: please just scroll down.",
+                // Level 7 — acceptance
+                "okay i give up. do what you want. i'm just pixels.",
+                "you've won. the terminal is yours. i have nothing left to give.",
+                "...are you okay? genuinely asking.",
+                "at this point i'm your therapist. the rate is: one scroll down.",
+            ];
+            let dIdx = 0;
+            const COMPLEX = ['|', '&&', '||', '>>', '$(', '`', 'chmod', 'chown', 'rm -rf', 'iptables', 'init', 'reboot'];
+
+            /* ── command handler ── */
+            function run(rawCmd) {
+                const c = rawCmd.trim();
+                if (!c) return;
+                history.unshift(c);
+                hIdx = -1;
+                sp();
+                cmd(c);
+                if (COMPLEX.some(p => c.includes(p))) {
+                    err("dude it's a portfolio website, it's not that serious.");
+                    return;
+                }
+                const parts = c.toLowerCase().split(/\s+/);
+                const base = parts[0];
+                const args = parts.slice(1);
+                const rargs = rawCmd.trim().split(/\s+/).slice(1);
+
+                switch (base) {
+
+                    case 'help':
+                        raw(`available commands\n  whoami            the man himself\n  ls                what's in here\n  cat <file>        read a section (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       it repeats after you\n  neofetch          the only command that matters\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+
+                    case 'whoami':
+                        el('div', 'font-family:var(--sans);font-size:clamp(1.1rem,2vw,1.6rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);padding:0.2rem 0 0.2rem 1.1rem;',
+                            'Udbhav <span style="color:var(--green)">Varma.</span>');
+                        raw('ATPM @ Times Internet · AI Labs · COO Office\nCS + Economics, IIIT Delhi\nBuilt so many conversational AI platforms I can make you talk to anyone.\n90% of my jenkins builds fail. the 10% that succeed change the game.'); break;
+
+                    case 'ls': {
+                        const flag = args.find(a => a.startsWith('-'));
+                        const tgt = args.find(a => !a.startsWith('-')) || '';
+                        if (tgt === 'projects' || tgt === 'projects/') {
+                            raw('travelAID/         Llama NL→SQL · 70k+ records\nSymLink/           NER on math symbols · beat SOTA by 5%\nSQLUber/           uber clone · 2FA + Google Maps\nAdSalesPlatform/   Next.js + Firebase · AI assistant');
+                        } else if (flag && (flag.includes('l') || flag.includes('a'))) {
+                            raw('drwxr-xr-x  udbhav  about.md        (bio, vaguely accurate)\ndrwxr-xr-x  udbhav  experience.md   (where the money comes from)\ndrwxr-xr-x  udbhav  projects.md     (where the fun happens)\ndrwxr-xr-x  udbhav  vibes.md        (most important file)\ndrwxr-xr-x  udbhav  contact.md      (sensible pitches only)\n-rw-------  udbhav  jenkins.log     (do not open)');
+                        } else {
+                            raw('about.md  experience.md  projects.md  vibes.md  contact.md');
+                        }
+                        break;
+                    }
+
+                    case 'cat': {
+                        const f = args[0] || '';
+                        if (['about', 'about.md', 'about.txt', 'bio'].includes(f)) {
+                            raw('Name:      Udbhav Varma\nRole:      Associate Technical Product Manager\nCompany:   Times Internet · AI Labs · COO Office\nEducation: CS + Economics, IIIT Delhi\n\nOne part PM. One part engineer. One part chaos.\nAsks "why are we building this?", gets told to just build it,\nships it faster than the meeting was scheduled.');
+                        } else if (['experience', 'exp', 'experience.md', 'exp.md', 'work'].includes(f)) {
+                            raw('[current]  Assoc. TPM @ Times Internet (Aug 2025 – now)\n           AI Labs · COO Office · GenAI platforms · 2.5x ROS\n[2025]     AI Product Intern @ Economic Times\n           Conversational AI · Voice Agents · WABA · Fortune 500 clients\n[2024]     SDE Intern @ myKaarma\n           Angular + Spring Boot · +10% engagement\n[2022-24]  Gen Sec @ IEEE IIIT-Delhi\n           70+ members · 30 events · Solana partnership');
+                        } else if (['projects', 'projects.md', 'proj'].includes(f)) {
+                            raw('travelAID    — Llama NL→SQL, 70k+ records, 95% accuracy\nSymLink      — NER on math symbols, beat SOTA by 5%\nSQLUber      — uber clone, full stack, 2FA + Google Maps\nAdSales      — Next.js + Firebase dashboard with AI assistant');
+                        } else if (['contact', 'contact.md'].includes(f)) {
+                            raw('email     udbhav21433@iiitd.ac.in\nlinkedin  linkedin.com/in/udbhav-varma\ngithub    github.com/udbhavvarma\n\n(if your idea is interesting enough, i reply fast.)');
+                        } else if (f === 'jenkins.log') {
+                            err('permission denied. some things are better left unseen.');
+                        } else if (f === 'vibes.md') {
+                            raw('90% chaos, 10% clarity.\nthe 10% always ships on time.\nhaving the dawg in me: confirmed.');
+                        } else if (!f) {
+                            err('cat: missing operand. try: cat about, cat experience, cat projects, cat contact');
+                        } else {
+                            err('cat: ' + esc(rargs[0]) + ': no such file. try: about · experience · projects · contact');
+                        }
+                        break;
+                    }
+
+                    case 'pwd': raw('/home/udbhav/somewhere-between-product-and-engineering'); break;
+                    case 'cd': raw(args.length && !['~', '/', '..'].includes(args[0]) ? 'cd: ' + esc(rargs[0]) + ": you're already exactly where you need to be." : "you're already home."); break;
+                    case 'date': raw(new Date().toString()); break;
+                    case 'echo': raw(rargs.length ? rargs.join(' ') : ''); break;
+                    case 'clear': out.innerHTML = ''; break;
+                    case 'uname': raw('PortfolioOS 4.20.69-vibe-stable x86_vibes GNU/Chaos'); break;
+
+                    case 'neofetch': {
+                        const g = 'color:var(--green);font-weight:700';
+                        const m = 'color:var(--text-muted)';
+                        el('div', 'white-space:pre;font-size:0.78rem;line-height:1.7;padding-left:1.1rem;',
+                            '<span style="' + g + '">udbhav</span>@<span style="' + g + '">portfolio</span>\n' +
+                            '<span style="' + m + '">──────────────────────────</span>\n' +
+                            '<span style="' + g + '">OS</span>       PortfolioOS 4.20.69-vibe-stable\n' +
+                            '<span style="' + g + '">Host</span>     Times Internet · AI Labs\n' +
+                            '<span style="' + g + '">Kernel</span>   GenAI 3.0 (Agentic Edition)\n' +
+                            '<span style="' + g + '">Uptime</span>   10 mos and counting\n' +
+                            '<span style="' + g + '">Shell</span>    vibezsh 5.9\n' +
+                            '<span style="' + g + '">CPU</span>      Product Brain + Engineer Hands\n' +
+                            '<span style="' + g + '">GPU</span>      2.5x ROS improvement\n' +
+                            '<span style="' + g + '">Memory</span>   overloaded, usually\n' +
+                            '<span style="' + m + '">──────────────────────────</span>\n' +
+                            '<span style="' + g + '">Stack</span>    LLMs, Python, React, Spring Boot\n' +
+                            '<span style="' + g + '">Vibe</span>     90% jenkins failures, 10% game-changers');
+                        break;
+                    }
+
+                    case 'git': {
+                        const sub = args[0];
+                        if (sub === 'log') {
+                            raw('commit a7f3b2c  feat: shipped 0→1 AI platform (again)\ncommit 9e1d4a8  fix: convinced everyone it was planned\ncommit 3f8c091  feat: improved ROS by 2.5x (real number, i swear)\ncommit b2a5d7e  chore: survived sprint review with zero prep\ncommit 88c3f1a  feat: made voice agent not sound like a robot\ncommit d4e9201  fix: jenkins was right, i was wrong (briefly)\ncommit 1a2b3c4  init: opened cursor, vibed, shipped');
+                        } else if (sub === 'status') {
+                            raw('On branch main\nYour branch is ahead by 3 commits.\n\nnothing to commit, working tree clean\n(vibes are also clean)');
+                        } else if (sub === 'push') { raw('already on main. always on main. there is no staging.'); }
+                        else if (sub === 'pull') { raw('Already up to date. (unlike my sleep schedule)'); }
+                        else if (sub === 'blame') { raw('git blame: it\'s always the LLM.'); }
+                        else { err('git: \'' + esc(rargs[0]) + '\': not a real command here.'); }
+                        break;
+                    }
+
+                    case 'sudo': err('sudo: nice try. udbhav@portfolio is already root (in spirit).'); break;
+
+                    case 'npm': {
+                        const sub = args[0];
+                        if (sub === 'install' || sub === 'i') { raw('added 847 packages in 0.3s\nvibes@latest already installed'); }
+                        else if (sub === 'run') {
+                            const sc = args[1];
+                            if (sc === 'dev') raw('> portfolio@2.0.0 dev\n\nyou\'re looking at it.');
+                            else if (sc === 'build') raw('compiling... done\nwhy build when you can ship prod directly');
+                            else err('npm run ' + esc(rargs.join(' ')) + ': what\'s that even supposed to do');
+                        } else { err('npm commands don\'t fix product problems. source: experience.'); }
+                        break;
+                    }
+
+                    case 'curl': err('curl: (6) could not resolve host (but i can resolve product problems)'); break;
+                    case 'ping': rargs[0] ? raw('PING ' + esc(rargs[0]) + ': still not a real server.\n(pong)') : err('ping: missing host. try pinging your PM with a PRD.'); break;
+
+                    case 'history': {
+                        const h = history.slice(1).reverse();
+                        if (!h.length) raw('(no history yet — you just got here)');
+                        else raw(h.map((c, i) => '  ' + String(i + 1).padStart(3) + '  ' + c).join('\n'));
+                        break;
+                    }
+
+                    case 'ps':
+                        raw('  PID  COMMAND\n    1  portfolio --mode=dark --vibe=on\n    2  typewriter.js (running)\n    3  scroll-animations (smooth)\n    4  jenkins (90% failed, 10% legendary)\n 9999  your-eyes (reading this)'); break;
+
+                    case 'top':
+                        raw('top — ' + new Date().toLocaleTimeString() + ' up 10 mos, 1 user\nTasks: 4 total, 1 running, 3 ideating\n%Cpu: 10% usr, 90% jenkins grief\n\n  PID   %CPU  %MEM  COMMAND\n    1    2.5  10.0  portfolio\n    4   89.9   0.1  jenkins'); break;
+
+                    case 'vim': case 'vi': case 'nano':
+                        err(base + ': not installed. use Cursor like a normal person.'); break;
+
+                    case 'python': case 'python3':
+                        raw('Python 3.11.0 (portfolio edition)\n>>> (not a REPL. just a portfolio.)'); break;
+
+                    case 'exit': case 'quit':
+                        raw("there's no exiting this portfolio. scroll down instead."); break;
+
+                    case 'man': raw('man ' + esc(rargs[0] || '') + ': we don\'t do manuals here. try \'help\'.'); break;
+                    case 'kill': err('kill: cannot kill the vibe.'); break;
+                    case 'ssh': err('ssh: connection refused. it\'s a portfolio.'); break;
+                    case 'java': raw('java: we moved on. LLMs now.'); break;
+
+                    default: {
+                        // easter egg: every 3rd unknown command, show rickroll or ip reveal
+                        const isEasterTurn = (dIdx % 3 === 2); // triggers at 2, 5, 8, 11...
+                        const doRickroll = isEasterTurn && (dIdx % 6 === 2); // alternates between the two
+                        const doIPReveal = isEasterTurn && !doRickroll && !isBosnian;
+
+                        if (doRickroll) {
+                            el('div', 'white-space:pre-wrap;color:var(--pink);padding-left:1.1rem;font-size:0.8rem;line-height:1.75;',
+                                'wait... you found the easter egg.\nhere\'s my .env.prod —');
+                            el('div', 'padding-left:1.1rem;margin-top:0.25rem;',
+                                '<a href="https://www.youtube.com/watch?v=QDia3e12czc" target="_blank" rel="noopener" ' +
+                                'style="color:var(--green);font-family:var(--mono);font-size:0.78rem;text-decoration:underline;">' +
+                                'DATABASE_URL=postgresql://udbhav:*****@prod.til.internal/ai_secrets<br>' +
+                                'OPENAI_KEY=sk-\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022<br>' +
+                                'SECRET=click_to_reveal</a>');
+                        } else if (doIPReveal) {
+                            if (visitorIP) {
+                                el('div', 'white-space:pre-wrap;color:var(--pink);padding-left:1.1rem;font-size:0.8rem;line-height:1.75;',
+                                    'wait\ni know where you live bro \u2192 ' + visitorIP);
+                            } else {
+                                el('div', 'white-space:pre-wrap;color:var(--pink);padding-left:1.1rem;font-size:0.8rem;line-height:1.75;',
+                                    'wait\ni know where you live bro \u2192 [redacted. you\'re probably behind a VPN. smart.]');
+                            }
+                        } else {
+                            err(DUDS[Math.min(dIdx, DUDS.length - 1)]);
+                        }
+                        dIdx++;
+                        break;
+                    }
+                }
+            }
+
+            /* ── tab completions ── */
+            const CMDS = ['help', 'whoami', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl '];
+
+            inp.addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+                    run(inp.value);
+                    inp.value = '';
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (hIdx < history.length - 1) { hIdx++; inp.value = history[hIdx]; }
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (hIdx > 0) { hIdx--; inp.value = history[hIdx]; }
+                    else { hIdx = -1; inp.value = ''; }
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const v = inp.value.toLowerCase();
+                    const m = CMDS.find(c => c.startsWith(v) && c !== v);
+                    if (m) inp.value = m;
+                }
+            });
+
+            term.addEventListener('click', () => inp.focus());
+            setTimeout(() => { try { inp.focus(); } catch (e) { } }, 700);
+        })();
+    </script>
 </body>
+
 </html>
