@@ -39,6 +39,92 @@
 
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --spotlight-color: rgba(99, 245, 188, 0.04);
+            --selection-bg: rgba(99, 245, 188, 0.25);
+            --selection-color: var(--green);
+        }
+
+        /* ── Matrix Retro Theme ── */
+        body.theme-matrix {
+            --bg: #030703;
+            --bg-2: #050e05;
+            --surface: rgba(0, 255, 70, 0.03);
+            --surface-h: rgba(0, 255, 70, 0.08);
+            --border: rgba(0, 255, 70, 0.15);
+            --border-h: rgba(0, 255, 70, 0.5);
+            --green: #00ff46;
+            --green-dim: #00dd3c;
+            --purple: #00ff7f;
+            --blue: #32cd32;
+            --pink: #20b2aa;
+            --yellow: #adff2f;
+            --text: #39ff14;
+            --text-muted: #1e7a1e;
+            --text-dim: #22c322;
+            --spotlight-color: rgba(0, 255, 70, 0.05);
+            --selection-bg: rgba(0, 255, 70, 0.25);
+            --selection-color: var(--green);
+        }
+
+        /* ── Cyberpunk Neon Theme ── */
+        body.theme-cyberpunk {
+            --bg: #12041d;
+            --bg-2: #1c052d;
+            --surface: rgba(244, 114, 182, 0.04);
+            --surface-h: rgba(244, 114, 182, 0.1);
+            --border: rgba(244, 114, 182, 0.2);
+            --border-h: #f472b6;
+            --green: #00f0ff;
+            --green-dim: #00c8ff;
+            --purple: #ff007f;
+            --blue: #a78bfa;
+            --pink: #f472b6;
+            --yellow: #ffe600;
+            --text: #f3e8ff;
+            --text-muted: #70458a;
+            --text-dim: #d8b4fe;
+            --spotlight-color: rgba(0, 240, 255, 0.05);
+            --selection-bg: rgba(255, 0, 127, 0.25);
+            --selection-color: var(--purple);
+        }
+
+        /* ── Slate Light Theme ── */
+        body.theme-light {
+            --bg: #f8fafc;
+            --bg-2: #f1f5f9;
+            --surface: rgba(15, 23, 42, 0.04);
+            --surface-h: rgba(15, 23, 42, 0.08);
+            --border: rgba(15, 23, 42, 0.08);
+            --border-h: rgba(15, 23, 42, 0.3);
+            --green: #0f172a;
+            --green-dim: #334155;
+            --purple: #4f46e5;
+            --blue: #2563eb;
+            --pink: #db2777;
+            --yellow: #d97706;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --text-dim: #334155;
+            --spotlight-color: rgba(15, 23, 42, 0.02);
+            --selection-bg: rgba(79, 70, 229, 0.15);
+            --selection-color: #4f46e5;
+        }
+
+        body.theme-light .orb {
+            opacity: 0.3;
+        }
+
+        body.theme-light .orb-1 {
+            background: rgba(15, 23, 42, 0.02);
+        }
+
+        body.theme-light .orb-2 {
+            background: rgba(79, 70, 229, 0.02);
+        }
+
+        body.theme-light .orb-3 {
+            background: rgba(37, 99, 235, 0.02);
         }
 
         /* ── Reset ── */
@@ -63,8 +149,8 @@
         }
 
         ::selection {
-            background: rgba(99, 245, 188, 0.25);
-            color: var(--green);
+            background: var(--selection-bg, rgba(99, 245, 188, 0.25));
+            color: var(--selection-color, var(--green));
         }
 
         a {
@@ -95,6 +181,25 @@
             opacity: 0.025;
             pointer-events: none;
             z-index: 9999;
+        }
+
+        /* ── Design blueprint grid overlay ── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body.theme-light::after {
+            background-image:
+                linear-gradient(to right, rgba(15, 23, 42, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
         }
 
         /* ── Glow orbs ── */
@@ -361,7 +466,11 @@
                 0 40px 80px -20px rgba(0, 0, 0, 0.8),
                 0 0 60px -20px rgba(99, 245, 188, 0.08);
             animation: terminal-appear 1s var(--ease-out-expo) both;
+            position: relative;
+            transition: all 0.3s var(--ease-out-expo);
         }
+
+
 
         @keyframes terminal-appear {
             from {
@@ -1118,7 +1227,7 @@
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(99, 245, 188, 0.04) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--spotlight-color, rgba(99, 245, 188, 0.04)) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
             transform: translate(-50%, -50%);
@@ -1271,7 +1380,7 @@
             <li><a href="#experience">work</a></li>
             <!-- <li><a href="#projects">projects</a></li> -->
             <li><a href="#skills">skills</a></li>
-            <li><a href="#serious">serious note</a></li>
+            <li><a href="#vibe">serious note</a></li>
             <li><a href="#contact">contact</a></li>
         </ul>
     </nav>
@@ -1778,6 +1887,7 @@
 
             let history = [], hIdx = -1;
             let visitorIP = '', isBosnian = false;
+            let gameState = null;
             // try ipify first (more permissive CORS), fall back to ipapi
             fetch('https://api.ipify.org?format=json')
                 .then(r => r.json())
@@ -1814,6 +1924,50 @@
                 const d = document.createElement('div');
                 d.style.height = '0.4rem';
                 out.appendChild(d);
+            }
+
+            function playGame(text) {
+                const choice = text.trim();
+                sp();
+                cmd(choice);
+                sp();
+
+                if (gameState === 'intro') {
+                    if (choice === '1') {
+                        raw("You pushed to production. The DB connection timed out. You have 3 minutes to rollback before the CEO pings you. What do you do?\n  1) Run the rollback script.\n  2) Delete the production logs to hide the evidence.\n\nType the number of your choice in the terminal below.");
+                        gameState = 'push_direct';
+                    } else if (choice === '2') {
+                        raw("Tests failed. You have 2 hours to fix them or the ship window closes. What do you do?\n  1) Apply an AI-generated patch.\n  2) Manually rewrite the test suite from scratch.\n\nType the number of your choice in the terminal below.");
+                        gameState = 'run_tests';
+                    } else if (choice === '3') {
+                        raw("You logged off. Production was a mess, but you weren't there to see it. GAME OVER.");
+                        gameState = null;
+                    } else {
+                        err("Invalid choice. (1, 2, or 3)");
+                    }
+                } else if (gameState === 'push_direct') {
+                    if (choice === '1') {
+                        raw("Rollback successful. Nobody knows it happened. Surviving is the goal.");
+                        gameState = null;
+                    } else if (choice === '2') {
+                        raw("You deleted the production logs. You are fired. GAME OVER.");
+                        gameState = null;
+                    } else {
+                        err("Choose 1 or 2.");
+                    }
+                } else if (gameState === 'run_tests') {
+                    if (choice === '1') {
+                        raw("Tests passed via AI-generated patch. Ship it. YOU WIN.");
+                        gameState = null;
+                    } else if (choice === '2') {
+                        raw("Missed the shipping window. You are officially the bottleneck. GAME OVER.");
+                        gameState = null;
+                    } else {
+                        err("Choose 1 or 2.");
+                    }
+                }
+                if (!gameState) { sp(); raw("Type 'game' to restart."); }
+                scroll();
             }
 
             /* ── boot ── */
@@ -1896,10 +2050,93 @@
                 const args = parts.slice(1);
                 const rargs = rawCmd.trim().split(/\s+/).slice(1);
 
+                const greetings = ['hi', 'hello', 'hey', 'greetings', 'hola', 'yo', 'sup', 'wassup', 'namaste'];
+                if (greetings.includes(base)) {
+                    raw("hi! look, i don't have sockets, WebRTC, or a backend connection. these messages literally go nowhere.\n\nif you want to chat with the real udbhav, go to his linkedin (linkedin.com/in/udbhav-varma) or email him (udbhav21433@iiitd.ac.in).");
+                    return;
+                }
+
                 switch (base) {
 
                     case 'help':
-                        raw(`available commands\n  whoami            the man himself\n  ls                what's in here\n  cat <file>        read a section (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       it repeats after you\n  neofetch          the only command that matters\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+                        raw(`available commands\n  whoami            the udbhav himself\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            matrix screensaver. completely useless, but looks cool\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+
+                    case 'theme': {
+                        let tName = args[0];
+                        if (tName === 'cyber-dark') tName = 'default';
+                        if (tName === 'matrix-green') tName = 'matrix';
+                        if (tName === 'cyberpunk-neon') tName = 'cyberpunk';
+                        if (tName === 'slate-light') tName = 'light';
+
+                        const themes = ['default', 'matrix', 'cyberpunk', 'light'];
+                        if (!tName) {
+                            raw('Usage: theme <name>\nAvailable themes: default · matrix · cyberpunk · light');
+                        } else if (themes.includes(tName)) {
+                            document.body.classList.remove('theme-matrix', 'theme-cyberpunk', 'theme-light');
+                            if (tName !== 'default') {
+                                document.body.classList.add('theme-' + tName);
+                            }
+                            localStorage.setItem('portfolio-theme', tName);
+                            raw('theme changed to ' + tName);
+                        } else {
+                            err('unknown theme: ' + tName + '. choose from: default, matrix, cyberpunk, light');
+                        }
+                        break;
+                    }
+
+                    case 'matrix': {
+                        raw('Starting Matrix Rain... Press any key or click to exit.');
+                        sp();
+                        const overlay = document.createElement('canvas');
+                        overlay.style.cssText = 'position:absolute;top:50px;left:0;width:100%;height:calc(100% - 50px);background:#000;z-index:99;border-bottom-left-radius:14px;border-bottom-right-radius:14px;';
+                        term.appendChild(overlay);
+
+                        const octx = overlay.getContext('2d');
+                        let ow = overlay.width = overlay.clientWidth;
+                        let oh = overlay.height = overlay.clientHeight;
+
+                        const columns = Math.floor(ow / 12) + 1;
+                        const ypos = Array(columns).fill(0);
+
+                        let animId;
+                        function step() {
+                            octx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                            octx.fillRect(0, 0, ow, oh);
+                            octx.fillStyle = '#00ff46';
+                            octx.font = '11px monospace';
+
+                            ypos.forEach((y, ind) => {
+                                const text = String.fromCharCode(Math.random() * 128);
+                                const x = ind * 12;
+                                octx.fillText(text, x, y);
+                                if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+                                else ypos[ind] = y + 12;
+                            });
+                            animId = requestAnimationFrame(step);
+                        }
+                        step();
+
+                        function exitMatrix() {
+                            cancelAnimationFrame(animId);
+                            if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                            document.removeEventListener('keydown', exitMatrix);
+                            overlay.removeEventListener('click', exitMatrix);
+                            raw('Matrix Rain ended.');
+                            sp();
+                            scroll();
+                        }
+                        setTimeout(() => {
+                            document.addEventListener('keydown', exitMatrix);
+                            overlay.addEventListener('click', exitMatrix);
+                        }, 100);
+                        break;
+                    }
+
+                    case 'game': {
+                        raw("Welcome to 'The Shippening' Text Adventure!\nIt's 4:30 PM on a Friday. You have an untested feature branch that the PM wants to ship today. What do you do?\n  1) Push directly to main.\n  2) Run local unit tests.\n  3) Close your laptop and go home.\n\nType the number of your choice in the terminal below.");
+                        gameState = 'intro';
+                        break;
+                    }
 
                     case 'whoami':
                         el('div', 'font-family:var(--sans);font-size:clamp(1.1rem,2vw,1.6rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);padding:0.2rem 0 0.2rem 1.1rem;',
@@ -1912,9 +2149,9 @@
                         if (tgt === 'projects' || tgt === 'projects/') {
                             raw('travelAID/         Llama NL→SQL · 70k+ records\nSymLink/           NER on math symbols · beat SOTA by 5%\nSQLUber/           uber clone · 2FA + Google Maps\nAdSalesPlatform/   Next.js + Firebase · AI assistant');
                         } else if (flag && (flag.includes('l') || flag.includes('a'))) {
-                            raw('drwxr-xr-x  udbhav  about.md        (bio, vaguely accurate)\ndrwxr-xr-x  udbhav  experience.md   (where the money comes from)\ndrwxr-xr-x  udbhav  projects.md     (where the fun happens)\ndrwxr-xr-x  udbhav  vibes.md        (most important file)\ndrwxr-xr-x  udbhav  contact.md      (sensible pitches only)\n-rw-------  udbhav  jenkins.log     (do not open)');
+                            raw('drwxr-xr-x  udbhav  about.md        (bio, vaguely accurate)\ndrwxr-xr-x  udbhav  experience.md   (where the money comes from)\ndrwxr-xr-x  udbhav  projects.md     (where the fun happens)\ndrwxr-xr-x  udbhav  vibes.md        (most important file)\ndrwxr-xr-x  udbhav  contact.md      (sensible pitches only)\n-rw-r--r--  udbhav  roles.json      (what i actually do)\n-rw-------  udbhav  jenkins.log     (do not open)');
                         } else {
-                            raw('about.md  experience.md  projects.md  vibes.md  contact.md');
+                            raw('about.md  experience.md  projects.md  vibes.md  contact.md  roles.json');
                         }
                         break;
                     }
@@ -1933,10 +2170,23 @@
                             err('permission denied. some things are better left unseen.');
                         } else if (f === 'vibes.md') {
                             raw('90% chaos, 10% clarity.\nthe 10% always ships on time.\nhaving the dawg in me: confirmed.');
+                        } else if (['roles.json', 'roles'].includes(f)) {
+                            raw('[\n  {\n    "role": "Product Manager",\n    "vibe": "tag-green"\n  },\n  {\n    "role": "AI Builder",\n    "vibe": "tag-blue"\n  }\n]');
+                            sp();
+                            const rDiv = document.createElement('div');
+                            rDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.25rem 0 0.25rem 1.1rem;';
+                            [['Product Manager', 'tag-green'], ['AI Builder', 'tag-blue']]
+                                .forEach(([l, c]) => {
+                                    const s = document.createElement('span');
+                                    s.className = 'tag ' + c;
+                                    s.textContent = l;
+                                    rDiv.appendChild(s);
+                                });
+                            out.appendChild(rDiv);
                         } else if (!f) {
-                            err('cat: missing operand. try: cat about, cat experience, cat projects, cat contact');
+                            err('cat: missing operand. try: cat about, cat experience, cat projects, cat contact, cat roles.json');
                         } else {
-                            err('cat: ' + esc(rargs[0]) + ': no such file. try: about · experience · projects · contact');
+                            err('cat: ' + esc(rargs[0]) + ': no such file. try: about · experience · projects · contact · roles.json');
                         }
                         break;
                     }
@@ -2058,12 +2308,17 @@
             }
 
             /* ── tab completions ── */
-            const CMDS = ['help', 'whoami', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl '];
+            const CMDS = ['help', 'whoami', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
 
             inp.addEventListener('keydown', e => {
                 if (e.key === 'Enter') {
-                    run(inp.value);
-                    inp.value = '';
+                    if (gameState) {
+                        playGame(inp.value);
+                        inp.value = '';
+                    } else {
+                        run(inp.value);
+                        inp.value = '';
+                    }
                 } else if (e.key === 'ArrowUp') {
                     e.preventDefault();
                     if (hIdx < history.length - 1) { hIdx++; inp.value = history[hIdx]; }
