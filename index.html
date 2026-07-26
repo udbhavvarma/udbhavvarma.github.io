@@ -1471,8 +1471,13 @@
         }
 
         .terminal-body {
-            height: clamp(500px, 66svh, 700px);
+            height: clamp(410px, 54svh, 520px);
             padding: clamp(1.25rem, 2.3vw, 2rem);
+        }
+
+        .terminal-output {
+            flex: 0 1 auto;
+            max-height: calc(100% - 3.25rem);
         }
 
         .scroll-hint {
@@ -1598,8 +1603,8 @@
             }
 
             .terminal-body {
-                height: 64svh;
-                min-height: 440px;
+                height: 56svh;
+                min-height: 390px;
             }
 
             .terminal::before {
@@ -2150,8 +2155,8 @@
             <p style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);margin-bottom:0.5rem;"
                 class="reveal">size = depth of damage done with this skill</p>
             <div class="skill-modes reveal" aria-label="Filter capabilities">
-                <button class="skill-mode" type="button" data-skill="all">All systems</button>
-                <button class="skill-mode active" type="button" data-skill="product">Product</button>
+                <button class="skill-mode active" type="button" data-skill="all">All systems</button>
+                <button class="skill-mode" type="button" data-skill="product">Product</button>
                 <button class="skill-mode" type="button" data-skill="ai">AI</button>
                 <button class="skill-mode" type="button" data-skill="engineering">Engineering</button>
                 <button class="skill-mode" type="button" data-skill="growth">Growth</button>
@@ -2162,6 +2167,8 @@
                 <span class="skill-node skill-5">Large Language Models</span>
                 <span class="skill-node skill-5">Agentic AI</span>
                 <span class="skill-node skill-5">Agentic Development</span>
+                <span class="skill-node skill-5">Retrieval-Augmented Generation</span>
+                <span class="skill-node skill-5">AI Product Strategy</span>
                 <span class="skill-node skill-4">GA4 + GTM</span>
                 <span class="skill-node skill-4">Google Ads</span>
                 <span class="skill-node skill-4">Meta Ads Manager</span>
@@ -2169,8 +2176,13 @@
                 <span class="skill-node skill-4">Prompt Engineering</span>
                 <span class="skill-node skill-4">Product Design</span>
                 <span class="skill-node skill-4">Machine Learning</span>
+                <span class="skill-node skill-4">Model Evaluation</span>
+                <span class="skill-node skill-4">Voice AI</span>
+                <span class="skill-node skill-4">Conversational AI</span>
                 <span class="skill-node skill-4">React.js</span>
                 <span class="skill-node skill-4">Node.js</span>
+                <span class="skill-node skill-4">Python</span>
+                <span class="skill-node skill-4">TypeScript</span>
                 <span class="skill-node skill-4">NLP</span>
                 <span class="skill-node skill-4">Rapid Prototyping</span>
                 <span class="skill-node skill-3">ROAS Optimization</span>
@@ -2186,6 +2198,10 @@
                 <span class="skill-node skill-3">Next.js</span>
                 <span class="skill-node skill-3">Firebase</span>
                 <span class="skill-node skill-3">Vector Databases</span>
+                <span class="skill-node skill-3">Embeddings</span>
+                <span class="skill-node skill-3">Semantic Search</span>
+                <span class="skill-node skill-3">AI Guardrails</span>
+                <span class="skill-node skill-3">WhatsApp Business API</span>
                 <span class="skill-node skill-3">Funnel Optimization</span>
                 <span class="skill-node skill-3">Product Requirements</span>
                 <span class="skill-node skill-3">LangChain</span>
@@ -2194,6 +2210,11 @@
                 <span class="skill-node skill-2">PostHog</span>
                 <span class="skill-node skill-2">Flask</span>
                 <span class="skill-node skill-2">Docker</span>
+                <span class="skill-node skill-2">Angular</span>
+                <span class="skill-node skill-2">Spring Boot</span>
+                <span class="skill-node skill-2">Java</span>
+                <span class="skill-node skill-2">Storybook</span>
+                <span class="skill-node skill-2">Trino</span>
                 <span class="skill-node skill-2">Tableau</span>
                 <span class="skill-node skill-2">Jira</span>
                 <span class="skill-node skill-2">Agile</span>
@@ -3138,8 +3159,8 @@
         /* Capability map */
         const skillGroups = {
             product: ['product', '0 to 1', 'a/b', 'design', 'research', 'market', 'competitive', 'business', 'requirements', 'agile', 'scrum', 'jira', 'leadership'],
-            ai: ['language model', 'agentic', 'prompt', 'machine learning', 'nlp', 'custom gpt', 'vector', 'langchain'],
-            engineering: ['react', 'node', 'sql', 'api', 'n8n', 'next', 'firebase', 'flask', 'docker', 'redis', 'c++'],
+            ai: ['language model', 'agentic', 'retrieval', 'ai product', 'prompt', 'machine learning', 'model evaluation', 'voice ai', 'conversational ai', 'nlp', 'custom gpt', 'vector', 'embedding', 'semantic', 'guardrail', 'langchain'],
+            engineering: ['react', 'node', 'python', 'typescript', 'sql', 'api', 'n8n', 'next', 'firebase', 'flask', 'docker', 'angular', 'spring boot', 'java', 'storybook', 'trino', 'redis', 'c++'],
             growth: ['ga4', 'gtm', 'ads', 'roas', 'funnel', 'mixpanel', 'posthog', 'analytics', 'tableau']
         };
         const skillWrap = document.querySelector('.heatmap-wrap');
@@ -3155,7 +3176,7 @@
                 });
             });
         });
-        document.querySelector('.skill-mode[data-skill="product"]')?.click();
+        document.querySelector('.skill-mode[data-skill="all"]')?.click();
 
         /* Global command palette — the terminal follows the viewer */
         const palette = document.getElementById('command-palette');
