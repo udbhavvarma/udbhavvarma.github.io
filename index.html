@@ -1433,93 +1433,50 @@
         }
 
         #hero {
-            min-height: auto;
-            padding: 9rem 2rem 5rem;
-            align-items: stretch;
+            min-height: 100svh;
+            padding: 6.5rem 2rem 2.5rem;
+            align-items: center;
         }
 
         .hero-inner {
             max-width: 1280px;
         }
 
-        .hero-intro {
-            margin-bottom: 3.5rem;
-        }
-
-        .hero-kicker {
+        .hero-context {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin: 0 0 1.5rem;
-            color: var(--green);
-            font: 500 0.7rem var(--mono);
-            text-transform: uppercase;
-            letter-spacing: 0.13em;
-        }
-
-        .hero-kicker::before {
-            content: '';
-            width: 2.5rem;
-            height: 1px;
-            background: currentColor;
-        }
-
-        .hero-heading {
-            max-width: 1100px;
-            margin: 0;
-            font-size: clamp(4rem, 11.8vw, 10.5rem);
-            font-weight: 800;
-            line-height: 0.79;
-            letter-spacing: -0.075em;
-            text-transform: uppercase;
-        }
-
-        .hero-heading span {
-            display: block;
-            color: transparent;
-            -webkit-text-stroke: 1.25px var(--text);
-        }
-
-        .hero-deck {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
-            align-items: end;
-            gap: 3rem;
-            margin-top: 3rem;
-            padding-top: 1.4rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .hero-deck p {
-            max-width: 680px;
-            margin: 0;
-            font-size: clamp(1.15rem, 2.1vw, 1.9rem);
-            line-height: 1.3;
-            letter-spacing: -0.035em;
-        }
-
-        .hero-deck strong {
-            color: var(--green);
-            font-weight: 600;
-        }
-
-        .terminal-label {
+            justify-content: space-between;
+            gap: 1rem;
             margin: 0 0 0.75rem;
             color: var(--text-muted);
-            font: 400 0.65rem var(--mono);
+            font: 500 0.62rem var(--mono);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.11em;
+        }
+
+        .hero-context .identity {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--green);
+        }
+
+        .hero-context .identity::before {
+            content: '';
+            width: 2rem;
+            height: 1px;
+            background: currentColor;
         }
 
         .terminal {
             border-radius: 0;
             border-color: rgba(199, 255, 61, 0.32);
-            box-shadow: 12px 12px 0 rgba(199, 255, 61, 0.08),
-                0 50px 100px -35px rgba(0, 0, 0, 0.9);
+            box-shadow: 14px 14px 0 rgba(199, 255, 61, 0.08),
+                0 55px 110px -35px rgba(0, 0, 0, 0.95);
         }
 
         .terminal::before {
-            content: 'INTERACTIVE / TRY HELP';
+            content: 'PORTFOLIO / 2026';
             position: absolute;
             top: 0.95rem;
             right: 1.15rem;
@@ -1533,10 +1490,14 @@
         .terminal-title {
             text-align: left;
             padding-left: 0.5rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .terminal-body {
-            height: 430px;
+            height: clamp(500px, 66svh, 700px);
+            padding: clamp(1.25rem, 2.3vw, 2rem);
         }
 
         .hero-lower {
@@ -1544,6 +1505,14 @@
             justify-content: space-between;
             gap: 1rem;
             align-items: center;
+        }
+
+        .hero-lower::after {
+            content: '↑↓ history  ·  tab autocomplete  ·  help commands';
+            color: var(--text-muted);
+            font: 400 0.58rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .hero-cta .btn {
@@ -1663,12 +1632,11 @@
                 width: calc(100% - 1.2rem);
             }
             #hero { padding: 7.5rem 1.25rem 4rem; }
-            .hero-intro { margin-bottom: 2.5rem; }
-            .hero-deck { grid-template-columns: 1fr; gap: 1.25rem; }
-            .hero-deck .terminal-label { display: none; }
-            .terminal-body { height: 350px; }
+            .hero-context .location { display: none; }
+            .terminal-body { height: 64svh; min-height: 440px; }
             .terminal::before { display: none; }
             .hero-lower { align-items: flex-start; flex-direction: column; }
+            .hero-lower::after { order: -1; }
             .signal-strip {
                 width: calc(100% - 2.5rem);
                 grid-template-columns: 1fr 1fr;
@@ -1679,7 +1647,6 @@
         }
 
         @media (max-width: 480px) {
-            .hero-heading { font-size: 18vw; }
             .signal-strip { grid-template-columns: 1fr; }
             .signal, .signal:nth-child(2) {
                 min-height: 135px;
@@ -1727,22 +1694,16 @@
     <!-- ── HERO ── -->
     <section id="hero">
         <div class="hero-inner">
-            <div class="hero-intro">
-                <p class="hero-kicker">Technical product manager · AI builder</p>
-                <h1 class="hero-heading">Product<span>Engineer.</span></h1>
-                <div class="hero-deck">
-                    <p>I turn ambiguous AI problems into <strong>products people use</strong> and
-                        <strong>metrics teams care about.</strong></p>
-                    <p class="terminal-label">The short version is above.<br>The real version is interactive ↓</p>
-                </div>
+            <div class="hero-context" aria-hidden="true">
+                <span class="identity">Udbhav Varma / Product × Engineering</span>
+                <span class="location">New Delhi · Building AI products</span>
             </div>
-            <p class="terminal-label">udbhavOS · full terminal experience</p>
             <div class="terminal">
                 <div class="terminal-bar">
                     <div class="dot dot-r"></div>
                     <div class="dot dot-y"></div>
                     <div class="dot dot-g"></div>
-                    <div class="terminal-title">udbhav@portfolio ~ zsh</div>
+                    <div class="terminal-title">udbhav.varma — product × engineering</div>
                 </div>
                 <div class="terminal-body">
                     <div class="terminal-output" id="term-output"></div>
@@ -1761,11 +1722,11 @@
                     <a href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener"
                         class="btn btn-ghost">LinkedIn</a>
                 </div>
-                <div
-                    style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-top:1.5rem;display:flex;align-items:center;gap:4px;">
-                    <span id="typewriter"></span><span class="cursor-blink"
-                        style="width:6px;height:12px;"></span>
-                </div>
+            </div>
+            <div
+                style="font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);margin-top:0.8rem;display:flex;align-items:center;gap:4px;">
+                <span id="typewriter"></span><span class="cursor-blink"
+                    style="width:6px;height:12px;"></span>
             </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
@@ -2336,10 +2297,11 @@
             sp();
             cmd('whoami');
             sp();
-            el('div', 'font-family:var(--sans);font-size:clamp(1.3rem,3vw,2rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.2;padding:0.2rem 0;',
-                'Udbhav <span style="color:var(--green)">Varma.</span>');
+            el('div', 'font-family:var(--sans);font-size:clamp(2.7rem,7vw,6.6rem);font-weight:800;letter-spacing:-0.065em;color:var(--text);line-height:0.86;padding:0.35rem 0 0.8rem;text-transform:uppercase;',
+                'Udbhav <span style="display:block;color:var(--green)">Varma.</span>');
+            raw('PRODUCT × ENGINEERING');
+            raw('Building AI products that move metrics.');
             raw('Associate Technical PM @ Times Internet · AI Labs · COO Office');
-            raw('CS Grad from IIIT Delhi');
             sp();
             sp();
             cmd('cat roles.json');
