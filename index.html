@@ -19,6 +19,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
     <style>
         /* ── Design Tokens ── */
@@ -1360,6 +1363,335 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+
+        /* ── Editorial × terminal refresh ──
+           The terminal remains the product; this layer gives it a sharper stage. */
+        body:not(.theme-matrix):not(.theme-cyberpunk):not(.theme-light) {
+            --bg: #0b0d0c;
+            --bg-2: #080a08;
+            --surface: rgba(242, 239, 231, 0.035);
+            --surface-h: rgba(199, 255, 61, 0.055);
+            --border: rgba(242, 239, 231, 0.15);
+            --border-h: rgba(199, 255, 61, 0.7);
+            --green: #c7ff3d;
+            --green-dim: #a8db2e;
+            --purple: #c5b5ff;
+            --blue: #91caff;
+            --pink: #ff8a70;
+            --yellow: #ffd36a;
+            --text: #f2efe7;
+            --text-muted: #777b73;
+            --text-dim: #b6b8b1;
+            --sans: 'Manrope', sans-serif;
+        }
+
+        body::after {
+            background-size: 64px 64px;
+            mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
+        }
+
+        nav {
+            top: 1rem;
+            left: 50%;
+            right: auto;
+            width: min(calc(100% - 2rem), 1280px);
+            height: 58px;
+            transform: translateX(-50%);
+            padding: 0 1rem 0 1.25rem;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            background: color-mix(in srgb, var(--bg) 84%, transparent);
+        }
+
+        .nav-logo {
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+        }
+
+        .nav-logo::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            margin-right: 0.65rem;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: 1px;
+            background: var(--green);
+            box-shadow: 0 0 0 0 rgba(199, 255, 61, 0.6);
+            animation: status-pulse 2s infinite;
+        }
+
+        @keyframes status-pulse {
+            70% { box-shadow: 0 0 0 9px transparent; }
+        }
+
+        .nav-links a {
+            text-transform: uppercase;
+            font-size: 0.64rem;
+            letter-spacing: 0.09em;
+        }
+
+        #hero {
+            min-height: auto;
+            padding: 9rem 2rem 5rem;
+            align-items: stretch;
+        }
+
+        .hero-inner {
+            max-width: 1280px;
+        }
+
+        .hero-intro {
+            margin-bottom: 3.5rem;
+        }
+
+        .hero-kicker {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0 0 1.5rem;
+            color: var(--green);
+            font: 500 0.7rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+        }
+
+        .hero-kicker::before {
+            content: '';
+            width: 2.5rem;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .hero-heading {
+            max-width: 1100px;
+            margin: 0;
+            font-size: clamp(4rem, 11.8vw, 10.5rem);
+            font-weight: 800;
+            line-height: 0.79;
+            letter-spacing: -0.075em;
+            text-transform: uppercase;
+        }
+
+        .hero-heading span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1.25px var(--text);
+        }
+
+        .hero-deck {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+            align-items: end;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 1.4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-deck p {
+            max-width: 680px;
+            margin: 0;
+            font-size: clamp(1.15rem, 2.1vw, 1.9rem);
+            line-height: 1.3;
+            letter-spacing: -0.035em;
+        }
+
+        .hero-deck strong {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .terminal-label {
+            margin: 0 0 0.75rem;
+            color: var(--text-muted);
+            font: 400 0.65rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .terminal {
+            border-radius: 0;
+            border-color: rgba(199, 255, 61, 0.32);
+            box-shadow: 12px 12px 0 rgba(199, 255, 61, 0.08),
+                0 50px 100px -35px rgba(0, 0, 0, 0.9);
+        }
+
+        .terminal::before {
+            content: 'INTERACTIVE / TRY HELP';
+            position: absolute;
+            top: 0.95rem;
+            right: 1.15rem;
+            z-index: 2;
+            color: var(--green);
+            font: 500 0.55rem var(--mono);
+            letter-spacing: 0.11em;
+            pointer-events: none;
+        }
+
+        .terminal-title {
+            text-align: left;
+            padding-left: 0.5rem;
+        }
+
+        .terminal-body {
+            height: 430px;
+        }
+
+        .hero-lower {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .hero-cta .btn {
+            border-radius: 0;
+            text-transform: uppercase;
+            font-size: 0.68rem;
+            letter-spacing: 0.09em;
+        }
+
+        .scroll-hint {
+            display: none;
+        }
+
+        .signal-strip {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: min(calc(100% - 4rem), 1280px);
+            margin: 0 auto 5rem;
+            border: 1px solid var(--border);
+        }
+
+        .signal {
+            min-height: 165px;
+            padding: 1.35rem;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .signal:last-child { border-right: 0; }
+        .signal strong {
+            font-size: clamp(2.3rem, 4.2vw, 4.2rem);
+            line-height: 1;
+            letter-spacing: -0.065em;
+        }
+        .signal span {
+            max-width: 160px;
+            color: var(--text-muted);
+            font: 400 0.64rem/1.5 var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        section:not(#hero) {
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        .section-inner {
+            max-width: 1180px;
+        }
+
+        .section-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.13em;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-title {
+            max-width: 900px;
+            font-size: clamp(2.8rem, 6vw, 5.4rem);
+            line-height: 0.98;
+            letter-spacing: -0.06em;
+        }
+
+        .section-sub {
+            max-width: 760px;
+            font-size: 1.05rem;
+        }
+
+        .exp-list {
+            gap: 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .exp-card {
+            border-width: 0 0 1px;
+            border-radius: 0;
+            background: transparent;
+            padding: 2rem 0;
+        }
+
+        .exp-card:hover {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            background: var(--surface-h);
+        }
+
+        .heatmap-wrap, .vibe-card, .contact-terminal {
+            border-radius: 0;
+        }
+
+        .vibe-grid {
+            gap: 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .vibe-card {
+            border-width: 0 1px 1px 0;
+            min-height: 250px;
+            padding: 1.6rem;
+            background: transparent;
+        }
+
+        .vibe-card:nth-child(3n) { border-right: 0; }
+
+        footer {
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                top: 0.6rem;
+                width: calc(100% - 1.2rem);
+            }
+            #hero { padding: 7.5rem 1.25rem 4rem; }
+            .hero-intro { margin-bottom: 2.5rem; }
+            .hero-deck { grid-template-columns: 1fr; gap: 1.25rem; }
+            .hero-deck .terminal-label { display: none; }
+            .terminal-body { height: 350px; }
+            .terminal::before { display: none; }
+            .hero-lower { align-items: flex-start; flex-direction: column; }
+            .signal-strip {
+                width: calc(100% - 2.5rem);
+                grid-template-columns: 1fr 1fr;
+            }
+            .signal:nth-child(2) { border-right: 0; }
+            .signal:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
+            section:not(#hero) { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-heading { font-size: 18vw; }
+            .signal-strip { grid-template-columns: 1fr; }
+            .signal, .signal:nth-child(2) {
+                min-height: 135px;
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
+            .signal:last-child { border-bottom: 0; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .nav-logo::before { animation: none; }
+        }
     </style>
 </head>
 
@@ -1395,6 +1727,16 @@
     <!-- ── HERO ── -->
     <section id="hero">
         <div class="hero-inner">
+            <div class="hero-intro">
+                <p class="hero-kicker">Technical product manager · AI builder</p>
+                <h1 class="hero-heading">Product<span>Engineer.</span></h1>
+                <div class="hero-deck">
+                    <p>I turn ambiguous AI problems into <strong>products people use</strong> and
+                        <strong>metrics teams care about.</strong></p>
+                    <p class="terminal-label">The short version is above.<br>The real version is interactive ↓</p>
+                </div>
+            </div>
+            <p class="terminal-label">udbhavOS · full terminal experience</p>
             <div class="terminal">
                 <div class="terminal-bar">
                     <div class="dot dot-r"></div>
@@ -1412,15 +1754,18 @@
                     </div>
                 </div>
             </div>
-            <div class="hero-cta" style="margin-top:1.5rem;">
-                <!-- <a href="#projects" class="btn btn-primary">./view_projects</a> -->
-                <a href="#contact" class="btn btn-ghost">./say_hi</a>
-                <a href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener"
-                    class="btn btn-ghost">LinkedIn</a>
-            </div>
-            <div
-                style="font-family:var(--mono);font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem;display:flex;align-items:center;gap:4px;">
-                <span id="typewriter"></span><span class="cursor-blink" style="width:6px;height:12px;"></span>
+            <div class="hero-lower">
+                <div class="hero-cta" style="margin-top:1.5rem;">
+                    <a href="#experience" class="btn btn-primary">./see_the_evidence</a>
+                    <a href="#contact" class="btn btn-ghost">./say_hi</a>
+                    <a href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener"
+                        class="btn btn-ghost">LinkedIn</a>
+                </div>
+                <div
+                    style="font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);margin-top:1.5rem;display:flex;align-items:center;gap:4px;">
+                    <span id="typewriter"></span><span class="cursor-blink"
+                        style="width:6px;height:12px;"></span>
+                </div>
             </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
@@ -1428,6 +1773,13 @@
             <div class="scroll-arrow"></div>
         </div>
     </section>
+
+    <div class="signal-strip reveal" aria-label="Selected impact">
+        <div class="signal"><strong>2.5×</strong><span>Return on spend improved through model iteration</span></div>
+        <div class="signal"><strong>50%</strong><span>Fewer human-agent handoffs with WABA bots</span></div>
+        <div class="signal"><strong>10%</strong><span>Engagement lift from a shipped product revamp</span></div>
+        <div class="signal"><strong>0→1</strong><span>My favorite distance between idea and product</span></div>
+    </div>
 
     <div class="divider"></div>
 
