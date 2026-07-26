@@ -1442,32 +1442,6 @@
             max-width: 1280px;
         }
 
-        .hero-context {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            margin: 0 0 0.75rem;
-            color: var(--text-muted);
-            font: 500 0.62rem var(--mono);
-            text-transform: uppercase;
-            letter-spacing: 0.11em;
-        }
-
-        .hero-context .identity {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--green);
-        }
-
-        .hero-context .identity::before {
-            content: '';
-            width: 2rem;
-            height: 1px;
-            background: currentColor;
-        }
-
         .terminal {
             border-radius: 0;
             border-color: rgba(199, 255, 61, 0.32);
@@ -1498,28 +1472,6 @@
         .terminal-body {
             height: clamp(500px, 66svh, 700px);
             padding: clamp(1.25rem, 2.3vw, 2rem);
-        }
-
-        .hero-lower {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .hero-lower::after {
-            content: '↑↓ history  ·  tab autocomplete  ·  help commands';
-            color: var(--text-muted);
-            font: 400 0.58rem var(--mono);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .hero-cta .btn {
-            border-radius: 0;
-            text-transform: uppercase;
-            font-size: 0.68rem;
-            letter-spacing: 0.09em;
         }
 
         .scroll-hint {
@@ -1632,11 +1584,8 @@
                 width: calc(100% - 1.2rem);
             }
             #hero { padding: 7.5rem 1.25rem 4rem; }
-            .hero-context .location { display: none; }
             .terminal-body { height: 64svh; min-height: 440px; }
             .terminal::before { display: none; }
-            .hero-lower { align-items: flex-start; flex-direction: column; }
-            .hero-lower::after { order: -1; }
             .signal-strip {
                 width: calc(100% - 2.5rem);
                 grid-template-columns: 1fr 1fr;
@@ -1694,10 +1643,6 @@
     <!-- ── HERO ── -->
     <section id="hero">
         <div class="hero-inner">
-            <div class="hero-context" aria-hidden="true">
-                <span class="identity">Udbhav Varma / Product × Engineering</span>
-                <span class="location">New Delhi · Building AI products</span>
-            </div>
             <div class="terminal">
                 <div class="terminal-bar">
                     <div class="dot dot-r"></div>
@@ -1714,19 +1659,6 @@
                             aria-label="terminal input" />
                     </div>
                 </div>
-            </div>
-            <div class="hero-lower">
-                <div class="hero-cta" style="margin-top:1.5rem;">
-                    <a href="#experience" class="btn btn-primary">./see_the_evidence</a>
-                    <a href="#contact" class="btn btn-ghost">./say_hi</a>
-                    <a href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener"
-                        class="btn btn-ghost">LinkedIn</a>
-                </div>
-            </div>
-            <div
-                style="font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);margin-top:0.8rem;display:flex;align-items:center;gap:4px;">
-                <span id="typewriter"></span><span class="cursor-blink"
-                    style="width:6px;height:12px;"></span>
             </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
@@ -2137,31 +2069,6 @@
             const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
             bar.style.width = Math.min(pct, 100) + '%';
         }, { passive: true });
-
-        /* ── Typewriter ── */
-        const phrases = [
-            'building GenAI at scale. sort of.',
-            '90% of jenkins builds fail. the 10% change the game.',
-            'writing PRDs that actually get read. rarely. usually only by claude. then i decide this feature is trash',
-            'antigravity + claude both crashed building this. shipped anyway.',
-            'making bots talk like humans. humans talk like bots. cycle complete.',
-            'improving AI-driven ROI by 2.5x. yes, measure d. yes, real.',
-            '0→1 products. then 1→hopefully-not-on-fire.',
-        ];
-        let pIdx = 0, cIdx = 0, deleting = false;
-        const tw = document.getElementById('typewriter');
-        function type() {
-            const phrase = phrases[pIdx];
-            if (!deleting) {
-                tw.textContent = phrase.slice(0, ++cIdx);
-                if (cIdx === phrase.length) { deleting = true; setTimeout(type, 2200); return; }
-            } else {
-                tw.textContent = phrase.slice(0, --cIdx);
-                if (cIdx === 0) { deleting = false; pIdx = (pIdx + 1) % phrases.length; }
-            }
-            setTimeout(type, deleting ? 35 : 65);
-        }
-        type();
 
         /* ── Scroll-driven animation fallback (IntersectionObserver) ── */
         if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
