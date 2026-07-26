@@ -1662,7 +1662,7 @@
 
         .command-suggestions::-webkit-scrollbar { display: none; }
 
-        .command-chip, .terminal-max, .boot-skip, .skill-mode, .exp-toggle {
+        .command-chip, .terminal-max, .skill-mode, .exp-toggle {
             appearance: none;
             border: 1px solid var(--border);
             color: var(--text-muted);
@@ -1690,48 +1690,6 @@
         .terminal-max {
             display: none;
             padding: 0.48rem 0.65rem;
-        }
-
-        .boot-screen {
-            position: absolute;
-            inset: 49px 0 0;
-            z-index: 80;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: clamp(1.25rem, 3vw, 2.5rem);
-            background: var(--bg-2);
-            font: 400 clamp(0.7rem, 1.4vw, 0.85rem)/1.8 var(--mono);
-            transition: opacity 0.45s ease, visibility 0.45s;
-        }
-
-        .boot-screen.done {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .boot-log {
-            color: var(--text-dim);
-            min-height: 9rem;
-            white-space: pre-wrap;
-        }
-
-        .boot-log .ok { color: var(--green); }
-        .boot-wordmark {
-            margin-top: 1rem;
-            font: 800 clamp(2.5rem, 8vw, 7rem)/0.82 var(--sans);
-            letter-spacing: -0.07em;
-            text-transform: uppercase;
-        }
-
-        .boot-wordmark span { color: var(--green); }
-
-        .boot-skip {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            padding: 0.5rem 0.7rem;
         }
 
         .terminal.maximized {
@@ -1895,38 +1853,6 @@
             background: var(--bg);
         }
 
-        .profile-burst {
-            position: fixed;
-            inset: 0;
-            z-index: 420;
-            display: grid;
-            place-content: center;
-            padding: 2rem;
-            color: var(--text);
-            background: color-mix(in srgb, var(--bg) 92%, transparent);
-            backdrop-filter: blur(16px);
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: 0.35s;
-        }
-
-        .profile-burst.show { opacity: 1; visibility: visible; }
-        .profile-burst strong {
-            font-size: clamp(3rem, 12vw, 10rem);
-            line-height: 0.8;
-            letter-spacing: -0.075em;
-            text-transform: uppercase;
-        }
-        .profile-burst strong span { color: var(--green); }
-        .profile-burst small {
-            margin-top: 1.5rem;
-            color: var(--text-muted);
-            font: 400 0.7rem var(--mono);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
         .command-palette {
             position: fixed;
             inset: 0;
@@ -2000,214 +1926,60 @@
             animation: status-pulse 2s infinite;
         }
 
-        /* ── Product taste, demonstrated ── */
-        .taste-intro {
+        .about-statement {
             display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
+            grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: end;
-            margin-bottom: 3.5rem;
         }
 
-        .taste-intro .section-title { margin-bottom: 0; }
-        .taste-intro .section-sub { margin: 0; }
+        .about-statement .section-sub { margin: 0; }
 
-        .taste-stage {
+        .operating-range {
             display: grid;
-            grid-template-columns: 0.72fr 1.28fr;
-            min-height: 520px;
-            border: 1px solid var(--border);
-        }
-
-        .taste-thesis {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: clamp(1.5rem, 4vw, 3rem);
-            border-right: 1px solid var(--border);
-            background: var(--surface);
-        }
-
-        .taste-thesis blockquote {
-            margin: 0;
-            font-size: clamp(1.55rem, 3vw, 2.7rem);
-            line-height: 1.12;
-            letter-spacing: -0.045em;
-        }
-
-        .taste-thesis blockquote em {
-            color: var(--green);
-            font-style: normal;
-        }
-
-        .taste-rules {
-            display: grid;
-            gap: 0.65rem;
-            margin-top: 2rem;
-        }
-
-        .taste-rule {
-            display: grid;
-            grid-template-columns: 2.5rem 1fr;
-            gap: 0.8rem;
-            padding-top: 0.65rem;
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 4rem;
             border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font: 400 0.68rem/1.5 var(--mono);
+            border-bottom: 1px solid var(--border);
         }
 
-        .taste-rule b { color: var(--green); font-weight: 500; }
-
-        .taste-lab {
-            display: flex;
-            flex-direction: column;
-            padding: clamp(1.5rem, 4vw, 3rem);
-            overflow: hidden;
+        .range-item {
+            padding: 1.5rem 1.25rem;
+            border-right: 1px solid var(--border);
         }
 
-        .taste-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .taste-controls > span {
-            color: var(--text-muted);
-            font: 400 0.62rem var(--mono);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .taste-switch {
-            display: flex;
-            border: 1px solid var(--border);
-        }
-
-        .taste-switch button {
-            padding: 0.6rem 0.85rem;
-            border: 0;
-            color: var(--text-muted);
-            background: transparent;
-            font: 500 0.62rem var(--mono);
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .taste-switch button.active {
-            color: #0b0d0c;
-            background: var(--green);
-        }
-
-        .product-sample {
-            position: relative;
-            flex: 1;
-            display: grid;
-            align-content: center;
-            padding: clamp(1.25rem, 4vw, 3rem);
-            border: 1px solid var(--border);
-            background: var(--bg-2);
-            transition: 0.55s var(--ease-out-expo);
-        }
-
-        .sample-kicker {
+        .range-item:last-child { border-right: 0; }
+        .range-item span {
+            display: block;
+            margin-bottom: 1rem;
             color: var(--green);
             font: 500 0.62rem var(--mono);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.09em;
         }
-
-        .product-sample h3 {
-            max-width: 570px;
-            margin: 0.8rem 0;
-            font-size: clamp(2rem, 4vw, 4.3rem);
-            line-height: 0.95;
-            letter-spacing: -0.06em;
-        }
-
-        .sample-copy {
-            max-width: 520px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            line-height: 1.7;
-        }
-
-        .sample-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 1.5rem;
-        }
-
-        .sample-actions button {
-            padding: 0.65rem 0.85rem;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            background: transparent;
-            font: 500 0.62rem var(--mono);
-        }
-
-        .sample-actions .sample-primary {
-            color: #0b0d0c;
-            border-color: var(--green);
-            background: var(--green);
-        }
-
-        .sample-metric {
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            color: var(--text-muted);
-            font: 400 0.62rem var(--mono);
-            transition: 0.45s var(--ease-out-expo);
-        }
-
-        .sample-metric strong {
+        .range-item strong {
             display: block;
-            color: var(--text);
-            font: 700 1.8rem var(--sans);
-            letter-spacing: -0.05em;
-        }
-
-        .taste-spark {
-            position: absolute;
-            right: 1.6rem;
-            bottom: 1.6rem;
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 0 0 rgba(199, 255, 61, 0.5);
-            animation: status-pulse 2s infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .product-sample.before {
-            border-color: rgba(255, 131, 110, 0.45);
-            transform: scale(0.97);
-        }
-
-        .product-sample.before h3 {
-            font-size: clamp(1.55rem, 3vw, 2.6rem);
+            font-size: clamp(1.1rem, 2vw, 1.45rem);
+            line-height: 1.3;
             letter-spacing: -0.03em;
         }
 
-        .product-sample.before .sample-copy::after {
-            content: ' Plus dashboards, workflows, templates, integrations, alerts, exports, imports, AI summaries and seventeen settings.';
+        :focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 4px;
         }
 
-        .product-sample.before .sample-actions button { display: block; }
-        .product-sample.after .sample-actions button:not(.sample-primary) { display: none; }
-        .product-sample.after .taste-spark { opacity: 1; }
+        .nav-links a.active {
+            color: var(--green);
+        }
+
+        .nav-links a.active::after { transform: scaleX(1); }
 
         @media (max-width: 768px) {
-            .taste-intro, .taste-stage { grid-template-columns: 1fr; }
-            .taste-intro { gap: 1.5rem; }
-            .taste-thesis { border-right: 0; border-bottom: 1px solid var(--border); }
-            .taste-stage { min-height: auto; }
-            .taste-lab { min-height: 470px; }
+            .about-statement { grid-template-columns: 1fr; gap: 1.5rem; }
+            .operating-range { grid-template-columns: 1fr; }
+            .range-item { border-right: 0; border-bottom: 1px solid var(--border); }
+            .range-item:last-child { border-bottom: 0; }
         }
 
         @media (max-width: 768px) {
@@ -2223,7 +1995,6 @@
             .nav-logo::before {
                 animation: none;
             }
-            .boot-screen { transition: none; }
             .site-fx, .section-flash { animation: none !important; }
         }
     </style>
@@ -2234,11 +2005,6 @@
     <!-- Progress bar -->
     <div id="progress-bar"></div>
     <div class="site-fx" id="site-fx" aria-hidden="true"></div>
-    <div class="profile-burst" id="profile-burst" aria-hidden="true">
-        <strong>Product<span>Engineer.</span></strong>
-        <small>Strategy that compiles · engineering that moves metrics</small>
-    </div>
-
     <!-- Spotlight -->
     <div class="spotlight" id="spotlight"></div>
 
@@ -2254,7 +2020,7 @@
             <span>&nbsp;$</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#about">taste</a></li>
+            <li><a href="#about">about</a></li>
             <li><a href="#experience">work</a></li>
             <!-- <li><a href="#projects">projects</a></li> -->
             <li><a href="#skills">skills</a></li>
@@ -2267,11 +2033,6 @@
     <section id="hero">
         <div class="hero-inner">
             <div class="terminal">
-                <div class="boot-screen" id="boot-screen">
-                    <button class="boot-skip" id="boot-skip" type="button">skip intro</button>
-                    <div class="boot-log" id="boot-log" aria-live="polite"></div>
-                    <div class="boot-wordmark">Udbhav <span>Varma.</span></div>
-                </div>
                 <div class="terminal-bar">
                     <div class="dot dot-r"></div>
                     <div class="dot dot-y"></div>
@@ -2290,7 +2051,6 @@
                 <div class="terminal-toolbar">
                     <div class="command-suggestions" aria-label="Suggested terminal commands">
                         <button class="command-chip" type="button" data-command="whoami">whoami</button>
-                        <button class="command-chip" type="button" data-command="taste">taste</button>
                         <button class="command-chip" type="button" data-command="show impact">show impact</button>
                         <button class="command-chip" type="button" data-command="open work">open work</button>
                         <button class="command-chip" type="button" data-command="surprise me">surprise me</button>
@@ -2317,43 +2077,16 @@
     <!-- ── ABOUT ── -->
     <section id="about">
         <div class="section-inner">
-            <p class="section-label reveal">// taste.test</p>
-            <div class="taste-intro">
-                <h2 class="section-title reveal">I care about<br>the last 10%.</h2>
-                <p class="section-sub reveal">The part where a capable product becomes an obvious one. Where complexity
-                    disappears, the metric gets sharper, and one tiny detail makes someone smile.</p>
+            <p class="section-label reveal">// about.me</p>
+            <div class="about-statement">
+                <h2 class="section-title reveal">I turn ambiguity<br>into shipped product.</h2>
+                <p class="section-sub reveal">Technical enough to understand the constraint. Product-minded enough to
+                    question it. Commercial enough to know which outcome matters.</p>
             </div>
-            <div class="taste-stage reveal">
-                <div class="taste-thesis">
-                    <blockquote>Good taste is knowing what <em>not</em> to ship.</blockquote>
-                    <div class="taste-rules">
-                        <div class="taste-rule"><b>01</b><span>Clarity before cleverness.</span></div>
-                        <div class="taste-rule"><b>02</b><span>Evidence before theatre.</span></div>
-                        <div class="taste-rule"><b>03</b><span>Delight, never decoration.</span></div>
-                    </div>
-                </div>
-                <div class="taste-lab">
-                    <div class="taste-controls">
-                        <span>A tiny product decision</span>
-                        <div class="taste-switch" aria-label="Compare product approaches">
-                            <button type="button" data-taste="before">Feature soup</button>
-                            <button class="active" type="button" data-taste="after">With taste</button>
-                        </div>
-                    </div>
-                    <div class="product-sample after" id="product-sample">
-                        <span class="sample-kicker">Campaign copilot</span>
-                        <h3>Know what to fix next.</h3>
-                        <p class="sample-copy">One recommendation, tied to the metric it moves.</p>
-                        <div class="sample-actions">
-                            <button class="sample-primary" type="button">Review recommendation →</button>
-                            <button type="button">Dashboard</button>
-                            <button type="button">Export</button>
-                            <button type="button">Settings</button>
-                        </div>
-                        <div class="sample-metric"><strong>+18%</strong>projected ROAS</div>
-                        <span class="taste-spark" aria-hidden="true"></span>
-                    </div>
-                </div>
+            <div class="operating-range reveal">
+                <div class="range-item"><span>Frame</span><strong>Find the real problem beneath the request.</strong></div>
+                <div class="range-item"><span>Build</span><strong>Prototype until the argument becomes tangible.</strong></div>
+                <div class="range-item"><span>Grow</span><strong>Measure what changed and iterate from evidence.</strong></div>
             </div>
         </div>
     </section>
@@ -2736,7 +2469,6 @@
             <input class="palette-input" id="palette-input" placeholder="Type a command…  (esc to close)"
                 autocomplete="off" spellcheck="false" />
             <div class="palette-options">
-                <button type="button" data-command="taste">taste</button>
                 <button type="button" data-command="open work">open work</button>
                 <button type="button" data-command="show impact">show impact</button>
                 <button type="button" data-command="focus skills">focus skills</button>
@@ -2817,45 +2549,6 @@
             setTimeout(() => target.classList.remove('section-flash'), 1200);
             pulseSite();
         }
-        function showProfileBurst() {
-            const burst = document.getElementById('profile-burst');
-            burst.classList.add('show');
-            setTimeout(() => burst.classList.remove('show'), 1450);
-        }
-
-        /* First-visit cinematic boot. Returning visitors arrive instantly. */
-        (function bootPortfolio() {
-            const screen = document.getElementById('boot-screen');
-            const log = document.getElementById('boot-log');
-            const skip = document.getElementById('boot-skip');
-            if (!screen || !log || !skip) return;
-            const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const returning = sessionStorage.getItem('portfolio-booted');
-            let timers = [];
-            function finish() {
-                timers.forEach(clearTimeout);
-                screen.classList.add('done');
-                sessionStorage.setItem('portfolio-booted', '1');
-            }
-            skip.addEventListener('click', finish);
-            if (returning || reduced) { finish(); return; }
-            const lines = [
-                '[ ok ] product instinct',
-                '[ ok ] engineering context',
-                '[ ok ] unreasonable shipping velocity',
-                '[ ok ] restraint / whimsy ratio calibrated',
-                '[ ok ] ready'
-            ];
-            lines.forEach((line, i) => {
-                timers.push(setTimeout(() => {
-                    const row = document.createElement('div');
-                    row.innerHTML = line.replace('[ ok ]', '<span class="ok">[ ok ]</span>');
-                    log.appendChild(row);
-                }, 180 + i * 210));
-            });
-            timers.push(setTimeout(finish, 1750));
-        })();
-
         (function () {
             const out = document.getElementById('term-output');
             const inp = document.getElementById('term-input');
@@ -3038,15 +2731,6 @@
                     focusSection(target === 'proof' ? 'proof' : target);
                     return;
                 }
-                if (full === 'taste' || full === 'show taste') {
-                    raw('taste rubric: remove the noise · sharpen the decision · earn one delightful detail.');
-                    focusSection('about');
-                    setTimeout(() => {
-                        document.querySelector('[data-taste="before"]')?.click();
-                        setTimeout(() => document.querySelector('[data-taste="after"]')?.click(), 850);
-                    }, 650);
-                    return;
-                }
                 if (full === 'surprise me' || full === 'surprise') {
                     const surprises = [
                         () => run('theme cyberpunk'),
@@ -3062,7 +2746,7 @@
                 switch (base) {
 
                     case 'help':
-                        raw(`available commands\n  whoami            the udbhav himself\n  taste              see how product decisions get made\n  show impact       move the page to measurable evidence\n  open work         open the work log\n  focus skills      inspect the capability graph\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+                        raw(`available commands\n  whoami            the udbhav himself\n  show impact       move the page to measurable evidence\n  open work         open the work log\n  focus skills      inspect the capability graph\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
 
                     case 'theme': {
                         let tName = args[0];
@@ -3206,7 +2890,6 @@
                     case 'uname': raw('PortfolioOS 4.20.69-vibe-stable x86_vibes GNU/Chaos'); break;
 
                     case 'neofetch': {
-                        showProfileBurst();
                         const g = 'color:var(--green);font-weight:700';
                         const m = 'color:var(--text-muted)';
                         el('div', 'white-space:pre;font-size:0.78rem;line-height:1.7;padding-left:1.1rem;',
@@ -3322,7 +3005,7 @@
             }
 
             /* ── tab completions ── */
-            const CMDS = ['help', 'whoami', 'taste', 'show impact', 'open work', 'focus skills', 'open contact', 'surprise me', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
+            const CMDS = ['help', 'whoami', 'show impact', 'open work', 'focus skills', 'open contact', 'surprise me', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
 
             inp.addEventListener('keydown', e => {
                 if (e.key === 'Enter') {
@@ -3352,7 +3035,7 @@
             window.portfolioRun = run;
             window.portfolioInput = inp;
             if (matchMedia('(pointer:fine)').matches) {
-                setTimeout(() => { try { inp.focus(); } catch (e) { } }, 1900);
+                setTimeout(() => { try { inp.focus(); } catch (e) { } }, 300);
             }
         })();
 
@@ -3425,18 +3108,6 @@
         });
         document.querySelector('.skill-mode[data-skill="product"]')?.click();
 
-        /* A tiny live demonstration of restraint */
-        const productSample = document.getElementById('product-sample');
-        document.querySelectorAll('[data-taste]').forEach(button => {
-            button.addEventListener('click', () => {
-                const mode = button.dataset.taste;
-                document.querySelectorAll('[data-taste]').forEach(b => b.classList.toggle('active', b === button));
-                productSample.classList.toggle('before', mode === 'before');
-                productSample.classList.toggle('after', mode === 'after');
-                if (mode === 'after') pulseSite();
-            });
-        });
-
         /* Global command palette — the terminal follows the viewer */
         const palette = document.getElementById('command-palette');
         const paletteInput = document.getElementById('palette-input');
@@ -3476,6 +3147,21 @@
         /* Contact closes the narrative loop */
         const contactLinks = document.querySelectorAll('.contact-link-val');
         contactLinks.forEach(link => link.addEventListener('click', pulseSite));
+
+        /* Quiet orientation: navigation reflects the reader's current context. */
+        const navAnchors = [...document.querySelectorAll('.nav-links a[href^="#"]')];
+        const navTargets = navAnchors
+            .map(anchor => document.querySelector(anchor.getAttribute('href')))
+            .filter(Boolean);
+        const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navAnchors.forEach(anchor => {
+                    anchor.classList.toggle('active', anchor.getAttribute('href') === '#' + entry.target.id);
+                });
+            });
+        }, { rootMargin: '-35% 0px -55%', threshold: 0 });
+        navTargets.forEach(target => navObserver.observe(target));
     </script>
 </body>
 
