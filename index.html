@@ -19,8 +19,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet" />
 
     <style>
@@ -1423,7 +1422,9 @@
         }
 
         @keyframes status-pulse {
-            70% { box-shadow: 0 0 0 9px transparent; }
+            70% {
+                box-shadow: 0 0 0 9px transparent;
+            }
         }
 
         .nav-links a {
@@ -1497,12 +1498,16 @@
             justify-content: space-between;
         }
 
-        .signal:last-child { border-right: 0; }
+        .signal:last-child {
+            border-right: 0;
+        }
+
         .signal strong {
             font-size: clamp(2.3rem, 4.2vw, 4.2rem);
             line-height: 1;
             letter-spacing: -0.065em;
         }
+
         .signal span {
             max-width: 160px;
             color: var(--text-muted);
@@ -1556,7 +1561,9 @@
             background: var(--surface-h);
         }
 
-        .heatmap-wrap, .vibe-card, .contact-terminal {
+        .heatmap-wrap,
+        .vibe-card,
+        .contact-terminal {
             border-radius: 0;
         }
 
@@ -1572,7 +1579,9 @@
             background: transparent;
         }
 
-        .vibe-card:nth-child(3n) { border-right: 0; }
+        .vibe-card:nth-child(3n) {
+            border-right: 0;
+        }
 
         footer {
             border-top: 1px solid var(--border);
@@ -1583,30 +1592,429 @@
                 top: 0.6rem;
                 width: calc(100% - 1.2rem);
             }
-            #hero { padding: 7.5rem 1.25rem 4rem; }
-            .terminal-body { height: 64svh; min-height: 440px; }
-            .terminal::before { display: none; }
+
+            #hero {
+                padding: 7.5rem 1.25rem 4rem;
+            }
+
+            .terminal-body {
+                height: 64svh;
+                min-height: 440px;
+            }
+
+            .terminal::before {
+                display: none;
+            }
+
             .signal-strip {
                 width: calc(100% - 2.5rem);
                 grid-template-columns: 1fr 1fr;
             }
-            .signal:nth-child(2) { border-right: 0; }
-            .signal:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
-            section:not(#hero) { padding-top: 5.5rem; padding-bottom: 5.5rem; }
+
+            .signal:nth-child(2) {
+                border-right: 0;
+            }
+
+            .signal:nth-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            section:not(#hero) {
+                padding-top: 5.5rem;
+                padding-bottom: 5.5rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .signal-strip { grid-template-columns: 1fr; }
-            .signal, .signal:nth-child(2) {
+            .signal-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .signal,
+            .signal:nth-child(2) {
                 min-height: 135px;
                 border-right: 0;
                 border-bottom: 1px solid var(--border);
             }
-            .signal:last-child { border-bottom: 0; }
+
+            .signal:last-child {
+                border-bottom: 0;
+            }
+        }
+
+        /* ── Portfolio control system ── */
+        .terminal-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.65rem 1rem;
+            border-top: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.018);
+        }
+
+        .command-suggestions {
+            display: flex;
+            gap: 0.45rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .command-suggestions::-webkit-scrollbar { display: none; }
+
+        .command-chip, .terminal-max, .boot-skip, .skill-mode, .exp-toggle {
+            appearance: none;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: transparent;
+            font: 500 0.58rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: 0.25s var(--ease-out-expo);
+        }
+
+        .command-chip {
+            flex: 0 0 auto;
+            padding: 0.48rem 0.65rem;
+        }
+
+        .command-chip:hover, .command-chip:focus-visible,
+        .terminal-max:hover, .skill-mode:hover, .skill-mode.active,
+        .exp-toggle:hover {
+            color: var(--green);
+            border-color: var(--border-h);
+            background: rgba(199, 255, 61, 0.05);
+        }
+
+        .terminal-max {
+            display: none;
+            padding: 0.48rem 0.65rem;
+        }
+
+        .boot-screen {
+            position: absolute;
+            inset: 49px 0 0;
+            z-index: 80;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: clamp(1.25rem, 3vw, 2.5rem);
+            background: var(--bg-2);
+            font: 400 clamp(0.7rem, 1.4vw, 0.85rem)/1.8 var(--mono);
+            transition: opacity 0.45s ease, visibility 0.45s;
+        }
+
+        .boot-screen.done {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .boot-log {
+            color: var(--text-dim);
+            min-height: 9rem;
+            white-space: pre-wrap;
+        }
+
+        .boot-log .ok { color: var(--green); }
+        .boot-wordmark {
+            margin-top: 1rem;
+            font: 800 clamp(2.5rem, 8vw, 7rem)/0.82 var(--sans);
+            letter-spacing: -0.07em;
+            text-transform: uppercase;
+        }
+
+        .boot-wordmark span { color: var(--green); }
+
+        .boot-skip {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 0.7rem;
+        }
+
+        .terminal.maximized {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            border: 0;
+            box-shadow: none;
+        }
+
+        .terminal.maximized .terminal-body {
+            height: calc(100dvh - 100px);
+        }
+
+        body.terminal-open { overflow: hidden; }
+
+        .signal {
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            transition: background 0.3s, transform 0.3s var(--ease-out-expo);
+        }
+
+        .signal::after {
+            content: attr(data-detail);
+            position: absolute;
+            inset: auto 1.35rem 1.35rem;
+            color: var(--text-dim);
+            font: 400 0.68rem/1.55 var(--mono);
+            transform: translateY(125%);
+            opacity: 0;
+            transition: 0.35s var(--ease-out-expo);
+        }
+
+        .signal:hover, .signal:focus-within {
+            background: var(--surface-h);
+            transform: translateY(-4px);
+        }
+
+        .signal:hover span, .signal:focus-within span {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .signal:hover::after, .signal:focus-within::after {
+            opacity: 1;
+            transform: none;
+        }
+
+        .signal span { transition: 0.3s var(--ease-out-expo); }
+
+        .skill-modes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin: 1.25rem 0;
+        }
+
+        .skill-mode { padding: 0.65rem 0.85rem; }
+
+        .skill-node {
+            transition: opacity 0.3s, transform 0.3s var(--ease-spring),
+                color 0.3s, border-color 0.3s !important;
+        }
+
+        .heatmap-wrap.has-filter .skill-node:not(.skill-active) { display: none; }
+
+        .heatmap-wrap.has-filter .skill-node.skill-active {
+            color: var(--green);
+            border-color: var(--border-h);
+            transform: translateY(-2px);
+        }
+
+        .exp-card {
+            cursor: pointer;
+        }
+
+        .exp-card .exp-bullets, .exp-card .exp-tech {
+            display: none;
+        }
+
+        .exp-card.open .exp-bullets, .exp-card.open .exp-tech {
+            display: flex;
+            animation: detail-in 0.45s var(--ease-out-expo) both;
+        }
+
+        .exp-card.open .exp-bullets { display: block; }
+
+        @keyframes detail-in {
+            from { opacity: 0; transform: translateY(12px); }
+        }
+
+        .exp-outcome {
+            margin: 1rem 3rem 0 0;
+            color: var(--text-dim);
+            font-size: 0.88rem;
+            line-height: 1.65;
+        }
+
+        .exp-toggle {
+            position: absolute;
+            right: 0;
+            bottom: 2rem;
+            width: 2rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+
+        .exp-card.open .exp-toggle { transform: rotate(45deg); }
+
+        .section-flash {
+            animation: section-flash 1s var(--ease-out-expo);
+        }
+
+        @keyframes section-flash {
+            0%, 100% { box-shadow: none; }
+            30% { box-shadow: inset 0 0 0 1px var(--green), inset 0 0 80px rgba(199, 255, 61, 0.08); }
+        }
+
+        .site-fx {
+            position: fixed;
+            inset: 0;
+            z-index: 400;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(110deg, transparent 25%, rgba(199,255,61,.14) 48%, transparent 70%);
+            transform: translateX(-120%);
+        }
+
+        .site-fx.run {
+            opacity: 1;
+            animation: fx-sweep 0.9s var(--ease-out-expo) forwards;
+        }
+
+        @keyframes fx-sweep { to { transform: translateX(120%); } }
+
+        .terminal.glitch {
+            animation: terminal-glitch 0.28s steps(2, end);
+        }
+
+        @keyframes terminal-glitch {
+            25% { transform: translate(3px, -2px); filter: hue-rotate(45deg); }
+            50% { transform: translate(-4px, 1px); clip-path: inset(15% 0 35%); }
+            75% { transform: translate(2px, 2px); clip-path: inset(55% 0 8%); }
+        }
+
+        .exp-list.git-mode {
+            padding-left: 2rem;
+            border-left: 1px solid var(--green);
+        }
+
+        .exp-list.git-mode .exp-card::after {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 2.4rem;
+            width: 0.65rem;
+            height: 0.65rem;
+            border: 2px solid var(--green);
+            border-radius: 50%;
+            background: var(--bg);
+        }
+
+        .profile-burst {
+            position: fixed;
+            inset: 0;
+            z-index: 420;
+            display: grid;
+            place-content: center;
+            padding: 2rem;
+            color: var(--text);
+            background: color-mix(in srgb, var(--bg) 92%, transparent);
+            backdrop-filter: blur(16px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: 0.35s;
+        }
+
+        .profile-burst.show { opacity: 1; visibility: visible; }
+        .profile-burst strong {
+            font-size: clamp(3rem, 12vw, 10rem);
+            line-height: 0.8;
+            letter-spacing: -0.075em;
+            text-transform: uppercase;
+        }
+        .profile-burst strong span { color: var(--green); }
+        .profile-burst small {
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font: 400 0.7rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .command-palette {
+            position: fixed;
+            inset: 0;
+            z-index: 450;
+            display: grid;
+            place-items: start center;
+            padding-top: 18vh;
+            background: rgba(3, 5, 3, 0.74);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.25s;
+        }
+
+        .command-palette.open { opacity: 1; visibility: visible; }
+
+        .palette-box {
+            width: min(calc(100% - 2rem), 680px);
+            border: 1px solid var(--border-h);
+            background: var(--bg-2);
+            box-shadow: 12px 12px 0 rgba(199, 255, 61, 0.1);
+        }
+
+        .palette-input {
+            width: 100%;
+            padding: 1.15rem 1.25rem;
+            border: 0;
+            border-bottom: 1px solid var(--border);
+            outline: 0;
+            color: var(--text);
+            background: transparent;
+            font: 400 0.9rem var(--mono);
+        }
+
+        .palette-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+        }
+
+        .palette-options button {
+            padding: 0.9rem 1.1rem;
+            border: 0;
+            color: var(--text-dim);
+            background: var(--bg-2);
+            text-align: left;
+            font: 400 0.7rem var(--mono);
+            cursor: pointer;
+        }
+
+        .palette-options button:hover { color: var(--green); background: var(--surface-h); }
+
+        .contact-status {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin: 0 0 1.2rem;
+            color: var(--green);
+            font: 500 0.65rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .contact-status::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: status-pulse 2s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .terminal-toolbar { padding: 0.55rem 0.65rem; }
+            .terminal-max { display: block; flex: 0 0 auto; }
+            .command-chip { padding: 0.55rem 0.65rem; }
+            .palette-options { grid-template-columns: 1fr; }
+            .exp-toggle { right: 0.25rem; }
+            .signal:hover { transform: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .nav-logo::before { animation: none; }
+            .nav-logo::before {
+                animation: none;
+            }
+            .boot-screen { transition: none; }
+            .site-fx, .section-flash { animation: none !important; }
         }
     </style>
 </head>
@@ -1615,6 +2023,11 @@
 
     <!-- Progress bar -->
     <div id="progress-bar"></div>
+    <div class="site-fx" id="site-fx" aria-hidden="true"></div>
+    <div class="profile-burst" id="profile-burst" aria-hidden="true">
+        <strong>Product<span>Engineer.</span></strong>
+        <small>Strategy that compiles · engineering that moves metrics</small>
+    </div>
 
     <!-- Spotlight -->
     <div class="spotlight" id="spotlight"></div>
@@ -1644,6 +2057,11 @@
     <section id="hero">
         <div class="hero-inner">
             <div class="terminal">
+                <div class="boot-screen" id="boot-screen">
+                    <button class="boot-skip" id="boot-skip" type="button">skip intro</button>
+                    <div class="boot-log" id="boot-log" aria-live="polite"></div>
+                    <div class="boot-wordmark">Udbhav <span>Varma.</span></div>
+                </div>
                 <div class="terminal-bar">
                     <div class="dot dot-r"></div>
                     <div class="dot dot-y"></div>
@@ -1659,6 +2077,15 @@
                             aria-label="terminal input" />
                     </div>
                 </div>
+                <div class="terminal-toolbar">
+                    <div class="command-suggestions" aria-label="Suggested terminal commands">
+                        <button class="command-chip" type="button" data-command="whoami">whoami</button>
+                        <button class="command-chip" type="button" data-command="show impact">show impact</button>
+                        <button class="command-chip" type="button" data-command="open work">open work</button>
+                        <button class="command-chip" type="button" data-command="surprise me">surprise me</button>
+                    </div>
+                    <button class="terminal-max" id="terminal-max" type="button" aria-label="Maximize terminal">maximize</button>
+                </div>
             </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
@@ -1667,11 +2094,11 @@
         </div>
     </section>
 
-    <div class="signal-strip reveal" aria-label="Selected impact">
-        <div class="signal"><strong>2.5×</strong><span>Return on spend improved through model iteration</span></div>
-        <div class="signal"><strong>50%</strong><span>Fewer human-agent handoffs with WABA bots</span></div>
-        <div class="signal"><strong>10%</strong><span>Engagement lift from a shipped product revamp</span></div>
-        <div class="signal"><strong>0→1</strong><span>My favorite distance between idea and product</span></div>
+    <div class="signal-strip reveal" id="proof" aria-label="Selected impact">
+        <div class="signal" tabindex="0" data-detail="Model iteration + experimentation turned better AI behavior into materially better economics."><strong>2.5×</strong><span>Return on spend improved through model iteration</span></div>
+        <div class="signal" tabindex="0" data-detail="Shipped WABA automation that resolved more conversations without sending users to a human queue."><strong>50%</strong><span>Fewer human-agent handoffs with WABA bots</span></div>
+        <div class="signal" tabindex="0" data-detail="A product revamp at myKaarma translated engineering work into measurable user engagement."><strong>10%</strong><span>Engagement lift from a shipped product revamp</span></div>
+        <div class="signal" tabindex="0" data-detail="From ambiguous idea to scoped prototype, validated loop, shipped product and a number worth tracking."><strong>0→1</strong><span>My favorite distance between idea and product</span></div>
     </div>
 
     <div class="divider"></div>
@@ -1696,6 +2123,13 @@
             <p class="section-label reveal">// skills.heat</p>
             <p style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);margin-bottom:0.5rem;"
                 class="reveal">size = depth of damage done with this skill</p>
+            <div class="skill-modes reveal" aria-label="Filter capabilities">
+                <button class="skill-mode" type="button" data-skill="all">All systems</button>
+                <button class="skill-mode active" type="button" data-skill="product">Product</button>
+                <button class="skill-mode" type="button" data-skill="ai">AI</button>
+                <button class="skill-mode" type="button" data-skill="engineering">Engineering</button>
+                <button class="skill-mode" type="button" data-skill="growth">Growth</button>
+            </div>
             <div class="heatmap-wrap reveal">
                 <span class="skill-node skill-5">Technical Product Management</span>
                 <span class="skill-node skill-5">0 to 1 Products</span>
@@ -2022,6 +2456,7 @@
                 problems, cool collabs, and good conversations about product and tech.</p>
 
             <div class="contact-terminal reveal">
+                <div class="contact-status">channel open · accepting interesting problems</div>
                 <div class="line"><span class="prompt-str">→</span><span class="cmd">open connections</span></div>
                 <div class="contact-links">
                     <div class="contact-link-row">
@@ -2052,6 +2487,21 @@
     <footer>
         <p>built by <span>Udbhav Varma</span> — powered by vibecoding + too much diet coke. © 2026</p>
     </footer>
+
+    <div class="command-palette" id="command-palette" aria-hidden="true">
+        <div class="palette-box" role="dialog" aria-modal="true" aria-label="Site command palette">
+            <input class="palette-input" id="palette-input" placeholder="Type a command…  (esc to close)"
+                autocomplete="off" spellcheck="false" />
+            <div class="palette-options">
+                <button type="button" data-command="open work">open work</button>
+                <button type="button" data-command="show impact">show impact</button>
+                <button type="button" data-command="focus skills">focus skills</button>
+                <button type="button" data-command="open contact">open contact</button>
+                <button type="button" data-command="theme cyberpunk">theme cyberpunk</button>
+                <button type="button" data-command="surprise me">surprise me</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         /* ── Cursor spotlight ── */
@@ -2106,6 +2556,62 @@
         });
 
         /* ── Interactive Terminal ── */
+        const siteFX = document.getElementById('site-fx');
+        function pulseSite() {
+            siteFX.classList.remove('run');
+            void siteFX.offsetWidth;
+            siteFX.classList.add('run');
+            setTimeout(() => siteFX.classList.remove('run'), 1000);
+        }
+        function focusSection(id) {
+            const target = document.getElementById(id);
+            if (!target) return;
+            target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+            target.classList.remove('section-flash');
+            void target.offsetWidth;
+            target.classList.add('section-flash');
+            setTimeout(() => target.classList.remove('section-flash'), 1200);
+            pulseSite();
+        }
+        function showProfileBurst() {
+            const burst = document.getElementById('profile-burst');
+            burst.classList.add('show');
+            setTimeout(() => burst.classList.remove('show'), 1450);
+        }
+
+        /* First-visit cinematic boot. Returning visitors arrive instantly. */
+        (function bootPortfolio() {
+            const screen = document.getElementById('boot-screen');
+            const log = document.getElementById('boot-log');
+            const skip = document.getElementById('boot-skip');
+            if (!screen || !log || !skip) return;
+            const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const returning = sessionStorage.getItem('portfolio-booted');
+            let timers = [];
+            function finish() {
+                timers.forEach(clearTimeout);
+                screen.classList.add('done');
+                sessionStorage.setItem('portfolio-booted', '1');
+            }
+            skip.addEventListener('click', finish);
+            if (returning || reduced) { finish(); return; }
+            const lines = [
+                '[ ok ] product instinct',
+                '[ ok ] engineering context',
+                '[ ok ] unreasonable shipping velocity',
+                '[ .. ] loading portfolio personality',
+                '[ ok ] ready'
+            ];
+            lines.forEach((line, i) => {
+                timers.push(setTimeout(() => {
+                    const row = document.createElement('div');
+                    row.innerHTML = line.replace('[ ok ]', '<span class="ok">[ ok ]</span>');
+                    log.appendChild(row);
+                }, 180 + i * 210));
+            });
+            timers.push(setTimeout(finish, 1750));
+        })();
+
         (function () {
             const out = document.getElementById('term-output');
             const inp = document.getElementById('term-input');
@@ -2206,23 +2712,9 @@
             sp();
             el('div', 'font-family:var(--sans);font-size:clamp(2.7rem,7vw,6.6rem);font-weight:800;letter-spacing:-0.065em;color:var(--text);line-height:0.86;padding:0.35rem 0 0.8rem;text-transform:uppercase;',
                 'Udbhav <span style="display:block;color:var(--green)">Varma.</span>');
-            raw('PRODUCT × ENGINEERING');
+            sp();
             raw('Building AI products that move metrics.');
             raw('Associate Technical PM @ Times Internet · AI Labs · COO Office');
-            sp();
-            sp();
-            cmd('cat roles.json');
-            sp();
-            const rDiv = document.createElement('div');
-            rDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.25rem 0 0.25rem 1.1rem;';
-            [['Product Manager', 'tag-green'], ['AI Builder', 'tag-blue']]
-                .forEach(([l, c]) => {
-                    const s = document.createElement('span');
-                    s.className = 'tag ' + c;
-                    s.textContent = l;
-                    rDiv.appendChild(s);
-                });
-            out.appendChild(rDiv);
             sp();
 
             /* ── sarcastic fallbacks (escalating) ── */
@@ -2277,6 +2769,7 @@
                 const base = parts[0];
                 const args = parts.slice(1);
                 const rargs = rawCmd.trim().split(/\s+/).slice(1);
+                const full = c.toLowerCase();
 
                 const greetings = ['hi', 'hello', 'hey', 'greetings', 'hola', 'yo', 'sup', 'wassup', 'namaste'];
                 if (greetings.includes(base)) {
@@ -2284,10 +2777,39 @@
                     return;
                 }
 
+                const pageCommands = {
+                    'show impact': ['proof', 'impact metrics: 2.5× ROS · 50% fewer handoffs · 10% engagement lift'],
+                    'open impact': ['proof', 'opening the numbers that survived stakeholder review.'],
+                    'open work': ['experience', 'opening work.log — outcomes first, lore on demand.'],
+                    'show work': ['experience', 'opening work.log — outcomes first, lore on demand.'],
+                    'focus skills': ['skills', 'focusing capability graph. pick a system: product · AI · engineering · growth.'],
+                    'open skills': ['skills', 'opening the capability graph.'],
+                    'open contact': ['contact', 'connection channel open. sensible pitches preferred.'],
+                    'connect udbhav': ['contact', 'routing to the actual human.'],
+                    'open principles': ['principles', 'loading operating principles. no corporate wallpaper detected.']
+                };
+                if (pageCommands[full]) {
+                    const [target, message] = pageCommands[full];
+                    raw(message);
+                    focusSection(target === 'proof' ? 'proof' : target);
+                    return;
+                }
+                if (full === 'surprise me' || full === 'surprise') {
+                    const surprises = [
+                        () => run('theme cyberpunk'),
+                        () => run('matrix'),
+                        () => run('game'),
+                        () => { raw('plot twist: the best easter egg is a reply from the real person.'); focusSection('contact'); },
+                        () => { raw('deploying evidence...'); focusSection('experience'); document.querySelector('.exp-card')?.classList.add('open'); }
+                    ];
+                    surprises[Math.floor(Math.random() * surprises.length)]();
+                    return;
+                }
+
                 switch (base) {
 
                     case 'help':
-                        raw(`available commands\n  whoami            the udbhav himself\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            matrix screensaver. completely useless, but looks cool\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+                        raw(`available commands\n  whoami            the udbhav himself\n  show impact       move the page to measurable evidence\n  open work         open the work log\n  focus skills      inspect the capability graph\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
 
                     case 'theme': {
                         let tName = args[0];
@@ -2306,6 +2828,7 @@
                             }
                             localStorage.setItem('portfolio-theme', tName);
                             raw('theme changed to ' + tName);
+                            pulseSite();
                         } else {
                             err('unknown theme: ' + tName + '. choose from: default, matrix, cyberpunk, light');
                         }
@@ -2316,8 +2839,8 @@
                         raw('Starting Matrix Rain... Press any key or click to exit.');
                         sp();
                         const overlay = document.createElement('canvas');
-                        overlay.style.cssText = 'position:absolute;top:50px;left:0;width:100%;height:calc(100% - 50px);background:#000;z-index:99;border-bottom-left-radius:14px;border-bottom-right-radius:14px;';
-                        term.appendChild(overlay);
+                        overlay.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;background:#000;z-index:999;';
+                        document.body.appendChild(overlay);
 
                         const octx = overlay.getContext('2d');
                         let ow = overlay.width = overlay.clientWidth;
@@ -2388,12 +2911,15 @@
                         const f = args[0] || '';
                         if (['about', 'about.md', 'about.txt', 'bio'].includes(f)) {
                             raw('Name:      Udbhav Varma\nRole:      Associate Technical Product Manager\nCompany:   Times Internet · AI Labs · COO Office\nEducation: CS + Economics, IIIT Delhi\n\nOne part PM. One part engineer. One part chaos.\nAsks "why are we building this?", gets told to just build it,\nships it faster than the meeting was scheduled.');
+                            focusSection('about');
                         } else if (['experience', 'exp', 'experience.md', 'exp.md', 'work'].includes(f)) {
                             raw('[current]  Assoc. TPM @ Times Internet (Aug 2025 – now)\n           AI Labs · COO Office · GenAI platforms · 2.5x ROS\n[2025]     AI Product Intern @ Economic Times\n           Conversational AI · Voice Agents · WABA · Fortune 500 clients\n[2024]     SDE Intern @ myKaarma\n           Angular + Spring Boot · +10% engagement\n[2022-24]  Gen Sec @ IEEE IIIT-Delhi\n           70+ members · 30 events · Solana partnership');
+                            focusSection('experience');
                         } else if (['projects', 'projects.md', 'proj'].includes(f)) {
                             raw('travelAID    — Llama NL→SQL, 70k+ records, 95% accuracy\nSymLink      — NER on math symbols, beat SOTA by 5%\nSQLUber      — uber clone, full stack, 2FA + Google Maps\nAdSales      — Next.js + Firebase dashboard with AI assistant');
                         } else if (['contact', 'contact.md'].includes(f)) {
                             raw('email     udbhav21433@iiitd.ac.in\nlinkedin  linkedin.com/in/udbhav-varma\ngithub    github.com/udbhavvarma\n\n(if your idea is interesting enough, i reply fast.)');
+                            focusSection('contact');
                         } else if (f === 'jenkins.log') {
                             err('permission denied. some things are better left unseen.');
                         } else if (f === 'vibes.md') {
@@ -2427,6 +2953,7 @@
                     case 'uname': raw('PortfolioOS 4.20.69-vibe-stable x86_vibes GNU/Chaos'); break;
 
                     case 'neofetch': {
+                        showProfileBurst();
                         const g = 'color:var(--green);font-weight:700';
                         const m = 'color:var(--text-muted)';
                         el('div', 'white-space:pre;font-size:0.78rem;line-height:1.7;padding-left:1.1rem;',
@@ -2450,6 +2977,8 @@
                         const sub = args[0];
                         if (sub === 'log') {
                             raw('commit a7f3b2c  feat: shipped 0→1 AI platform (again)\ncommit 9e1d4a8  fix: convinced everyone it was planned\ncommit 3f8c091  feat: improved ROS by 2.5x (real number, i swear)\ncommit b2a5d7e  chore: survived sprint review with zero prep\ncommit 88c3f1a  feat: made voice agent not sound like a robot\ncommit d4e9201  fix: jenkins was right, i was wrong (briefly)\ncommit 1a2b3c4  init: opened cursor, vibed, shipped');
+                            document.querySelector('.exp-list')?.classList.add('git-mode');
+                            focusSection('experience');
                         } else if (sub === 'status') {
                             raw('On branch main\nYour branch is ahead by 3 commits.\n\nnothing to commit, working tree clean\n(vibes are also clean)');
                         } else if (sub === 'push') { raw('already on main. always on main. there is no staging.'); }
@@ -2504,6 +3033,10 @@
                     case 'java': raw('java: we moved on. LLMs now.'); break;
 
                     default: {
+                        term.classList.remove('glitch');
+                        void term.offsetWidth;
+                        term.classList.add('glitch');
+                        setTimeout(() => term.classList.remove('glitch'), 320);
                         // easter egg: every 3rd unknown command, show rickroll or ip reveal
                         const isEasterTurn = (dIdx % 3 === 2); // triggers at 2, 5, 8, 11...
                         const doRickroll = isEasterTurn && (dIdx % 6 === 2); // alternates between the two
@@ -2536,7 +3069,7 @@
             }
 
             /* ── tab completions ── */
-            const CMDS = ['help', 'whoami', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
+            const CMDS = ['help', 'whoami', 'show impact', 'open work', 'focus skills', 'open contact', 'surprise me', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
 
             inp.addEventListener('keydown', e => {
                 if (e.key === 'Enter') {
@@ -2563,8 +3096,121 @@
             });
 
             term.addEventListener('click', () => inp.focus());
-            setTimeout(() => { try { inp.focus(); } catch (e) { } }, 700);
+            window.portfolioRun = run;
+            window.portfolioInput = inp;
+            if (matchMedia('(pointer:fine)').matches) {
+                setTimeout(() => { try { inp.focus(); } catch (e) { } }, 1900);
+            }
         })();
+
+        /* Suggested commands and mobile terminal mode */
+        document.querySelectorAll('[data-command]').forEach(button => {
+            button.addEventListener('click', () => {
+                const command = button.dataset.command;
+                if (window.portfolioRun) window.portfolioRun(command);
+                closePalette();
+            });
+        });
+
+        const terminalMax = document.getElementById('terminal-max');
+        const heroTerminal = document.querySelector('#hero .terminal');
+        terminalMax?.addEventListener('click', () => {
+            const open = heroTerminal.classList.toggle('maximized');
+            document.body.classList.toggle('terminal-open', open);
+            terminalMax.textContent = open ? 'minimize' : 'maximize';
+            terminalMax.setAttribute('aria-label', open ? 'Minimize terminal' : 'Maximize terminal');
+            if (open) window.portfolioInput?.focus();
+        });
+
+        /* Progressive work history: outcome first, detail on demand */
+        const outcomes = [
+            '2.5× ROS improvement across conversational AI products.',
+            '50% fewer human-agent handoffs through shipped WABA automation.',
+            '10% engagement lift from a production product revamp.',
+            '70+ people led and ~30 technical events delivered.'
+        ];
+        document.querySelectorAll('.exp-card').forEach((card, i) => {
+            const outcome = document.createElement('p');
+            outcome.className = 'exp-outcome';
+            outcome.textContent = outcomes[i] || 'Open for the full story.';
+            const toggle = document.createElement('button');
+            toggle.className = 'exp-toggle';
+            toggle.type = 'button';
+            toggle.setAttribute('aria-label', 'Expand role details');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.textContent = '+';
+            card.querySelector('.exp-header')?.after(outcome);
+            card.appendChild(toggle);
+            function toggleCard(event) {
+                if (event?.target.closest('a')) return;
+                const open = card.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.setAttribute('aria-label', open ? 'Collapse role details' : 'Expand role details');
+            }
+            card.addEventListener('click', toggleCard);
+        });
+
+        /* Capability map */
+        const skillGroups = {
+            product: ['product', '0 to 1', 'a/b', 'design', 'research', 'market', 'competitive', 'business', 'requirements', 'agile', 'scrum', 'jira', 'leadership'],
+            ai: ['language model', 'agentic', 'prompt', 'machine learning', 'nlp', 'custom gpt', 'vector', 'langchain'],
+            engineering: ['react', 'node', 'sql', 'api', 'n8n', 'next', 'firebase', 'flask', 'docker', 'redis', 'c++'],
+            growth: ['ga4', 'gtm', 'ads', 'roas', 'funnel', 'mixpanel', 'posthog', 'analytics', 'tableau']
+        };
+        const skillWrap = document.querySelector('.heatmap-wrap');
+        const skillNodes = [...document.querySelectorAll('.skill-node')];
+        document.querySelectorAll('.skill-mode').forEach(button => {
+            button.addEventListener('click', () => {
+                const group = button.dataset.skill;
+                document.querySelectorAll('.skill-mode').forEach(b => b.classList.toggle('active', b === button));
+                skillWrap.classList.toggle('has-filter', group !== 'all');
+                skillNodes.forEach(node => {
+                    const label = node.textContent.toLowerCase();
+                    node.classList.toggle('skill-active', group !== 'all' && skillGroups[group].some(term => label.includes(term)));
+                });
+            });
+        });
+        document.querySelector('.skill-mode[data-skill="product"]')?.click();
+
+        /* Global command palette — the terminal follows the viewer */
+        const palette = document.getElementById('command-palette');
+        const paletteInput = document.getElementById('palette-input');
+        function openPalette() {
+            palette.classList.add('open');
+            palette.setAttribute('aria-hidden', 'false');
+            setTimeout(() => paletteInput.focus(), 30);
+        }
+        function closePalette() {
+            palette.classList.remove('open');
+            palette.setAttribute('aria-hidden', 'true');
+            paletteInput.value = '';
+        }
+        document.addEventListener('keydown', e => {
+            const typing = ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName);
+            if (e.key === '/' && !typing) {
+                e.preventDefault();
+                if (scrollY < innerHeight * 0.8) {
+                    window.portfolioInput?.focus();
+                } else {
+                    openPalette();
+                }
+            }
+            if (e.key === 'Escape') {
+                closePalette();
+                if (heroTerminal.classList.contains('maximized')) terminalMax.click();
+            }
+        });
+        palette.addEventListener('click', e => { if (e.target === palette) closePalette(); });
+        paletteInput.addEventListener('keydown', e => {
+            if (e.key === 'Enter' && paletteInput.value.trim()) {
+                window.portfolioRun?.(paletteInput.value);
+                closePalette();
+            }
+        });
+
+        /* Contact closes the narrative loop */
+        const contactLinks = document.querySelectorAll('.contact-link-val');
+        contactLinks.forEach(link => link.addEventListener('click', pulseSite));
     </script>
 </body>
 
