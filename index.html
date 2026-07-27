@@ -387,6 +387,7 @@
             color: var(--text-muted);
         }
 
+
         .nav-logo .cursor-blink {
             display: inline-block;
             width: 8px;
@@ -1408,24 +1409,6 @@
             font-size: 0.72rem;
         }
 
-        .nav-logo::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            margin-right: 0.65rem;
-            border-radius: 50%;
-            display: inline-block;
-            vertical-align: 1px;
-            background: var(--green);
-            box-shadow: 0 0 0 0 rgba(199, 255, 61, 0.6);
-            animation: status-pulse 2s infinite;
-        }
-
-        @keyframes status-pulse {
-            70% {
-                box-shadow: 0 0 0 9px transparent;
-            }
-        }
 
         .nav-links a {
             text-transform: uppercase;
@@ -2142,9 +2125,6 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .nav-logo::before {
-                animation: none;
-            }
 
             .site-fx,
             .section-flash {
@@ -2163,9 +2143,9 @@
     <div class="spotlight" id="spotlight"></div>
 
     <!-- Ambient orbs -->
-    <!-- <div class="orb orb-1"></div>
+    <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div> -->
+    <div class="orb orb-3"></div>
 
     <!-- Nav -->
     <nav id="nav">
