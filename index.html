@@ -2140,7 +2140,7 @@
             line-height: 1.65;
         }
 
-        .project-decision {
+        .project-insight {
             display: grid;
             gap: .4rem;
             margin-top: 1.4rem;
@@ -2150,12 +2150,36 @@
             font: 400 .68rem/1.6 var(--mono);
         }
 
-        .project-decision::before {
-            content: 'Key product decision';
+        .project-insight::before {
+            content: attr(data-label);
             color: var(--green);
             font-size: .54rem;
             text-transform: uppercase;
             letter-spacing: .08em;
+        }
+
+        .project-proof {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            margin-top: 1.5rem;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .project-proof span {
+            padding: .68rem .6rem;
+            color: var(--text-muted);
+            background: var(--bg);
+            font: 400 .54rem/1.45 var(--mono);
+            text-align: center;
+        }
+
+        .project-proof b {
+            display: block;
+            margin-bottom: .2rem;
+            color: var(--text-dim);
+            font-size: .68rem;
         }
 
         .project-brief {
@@ -2176,9 +2200,15 @@
             letter-spacing: .07em;
             cursor: pointer;
             list-style: none;
+            transition: color .2s ease;
         }
 
         .project-brief summary::-webkit-details-marker { display: none; }
+        .project-brief summary:hover { color: var(--green); }
+        .project-brief summary:focus-visible {
+            outline: 1px solid var(--border-hi);
+            outline-offset: 4px;
+        }
         .project-brief summary::after {
             content: '+';
             color: var(--green);
@@ -2214,6 +2244,11 @@
             color: var(--text-muted);
             font-size: .72rem;
             line-height: 1.55;
+        }
+
+        .brief-cell em {
+            color: var(--text-dim);
+            font-style: normal;
         }
 
         .tool-reasons {
@@ -2304,52 +2339,122 @@
             letter-spacing: .07em;
         }
 
-        .aux-preview { padding: 1.5rem; color: #25241f; background: #eee9df; }
+        .demo-tabs {
+            display: flex;
+            gap: .35rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .demo-tabs::-webkit-scrollbar { display: none; }
+        .demo-tab {
+            flex: 0 0 auto;
+            padding: .48rem .6rem;
+            border: 1px solid currentColor;
+            color: inherit;
+            background: transparent;
+            font: 500 .54rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            opacity: .5;
+            cursor: pointer;
+            transition: opacity .2s ease, background .2s ease, transform .2s ease;
+        }
+        .demo-tab:hover { opacity: .8; }
+        .demo-tab.active { opacity: 1; transform: translateY(-1px); }
+        .demo-tab:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+
+        .aux-preview { padding: 1.35rem; color: #25241f; background: #eee9df; }
         .aux-preview .mini-bar {
-            margin: -1.5rem -1.5rem 1.35rem;
+            margin: -1.35rem -1.35rem 1rem;
             color: #716c61;
             border-color: rgba(37,36,31,.12);
             background: #e5ded1;
         }
-        .aux-state {
-            margin-bottom: 1.2rem;
-            font: 700 clamp(1.45rem, 3vw, 2.35rem)/1.05 var(--sans);
-            letter-spacing: -.05em;
+        .aux-preview .demo-tab.active { background: rgba(37,36,31,.08); }
+        .aux-stage {
+            min-height: 220px;
+            padding: 1rem;
+            border: 1px solid rgba(37,36,31,.13);
+            background: rgba(255,255,255,.38);
         }
-        .aux-focus { padding: 1rem; border: 1px solid rgba(37,36,31,.13); background: rgba(255,255,255,.35); }
-        .aux-focus small {
-            display: block;
-            margin-bottom: .5rem;
-            color: #777064;
-            font: 500 .56rem var(--mono);
-            text-transform: uppercase;
-        }
-        .aux-focus strong { font-size: .88rem; }
-        .aux-next {
+        .aux-stage-label {
             display: flex;
             justify-content: space-between;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: .75rem;
             color: #777064;
-            font: 400 .62rem var(--mono);
+            font: 500 .54rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .07em;
         }
+        .aux-stage h4 {
+            margin: 1rem 0 .65rem;
+            font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+            line-height: 1.08;
+            letter-spacing: -.04em;
+        }
+        .aux-stage p {
+            margin: 0;
+            color: #625d53;
+            font-size: .72rem;
+            line-height: 1.55;
+        }
+        .aux-output {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: .45rem;
+            margin-top: .85rem;
+            font: 400 .58rem/1.45 var(--mono);
+        }
+        .aux-output span {
+            padding: .55rem;
+            border: 1px solid rgba(37,36,31,.1);
+            background: rgba(255,255,255,.32);
+        }
+        .aux-output b { display: block; margin-bottom: .2rem; color: #777064; font-size: .5rem; text-transform: uppercase; }
+        .demo-boundary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: .8rem;
+            color: #777064;
+            font: 500 .54rem var(--mono);
+        }
+        .demo-boundary span:first-child { color: #4e6a49; }
 
-        .portal-demo { padding: 1.35rem; background: #111114; }
+        .portal-demo { padding: 1.25rem; color: #d4d4d8; background: #111114; }
+        .portal-demo .demo-tab { color: #a1a1aa; border-color: #34343a; }
+        .portal-demo .demo-tab.active { color: #f4f4f5; background: #222226; }
         .portal-session {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            gap: 1rem;
+            margin-bottom: .85rem;
             color: #d4d4d8;
-            font: 500 .66rem var(--mono);
+            font: 500 .62rem var(--mono);
         }
         .portal-session span:last-child { color: #34d399; }
-        .portal-form { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
-        .portal-field {
-            padding: .72rem;
-            border: 1px solid #2b2b31;
-            color: #71717a;
+        .portal-pain {
+            margin-bottom: .75rem;
+            padding: .62rem .7rem;
+            color: #a1a1aa;
+            border-left: 2px solid #f59e0b;
             background: #18181b;
-            font: 400 .6rem var(--mono);
+            font: 400 .58rem/1.45 var(--mono);
+        }
+        .portal-form { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem; }
+        .portal-field {
+            padding: .68rem;
+            border: 1px solid #2b2b31;
+            color: #a1a1aa;
+            background: #18181b;
+            font: 400 .58rem var(--mono);
+        }
+        .portal-field::before {
+            content: '✓';
+            margin-right: .4rem;
+            color: #34d399;
         }
         .portal-saved {
             grid-column: 1 / -1;
@@ -2357,16 +2462,33 @@
             color: #6ee7b7;
             border: 1px solid rgba(52,211,153,.25);
             background: rgba(52,211,153,.06);
-            font: 500 .6rem var(--mono);
+            font: 500 .58rem var(--mono);
+        }
+        .portal-boundary {
+            display: flex;
+            justify-content: space-between;
+            gap: .75rem;
+            margin-top: .75rem;
+            color: #71717a;
+            font: 400 .52rem var(--mono);
         }
 
-        .gesture-demo { padding: 1.35rem; background: #10141d; }
+        .gesture-demo { padding: 1.25rem; color: #e2e8f0; background: #10141d; }
+        .gesture-context {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: #64748b;
+            font: 500 .54rem var(--mono);
+            text-transform: uppercase;
+        }
+        .gesture-context span:last-child { color: #4ade80; }
         .gesture-stage {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
             gap: 1rem;
-            min-height: 210px;
+            min-height: 180px;
             text-align: center;
         }
         .gesture-token {
@@ -2381,7 +2503,6 @@
             display: block;
             font-size: clamp(2.5rem, 6vw, 4rem);
             line-height: 1;
-            animation: gesture-float 2.4s ease-in-out infinite;
         }
         .gesture-token span {
             display: block;
@@ -2391,12 +2512,40 @@
             text-transform: uppercase;
         }
         .gesture-plus { color: #3b82f6; font: 700 1.35rem var(--mono); }
-        .gesture-verified {
-            margin-top: 1rem;
-            color: #4ade80;
-            font: 500 .6rem var(--mono);
-            text-align: center;
+        .gesture-progress {
+            height: 3px;
+            overflow: hidden;
+            background: #252c3a;
         }
+        .gesture-progress span {
+            display: block;
+            width: 0;
+            height: 100%;
+            background: #3b82f6;
+            transition: width .8s ease;
+        }
+        .gesture-demo.running .gesture-token b { animation: gesture-float 1s ease-in-out infinite; }
+        .gesture-demo.running .gesture-progress span { width: 68%; }
+        .gesture-demo.verified .gesture-progress span { width: 100%; background: #4ade80; }
+        .gesture-verified {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: .75rem;
+            color: #94a3b8;
+            font: 500 .56rem var(--mono);
+        }
+        .gesture-run {
+            padding: .45rem .6rem;
+            border: 1px solid #3b82f6;
+            color: #bfdbfe;
+            background: rgba(59,130,246,.12);
+            font: 500 .52rem var(--mono);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .gesture-run:focus-visible { outline: 1px solid #bfdbfe; outline-offset: 2px; }
         @keyframes gesture-float { 50% { transform: translateY(-7px) rotate(3deg); } }
 
         @media (max-width: 920px) {
@@ -2412,9 +2561,11 @@
         @media (max-width: 560px) {
             .project-foot { align-items: flex-start; flex-direction: column; }
             .project-visual { min-height: 320px; padding: 1rem; }
+            .project-proof { grid-template-columns: 1fr 1fr; }
             .project-brief-grid { grid-template-columns: 1fr; }
             .brief-cell.wide { grid-column: auto; }
             .tool-reason { grid-template-columns: 1fr; gap: .15rem; }
+            .aux-output { grid-template-columns: 1fr; }
             .portal-form { grid-template-columns: 1fr; }
             .portal-saved { grid-column: auto; }
             .gesture-stage { gap: .45rem; }
@@ -2677,10 +2828,10 @@
     <!-- ── SIDE PROJECTS ── -->
     <section id="side-projects">
         <div class="section-inner">
-            <p class="section-label reveal">// experiments.shipped</p>
-            <h2 class="section-title reveal">Useful, strange,<br>and actually live.</h2>
-            <p class="section-sub reveal">Side projects are where I turn product opinions into working software—across
-                personal intelligence, public-service UX, and biometric authentication that refuses to be boring.</p>
+            <p class="section-label reveal">// products.shipped</p>
+            <h2 class="section-title reveal">Three problems.<br>Three deliberate bets.</h2>
+            <p class="section-sub reveal">Independent products where I owned the problem framing, product architecture,
+                technical tradeoffs, and working implementation—not just the interface.</p>
 
             <div class="project-showcase reveal">
                 <article class="project-story">
@@ -2688,46 +2839,70 @@
                         <div>
                             <div class="project-index"><span>01 / Personal intelligence</span><span class="project-live">Live</span></div>
                             <h3>Auxiliaire</h3>
-                            <p class="project-one-liner">A calm, local-first operating loop that turns scattered
-                                captures into readiness, memory, decisions, and the next clean action.</p>
-                            <p class="project-decision">AI stays ambient and contextual—not another chatbot demanding
-                                its own workflow.</p>
+                            <p class="project-one-liner">A private personal intelligence system that converts
+                                unstructured inputs into decisions, actions, and living memory—then uses that context
+                                to prepare the day.</p>
+                            <p class="project-insight" data-label="AI's job in the product">The model is the structuring
+                                and synthesis layer: it transcribes voice, classifies captures, extracts actions and
+                                decisions, answers from selected memory, and researches current context with sources.
+                                The user confirms every state change.</p>
+                            <div class="project-proof" aria-label="Auxiliaire implementation highlights">
+                                <span><b>3</b>capture modes</span>
+                                <span><b>4</b>AI jobs</span>
+                                <span><b>1</b>approval boundary</span>
+                                <span><b>0</b>AI auto-writes</span>
+                            </div>
                             <details class="project-brief">
-                                <summary>Product brief · problem → build → roadmap</summary>
+                                <summary>System brief · hypothesis → architecture → next proof</summary>
                                 <div class="project-brief-grid">
                                     <div class="brief-cell">
-                                        <b>Problem</b>
-                                        <p>Work, notes, links, voice captures, and unfinished loops accumulate faster
-                                            than traditional task managers can turn them into useful context.</p>
+                                        <b>User problem</b>
+                                        <p>High-context work creates voice notes, links, decisions, and follow-ups
+                                            faster than a person can reliably classify, connect, and revisit them.</p>
                                     </div>
                                     <div class="brief-cell">
-                                        <b>Constraints</b>
-                                        <p>A private one-person product with low cognitive load, fast capture,
-                                            owner-scoped data, and AI that cannot become a separate workflow.</p>
+                                        <b>Product hypothesis</b>
+                                        <p>If capture is frictionless and AI does the first-pass structuring, the user
+                                            can spend attention on judgment instead of maintaining a productivity
+                                            system.</p>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>What I built</b>
-                                        <p>A daily readiness brief, frictionless Inbox, structured Library, Review
-                                            loop, contextual assistant, voice transcription, and source-aware
-                                            research.</p>
+                                        <b>AI system design</b>
+                                        <p><em>Capture intelligence:</em> Whisper transcribes audio; Llama returns
+                                            schema-constrained titles, summaries, types, themes, decisions, and
+                                            suggested actions. <em>Memory intelligence:</em> relevant saved context is
+                                            retrieved before synthesis. <em>Current intelligence:</em> web research is
+                                            stored with sources and kept separate from the original note.</p>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>Why this stack</b>
+                                        <b>Guardrails & tradeoffs</b>
+                                        <p>AI prepares suggestions but never moves or rewrites user data without
+                                            confirmation. Responses are grounded in selected context, uncertainty is
+                                            preserved, original captures remain recoverable, and every workspace is
+                                            owner-scoped.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Architecture choices</b>
                                         <div class="tool-reasons">
-                                            <div class="tool-reason"><span>Next.js 16</span><span>One full-stack
-                                                    surface for a responsive UI and authenticated AI routes.</span></div>
-                                            <div class="tool-reason"><span>Firebase</span><span>Google sign-in and
-                                                    owner-scoped Firestore sync across devices.</span></div>
-                                            <div class="tool-reason"><span>IndexedDB</span><span>Keeps raw audio
-                                                    captures local instead of uploading them by default.</span></div>
-                                            <div class="tool-reason"><span>Groq + Whisper</span><span>Low-latency
-                                                    reasoning, transcription, and research enrichment.</span></div>
+                                            <div class="tool-reason"><span>Next.js 16</span><span>Co-locates the
+                                                    responsive product UI with authenticated server-side AI
+                                                    routes.</span></div>
+                                            <div class="tool-reason"><span>Firebase</span><span>Owner-scoped Auth and
+                                                    Firestore sync, including offline persistence across
+                                                    sessions.</span></div>
+                                            <div class="tool-reason"><span>Groq + Llama</span><span>Low-latency
+                                                    structured extraction, contextual synthesis, and sourced web
+                                                    research.</span></div>
+                                            <div class="tool-reason"><span>Whisper + IndexedDB</span><span>Transcribes
+                                                    voice while keeping the raw recording local and recoverable.</span></div>
                                         </div>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>Next</b>
-                                        <p>Strengthen retrieval across personal context, mature watchlist signals,
-                                            and make capture and review loops feel native on mobile.</p>
+                                        <b>Next proof</b>
+                                        <p>Measure suggestion acceptance, edit distance before confirmation, capture
+                                            retrieval success, and whether the daily brief reduces time-to-first-useful
+                                            action. Then graduate keyword retrieval to semantic retrieval where the
+                                            data proves it is needed.</p>
                                     </div>
                                 </div>
                             </details>
@@ -2739,12 +2914,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-visual" aria-hidden="true">
+                    <div class="project-visual" aria-label="Interactive Auxiliaire capture pipeline">
                         <div class="mini-product aux-preview">
-                            <div class="mini-bar"><span>Auxiliaire / Today</span><span>Ready</span></div>
-                            <div class="aux-state">A clear morning,<br>with two open loops.</div>
-                            <div class="aux-focus"><small>Next clean step</small><strong>Turn yesterday’s voice capture into a decision brief.</strong></div>
-                            <div class="aux-next"><span>3 captures structured</span><span>Review in 8 min →</span></div>
+                            <div class="mini-bar"><span>Auxiliaire / Capture pipeline</span><span>Human in the loop</span></div>
+                            <div class="demo-tabs" role="tablist" aria-label="Auxiliaire pipeline stages">
+                                <button class="demo-tab" type="button" role="tab" data-aux-stage="capture">01 Capture</button>
+                                <button class="demo-tab active" type="button" role="tab" data-aux-stage="structure">02 AI structure</button>
+                                <button class="demo-tab" type="button" role="tab" data-aux-stage="confirm">03 Confirm</button>
+                            </div>
+                            <div class="aux-stage" id="aux-demo-content" aria-live="polite"></div>
+                            <div class="demo-boundary"><span>AI suggests</span><span>You decide what enters the system</span></div>
                         </div>
                     </div>
                 </article>
@@ -2754,47 +2933,70 @@
                         <div>
                             <div class="project-index"><span>02 / Browser extension</span><span class="project-live">Live</span></div>
                             <h3>Low Cortisol UX</h3>
-                            <p class="project-one-liner">A Chrome extension that makes Indian government portals less
-                                hostile with secure autofill, session keep-alive, draft recovery, and document resizing.</p>
-                            <p class="project-decision">Credentials stay encrypted in the browser with AES-256-GCM. The
-                                workflow gets easier without becoming a new privacy problem.</p>
+                            <p class="project-one-liner">A browser intervention layer for high-friction Indian
+                                government portals—protecting form progress, reducing repeated entry, and preparing
+                                documents to exact upload specifications.</p>
+                            <p class="project-insight" data-label="Product strategy">I could not change the portals, so
+                                I built a thin domain-adapter layer around them. Each supported portal gets specific
+                                selectors and timeout behavior; the shared product layer handles encrypted identity,
+                                autosave, recovery, and session continuity.</p>
+                            <div class="project-proof" aria-label="Low Cortisol UX implementation highlights">
+                                <span><b>5</b>portal families</span>
+                                <span><b>90s</b>heartbeat</span>
+                                <span><b>24h</b>draft recovery</span>
+                                <span><b>0</b>credential server</span>
+                            </div>
                             <details class="project-brief">
-                                <summary>Product brief · problem → build → roadmap</summary>
+                                <summary>System brief · failure modes → intervention → next proof</summary>
                                 <div class="project-brief-grid">
                                     <div class="brief-cell">
-                                        <b>Problem</b>
-                                        <p>Indian government portals lose form state, expire sessions, reject
-                                            documents for opaque specifications, and repeatedly ask for the same
-                                            identity data.</p>
+                                        <b>Observed failure modes</b>
+                                        <p>Short sessions erase long forms, identity data is repeatedly entered,
+                                            captchas interrupt flow, and photos or scans fail opaque dimension and
+                                            file-size rules.</p>
                                     </div>
                                     <div class="brief-cell">
                                         <b>Constraints</b>
-                                        <p>The portals cannot be changed, markup varies by domain, credentials are
-                                            sensitive, and the product must stay inside browser security boundaries.</p>
+                                        <p>No control over portal code, inconsistent field markup, sensitive identity
+                                            data, changing pages, and a permission model that must stay narrow and
+                                            understandable.</p>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>What I built</b>
-                                        <p>An encrypted identity vault, domain-aware autofill, 90-second keepalive,
-                                            automatic draft recovery, portal adapters, and an exact-spec document
-                                            resizer.</p>
+                                        <b>Intervention design</b>
+                                        <p>Content scripts detect the active portal, map known fields, exclude
+                                            passwords, focus the captcha for manual completion, autosave non-password
+                                            fields after input, restore recent drafts, and ping only while the user is
+                                            active. The resizer uses preset dimensions and file-size checks before
+                                            download.</p>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>Why this stack</b>
+                                        <b>Privacy boundary</b>
+                                        <p>The vault is encrypted locally with PBKDF2-derived AES-256-GCM keys. Raw
+                                            identity data has no application server, permissions are restricted to
+                                            five portal domains, and passwords are deliberately excluded from autofill
+                                            and draft storage.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Architecture choices</b>
                                         <div class="tool-reasons">
-                                            <div class="tool-reason"><span>React + Vite</span><span>Fast configuration
-                                                    UI with a simple, distributable extension build.</span></div>
-                                            <div class="tool-reason"><span>Manifest V3</span><span>Chrome's current
-                                                    permissions, lifecycle, and service-worker model.</span></div>
-                                            <div class="tool-reason"><span>Content scripts</span><span>Repair workflows
-                                                    directly on the government pages people already use.</span></div>
-                                            <div class="tool-reason"><span>Web Crypto</span><span>AES-256-GCM encrypts
-                                                    identity data locally—no credential server required.</span></div>
+                                            <div class="tool-reason"><span>Manifest V3</span><span>Domain-scoped
+                                                    permissions, a background service worker, and Chrome's current
+                                                    extension lifecycle.</span></div>
+                                            <div class="tool-reason"><span>Content scripts</span><span>Intervene inside
+                                                    the existing workflow instead of asking users to adopt another
+                                                    destination.</span></div>
+                                            <div class="tool-reason"><span>Shadow DOM</span><span>Isolates the helper
+                                                    panel from brittle government-portal CSS.</span></div>
+                                            <div class="tool-reason"><span>Web Crypto + Canvas</span><span>Local
+                                                    credential protection and client-side document preparation with no
+                                                    upload service.</span></div>
                                         </div>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>Next</b>
-                                        <p>Expand portal coverage, make field matching resilient to markup changes,
-                                            and package a polished Chrome Web Store release.</p>
+                                        <b>Next proof</b>
+                                        <p>Instrument locally visible success signals: fields recovered, form re-entry
+                                            avoided, session loss prevented, and documents passing preset checks.
+                                            Then harden selector fallbacks and ship through the Chrome Web Store.</p>
                                     </div>
                                 </div>
                             </details>
@@ -2806,17 +3008,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="project-visual" aria-hidden="true">
+                    <div class="project-visual" aria-label="Interactive Low Cortisol UX portal adapter">
                         <div class="mini-product portal-demo">
-                            <div class="mini-bar"><span>Low Cortisol / EPFO</span><span>Extension active</span></div>
-                            <div class="portal-session"><span>Session heartbeat</span><span>● protected</span></div>
-                            <div class="portal-form">
-                                <div class="portal-field">UAN · •••• 4821</div>
-                                <div class="portal-field">Name · auto-filled</div>
-                                <div class="portal-field">Captcha · focused</div>
-                                <div class="portal-field">Draft · 12 fields</div>
-                                <div class="portal-saved">✓ Progress saved locally. Timeout anxiety cancelled.</div>
+                            <div class="mini-bar"><span id="portal-demo-title">Low Cortisol / EPFO</span><span>Extension active</span></div>
+                            <div class="demo-tabs" role="tablist" aria-label="Supported portal examples">
+                                <button class="demo-tab active" type="button" role="tab" data-portal="epfo">EPFO</button>
+                                <button class="demo-tab" type="button" role="tab" data-portal="passport">Passport</button>
+                                <button class="demo-tab" type="button" role="tab" data-portal="itr">Income tax</button>
                             </div>
+                            <div class="portal-session"><span id="portal-demo-heartbeat">Session heartbeat · 90s</span><span>● protected</span></div>
+                            <div class="portal-pain" id="portal-demo-pain">3-minute timeout can erase the form.</div>
+                            <div class="portal-form">
+                                <div class="portal-field" id="portal-demo-field-1">UAN mapped</div>
+                                <div class="portal-field" id="portal-demo-field-2">Name auto-filled</div>
+                                <div class="portal-field" id="portal-demo-field-3">Captcha focused</div>
+                                <div class="portal-field" id="portal-demo-field-4">Draft: 12 fields</div>
+                                <div class="portal-saved" id="portal-demo-result">Progress saved locally. Timeout anxiety cancelled.</div>
+                            </div>
+                            <div class="portal-boundary"><span>Password excluded</span><span>Data stays in browser</span></div>
                         </div>
                     </div>
                 </article>
@@ -2826,66 +3035,94 @@
                         <div>
                             <div class="project-index"><span>03 / Computer vision</span><span class="project-live">Live</span></div>
                             <h3>FunAuth</h3>
-                            <p class="project-one-liner">A biometric authentication provider where your password is a
-                                ridiculous choreography of hand gestures and facial expressions.</p>
-                            <p class="project-decision">The joke is real infrastructure: MediaPipe inference stays
-                                on-device, while successful choreography produces a standard JWT session.</p>
+                            <p class="project-one-liner">A multimodal challenge-response prototype where a user
+                                authenticates by completing a timed sequence of hand gestures and facial expressions.</p>
+                            <p class="project-insight" data-label="Prototype thesis">Could an authentication ceremony be
+                                expressive, legible, and privacy-preserving? I used the absurd choreography as a
+                                demanding interaction test for concurrent vision models, confidence thresholds,
+                                sequence state, hold timing, and recovery feedback.</p>
+                            <div class="project-proof" aria-label="FunAuth implementation highlights">
+                                <span><b>14</b>gesture classes</span>
+                                <span><b>8</b>steps maximum</span>
+                                <span><b>2</b>models in parallel</span>
+                                <span><b>0</b>video uploads</span>
+                            </div>
                             <details class="project-brief">
-                                <summary>Product brief · problem → build → roadmap</summary>
+                                <summary>System brief · thesis → verification loop → production gap</summary>
                                 <div class="project-brief-grid">
                                     <div class="brief-cell">
-                                        <b>Problem</b>
-                                        <p>Authentication is repetitive, while biometric demos often hide how they
-                                            work or send raw camera data elsewhere.</p>
+                                        <b>Why build it</b>
+                                        <p>Most biometric demos reduce the user to a passive scan. FunAuth explores an
+                                            active, memorable challenge where the interface explains what it detects
+                                            and what remains.</p>
                                     </div>
                                     <div class="brief-cell">
                                         <b>Constraints</b>
-                                        <p>Real-time vision must run on ordinary devices, camera access needs HTTPS,
-                                            gestures can be ambiguous, and raw frames need to stay local.</p>
+                                        <p>Real-time inference on ordinary browsers, noisy gesture classification,
+                                            camera permission over HTTPS, simultaneous hand and face states, and no
+                                            transmission of raw frames.</p>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>What I built</b>
-                                        <p>Gesture enrollment, simultaneous hand-and-face choreography, confidence
-                                            and hold-time verification, a camera overlay, inspector, test accounts,
-                                            and an interactive SDK sandbox.</p>
+                                        <b>Verification loop</b>
+                                        <p>Users compose up to eight steps, practice with live feedback, and then
+                                            verify them in order. Each step requires the expected class to clear a
+                                            confidence threshold and remain stable for its configured hold time; a
+                                            mismatch resets progress instead of silently failing.</p>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>Why this stack</b>
+                                        <b>Honest production boundary</b>
+                                        <p>This is an interaction and computer-vision prototype—not production
+                                            identity infrastructure. The current session token is client-generated,
+                                            the liveness heuristic is a diagnostic rather than a security gate, and
+                                            credentials use browser storage. Those gaps are explicit.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Architecture choices</b>
                                         <div class="tool-reasons">
-                                            <div class="tool-reason"><span>MediaPipe</span><span>Reliable hand and face
-                                                    landmarks without training custom vision models.</span></div>
-                                            <div class="tool-reason"><span>WASM + WebGL</span><span>Local inference
-                                                    with usable real-time performance.</span></div>
-                                            <div class="tool-reason"><span>WebRTC + Canvas</span><span>Camera capture
-                                                    and transparent feedback over the live feed.</span></div>
-                                            <div class="tool-reason"><span>Vite + Web Audio</span><span>A small
-                                                    client-only deployment with immediate procedural feedback.</span></div>
+                                            <div class="tool-reason"><span>MediaPipe Tasks</span><span>Hand landmarks
+                                                    and face blendshapes without the cost of training custom
+                                                    models.</span></div>
+                                            <div class="tool-reason"><span>WASM + GPU delegate</span><span>Keeps
+                                                    inference on-device while maintaining usable frame-by-frame
+                                                    performance.</span></div>
+                                            <div class="tool-reason"><span>WebRTC + Canvas</span><span>Captures the
+                                                    camera and renders landmark feedback directly over the feed.</span></div>
+                                            <div class="tool-reason"><span>Web Audio</span><span>Procedural cues make
+                                                    step progress understandable without forcing visual
+                                                    attention.</span></div>
                                         </div>
                                     </div>
                                     <div class="brief-cell wide">
-                                        <b>Next</b>
-                                        <p>Move token signing server-side, add liveness and anti-spoofing, self-host
-                                            WASM assets, and explore a WebAuthn bridge.</p>
+                                        <b>Production path</b>
+                                        <p>Server-sign sessions, add challenge-bound liveness and replay protection,
+                                            store credentials behind secure server state or WebAuthn, self-host model
+                                            assets, and evaluate false-accept and false-reject rates by device and
+                                            lighting condition.</p>
                                     </div>
                                 </div>
                             </details>
                         </div>
                         <div class="project-foot">
-                            <div class="project-stack"><span>MediaPipe</span><span>WebAssembly</span><span>WebRTC</span><span>JWT</span></div>
+                            <div class="project-stack"><span>MediaPipe</span><span>WebAssembly</span><span>WebRTC</span><span>Client JWT</span></div>
                             <div class="project-actions">
                                 <a href="https://funauth.vercel.app" target="_blank" rel="noopener">Try it live ↗</a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-visual" aria-hidden="true">
+                    <div class="project-visual" aria-label="Interactive FunAuth verification sequence">
                         <div class="mini-product gesture-demo">
-                            <div class="mini-bar"><span>FunAuth / Verify</span><span>On-device vision</span></div>
+                            <div class="mini-bar"><span>FunAuth / Challenge 01</span><span>On-device vision</span></div>
+                            <div class="gesture-context"><span>Step 1 of 2 · combo</span><span>Frames uploaded: 0</span></div>
                             <div class="gesture-stage">
                                 <div class="gesture-token"><div><b>✌️</b><span>Peace sign</span></div></div>
                                 <div class="gesture-plus">+</div>
                                 <div class="gesture-token"><div><b>😉</b><span>Left wink</span></div></div>
                             </div>
-                            <div class="gesture-verified">✓ choreography matched · issuing session token</div>
+                            <div class="gesture-progress" aria-hidden="true"><span></span></div>
+                            <div class="gesture-verified">
+                                <span id="gesture-demo-status" aria-live="polite">Thresholds: hand ≥ .68 · face ≥ .55 · hold 1.0s</span>
+                                <button class="gesture-run" type="button">Run challenge</button>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -3583,7 +3820,7 @@
                             raw('[current]  Assoc. TPM @ Times Internet (Aug 2025 – now)\n           AI Labs · COO Office · GenAI platforms · 2.5x ROS\n[2025]     AI Product Intern @ Economic Times\n           Conversational AI · Voice Agents · WABA · Fortune 500 clients\n[2024]     SDE Intern @ myKaarma\n           Angular + Spring Boot · +10% engagement\n[2022-24]  Gen Sec @ IEEE IIIT-Delhi\n           70+ members · 30 events · Solana partnership');
                             focusSection('experience');
                         } else if (['projects', 'projects.md', 'proj'].includes(f)) {
-                            raw('Auxiliaire     — local-first personal intelligence for daily readiness\nLowCortisolUX  — encrypted browser extension for hostile government portals\nFunAuth         — on-device gesture + expression authentication');
+                            raw('Auxiliaire     — AI capture triage, grounded memory, sourced research\nLowCortisolUX  — browser-layer recovery for hostile government portals\nFunAuth         — on-device multimodal challenge-response prototype');
                             focusSection('side-projects');
                         } else if (['contact', 'contact.md'].includes(f)) {
                             raw('email     varmaudbhav03@gmail.com\nlinkedin  linkedin.com/in/udbhav-varma\n\n(if your idea is interesting enough, i reply fast.)');
@@ -3838,6 +4075,132 @@
             });
         });
         document.querySelector('.skill-mode[data-skill="all"]')?.click();
+
+        /* Product showcases: small, truthful simulations of the shipped systems */
+        const auxStages = {
+            capture: {
+                eyebrow: 'Raw input · voice',
+                state: 'Saved before processing',
+                title: '“Pricing review moved. Compare the two options and remind me to send the brief Friday.”',
+                copy: 'The original capture is preserved first. Processing can fail without losing the thought.',
+                output: [
+                    ['Input', 'Voice + transcript'],
+                    ['State', 'Inbox · unclassified']
+                ]
+            },
+            structure: {
+                eyebrow: 'Schema-constrained output',
+                state: 'Suggestion ready',
+                title: 'Decision: choose the pricing path',
+                copy: 'Auxiliaire separates a summary from the structured objects that can become durable product state.',
+                output: [
+                    ['Type', 'Decision'],
+                    ['Action', 'Send pricing brief · Friday'],
+                    ['Theme', 'Pricing strategy'],
+                    ['Source', 'Linked to raw capture']
+                ]
+            },
+            confirm: {
+                eyebrow: 'Human approval boundary',
+                state: 'No silent mutation',
+                title: 'Save the decision and create one linked action?',
+                copy: 'The user can edit, approve, or discard each suggestion. The model does not decide what enters memory.',
+                output: [
+                    ['Decision', 'Ready to save'],
+                    ['Action', 'Ready to add'],
+                    ['Original', 'Still recoverable'],
+                    ['Audit', 'Source relationship kept']
+                ]
+            }
+        };
+        const auxDemoContent = document.getElementById('aux-demo-content');
+        function renderAuxStage(stage) {
+            const data = auxStages[stage];
+            if (!data || !auxDemoContent) return;
+            auxDemoContent.innerHTML = `
+                <div class="aux-stage-label"><span>${data.eyebrow}</span><span>${data.state}</span></div>
+                <h4>${data.title}</h4>
+                <p>${data.copy}</p>
+                <div class="aux-output">${data.output.map(([label, value]) => `<span><b>${label}</b>${value}</span>`).join('')}</div>`;
+            document.querySelectorAll('[data-aux-stage]').forEach(button => {
+                const active = button.dataset.auxStage === stage;
+                button.classList.toggle('active', active);
+                button.setAttribute('aria-selected', String(active));
+            });
+        }
+        document.querySelectorAll('[data-aux-stage]').forEach(button => {
+            button.addEventListener('click', () => renderAuxStage(button.dataset.auxStage));
+        });
+        renderAuxStage('structure');
+
+        const portalExamples = {
+            epfo: {
+                title: 'Low Cortisol / EPFO',
+                heartbeat: 'Session heartbeat · 90s',
+                pain: '3-minute timeout can erase the form.',
+                fields: ['UAN mapped', 'Name auto-filled', 'Captcha focused', 'Draft: 12 fields'],
+                result: 'Progress saved locally. Timeout anxiety cancelled.'
+            },
+            passport: {
+                title: 'Low Cortisol / Passport Seva',
+                heartbeat: 'Session heartbeat · 150s',
+                pain: 'A timeout or rejected photo can restart a multi-page application.',
+                fields: ['Applicant mapped', 'DOB auto-filled', 'Pincode mapped', 'Photo: 350 × 450'],
+                result: 'Draft recoverable. Photo checked against preset.'
+            },
+            itr: {
+                title: 'Low Cortisol / Income Tax',
+                heartbeat: 'Session heartbeat · active user',
+                pain: 'Long filings repeat identity data and can lose state mid-session.',
+                fields: ['PAN mapped', 'Mobile auto-filled', 'Email auto-filled', 'Draft encrypted'],
+                result: 'Non-password fields saved. Identity remains browser-only.'
+            }
+        };
+        function renderPortalExample(portal) {
+            const data = portalExamples[portal];
+            if (!data) return;
+            document.getElementById('portal-demo-title').textContent = data.title;
+            document.getElementById('portal-demo-heartbeat').textContent = data.heartbeat;
+            document.getElementById('portal-demo-pain').textContent = data.pain;
+            data.fields.forEach((value, index) => {
+                document.getElementById(`portal-demo-field-${index + 1}`).textContent = value;
+            });
+            document.getElementById('portal-demo-result').textContent = data.result;
+            document.querySelectorAll('[data-portal]').forEach(button => {
+                const active = button.dataset.portal === portal;
+                button.classList.toggle('active', active);
+                button.setAttribute('aria-selected', String(active));
+            });
+        }
+        document.querySelectorAll('[data-portal]').forEach(button => {
+            button.addEventListener('click', () => renderPortalExample(button.dataset.portal));
+        });
+
+        const gestureDemo = document.querySelector('.gesture-demo');
+        const gestureRun = document.querySelector('.gesture-run');
+        const gestureStatus = document.getElementById('gesture-demo-status');
+        let gestureTimers = [];
+        gestureRun?.addEventListener('click', () => {
+            gestureTimers.forEach(clearTimeout);
+            gestureTimers = [];
+            gestureDemo.classList.remove('verified');
+            gestureDemo.classList.add('running');
+            gestureRun.disabled = true;
+            gestureRun.textContent = 'Scanning…';
+            gestureStatus.textContent = 'Hand .92 · face .71 · holding both signals…';
+            const finishGestureDemo = () => {
+                gestureDemo.classList.remove('running');
+                gestureDemo.classList.add('verified');
+                gestureStatus.textContent = 'Step verified · next challenge can proceed';
+                gestureRun.disabled = false;
+                gestureRun.textContent = 'Run again';
+            };
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                finishGestureDemo();
+            } else {
+                gestureTimers.push(setTimeout(finishGestureDemo, 1100));
+            }
+        });
 
         /* Global command palette — the terminal follows the viewer */
         const palette = document.getElementById('command-palette');
