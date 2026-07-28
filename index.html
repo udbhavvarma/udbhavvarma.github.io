@@ -2141,12 +2141,95 @@
         }
 
         .project-decision {
+            display: grid;
+            gap: .4rem;
             margin-top: 1.4rem;
             padding-left: 1rem;
             border-left: 1px solid var(--green);
             color: var(--text-muted);
             font: 400 .68rem/1.6 var(--mono);
         }
+
+        .project-decision::before {
+            content: 'Key product decision';
+            color: var(--green);
+            font-size: .54rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .project-brief {
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-brief summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: .85rem 0;
+            color: var(--text-dim);
+            font: 500 .62rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .project-brief summary::-webkit-details-marker { display: none; }
+        .project-brief summary::after {
+            content: '+';
+            color: var(--green);
+            font-size: 1rem;
+            transition: transform .25s;
+        }
+        .project-brief[open] summary::after { transform: rotate(45deg); }
+
+        .project-brief-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            padding-bottom: 1px;
+            background: var(--border);
+        }
+
+        .brief-cell {
+            padding: .9rem;
+            background: var(--bg);
+        }
+
+        .brief-cell.wide { grid-column: 1 / -1; }
+        .brief-cell b {
+            display: block;
+            margin-bottom: .4rem;
+            color: var(--green);
+            font: 500 .56rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+        .brief-cell p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: .72rem;
+            line-height: 1.55;
+        }
+
+        .tool-reasons {
+            display: grid;
+            gap: .45rem;
+        }
+
+        .tool-reason {
+            display: grid;
+            grid-template-columns: minmax(90px, .38fr) 1fr;
+            gap: .7rem;
+            color: var(--text-muted);
+            font: 400 .62rem/1.45 var(--mono);
+        }
+
+        .tool-reason span:first-child { color: var(--text-dim); }
 
         .project-foot {
             display: flex;
@@ -2329,6 +2412,9 @@
         @media (max-width: 560px) {
             .project-foot { align-items: flex-start; flex-direction: column; }
             .project-visual { min-height: 320px; padding: 1rem; }
+            .project-brief-grid { grid-template-columns: 1fr; }
+            .brief-cell.wide { grid-column: auto; }
+            .tool-reason { grid-template-columns: 1fr; gap: .15rem; }
             .portal-form { grid-template-columns: 1fr; }
             .portal-saved { grid-column: auto; }
             .gesture-stage { gap: .45rem; }
@@ -2606,12 +2692,50 @@
                                 captures into readiness, memory, decisions, and the next clean action.</p>
                             <p class="project-decision">AI stays ambient and contextual—not another chatbot demanding
                                 its own workflow.</p>
+                            <details class="project-brief">
+                                <summary>Product brief · problem → build → roadmap</summary>
+                                <div class="project-brief-grid">
+                                    <div class="brief-cell">
+                                        <b>Problem</b>
+                                        <p>Work, notes, links, voice captures, and unfinished loops accumulate faster
+                                            than traditional task managers can turn them into useful context.</p>
+                                    </div>
+                                    <div class="brief-cell">
+                                        <b>Constraints</b>
+                                        <p>A private one-person product with low cognitive load, fast capture,
+                                            owner-scoped data, and AI that cannot become a separate workflow.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>What I built</b>
+                                        <p>A daily readiness brief, frictionless Inbox, structured Library, Review
+                                            loop, contextual assistant, voice transcription, and source-aware
+                                            research.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Why this stack</b>
+                                        <div class="tool-reasons">
+                                            <div class="tool-reason"><span>Next.js 16</span><span>One full-stack
+                                                    surface for a responsive UI and authenticated AI routes.</span></div>
+                                            <div class="tool-reason"><span>Firebase</span><span>Google sign-in and
+                                                    owner-scoped Firestore sync across devices.</span></div>
+                                            <div class="tool-reason"><span>IndexedDB</span><span>Keeps raw audio
+                                                    captures local instead of uploading them by default.</span></div>
+                                            <div class="tool-reason"><span>Groq + Whisper</span><span>Low-latency
+                                                    reasoning, transcription, and research enrichment.</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Next</b>
+                                        <p>Strengthen retrieval across personal context, mature watchlist signals,
+                                            and make capture and review loops feel native on mobile.</p>
+                                    </div>
+                                </div>
+                            </details>
                         </div>
                         <div class="project-foot">
                             <div class="project-stack"><span>Next.js 16</span><span>Firebase</span><span>Groq</span><span>Whisper</span></div>
                             <div class="project-actions">
                                 <a href="https://auxiliaire-os.vercel.app" target="_blank" rel="noopener">Open live ↗</a>
-                                <a href="https://github.com/udbhavvarma/pm-os" target="_blank" rel="noopener">Code</a>
                             </div>
                         </div>
                     </div>
@@ -2628,17 +2752,57 @@
                 <article class="project-story">
                     <div class="project-copy">
                         <div>
-                            <div class="project-index"><span>02 / Browser extension</span><span>Manifest V3</span></div>
+                            <div class="project-index"><span>02 / Browser extension</span><span class="project-live">Live</span></div>
                             <h3>Low Cortisol UX</h3>
                             <p class="project-one-liner">A Chrome extension that makes Indian government portals less
                                 hostile with secure autofill, session keep-alive, draft recovery, and document resizing.</p>
                             <p class="project-decision">Credentials stay encrypted in the browser with AES-256-GCM. The
                                 workflow gets easier without becoming a new privacy problem.</p>
+                            <details class="project-brief">
+                                <summary>Product brief · problem → build → roadmap</summary>
+                                <div class="project-brief-grid">
+                                    <div class="brief-cell">
+                                        <b>Problem</b>
+                                        <p>Indian government portals lose form state, expire sessions, reject
+                                            documents for opaque specifications, and repeatedly ask for the same
+                                            identity data.</p>
+                                    </div>
+                                    <div class="brief-cell">
+                                        <b>Constraints</b>
+                                        <p>The portals cannot be changed, markup varies by domain, credentials are
+                                            sensitive, and the product must stay inside browser security boundaries.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>What I built</b>
+                                        <p>An encrypted identity vault, domain-aware autofill, 90-second keepalive,
+                                            automatic draft recovery, portal adapters, and an exact-spec document
+                                            resizer.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Why this stack</b>
+                                        <div class="tool-reasons">
+                                            <div class="tool-reason"><span>React + Vite</span><span>Fast configuration
+                                                    UI with a simple, distributable extension build.</span></div>
+                                            <div class="tool-reason"><span>Manifest V3</span><span>Chrome's current
+                                                    permissions, lifecycle, and service-worker model.</span></div>
+                                            <div class="tool-reason"><span>Content scripts</span><span>Repair workflows
+                                                    directly on the government pages people already use.</span></div>
+                                            <div class="tool-reason"><span>Web Crypto</span><span>AES-256-GCM encrypts
+                                                    identity data locally—no credential server required.</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Next</b>
+                                        <p>Expand portal coverage, make field matching resilient to markup changes,
+                                            and package a polished Chrome Web Store release.</p>
+                                    </div>
+                                </div>
+                            </details>
                         </div>
                         <div class="project-foot">
                             <div class="project-stack"><span>React</span><span>Chrome APIs</span><span>AES-256-GCM</span><span>Vite</span></div>
                             <div class="project-actions">
-                                <a href="https://github.com/udbhavvarma/lowcortisolux" target="_blank" rel="noopener">View source ↗</a>
+                                <a href="https://lowcortisolux.vercel.app" target="_blank" rel="noopener">Open live ↗</a>
                             </div>
                         </div>
                     </div>
@@ -2666,12 +2830,50 @@
                                 ridiculous choreography of hand gestures and facial expressions.</p>
                             <p class="project-decision">The joke is real infrastructure: MediaPipe inference stays
                                 on-device, while successful choreography produces a standard JWT session.</p>
+                            <details class="project-brief">
+                                <summary>Product brief · problem → build → roadmap</summary>
+                                <div class="project-brief-grid">
+                                    <div class="brief-cell">
+                                        <b>Problem</b>
+                                        <p>Authentication is repetitive, while biometric demos often hide how they
+                                            work or send raw camera data elsewhere.</p>
+                                    </div>
+                                    <div class="brief-cell">
+                                        <b>Constraints</b>
+                                        <p>Real-time vision must run on ordinary devices, camera access needs HTTPS,
+                                            gestures can be ambiguous, and raw frames need to stay local.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>What I built</b>
+                                        <p>Gesture enrollment, simultaneous hand-and-face choreography, confidence
+                                            and hold-time verification, a camera overlay, inspector, test accounts,
+                                            and an interactive SDK sandbox.</p>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Why this stack</b>
+                                        <div class="tool-reasons">
+                                            <div class="tool-reason"><span>MediaPipe</span><span>Reliable hand and face
+                                                    landmarks without training custom vision models.</span></div>
+                                            <div class="tool-reason"><span>WASM + WebGL</span><span>Local inference
+                                                    with usable real-time performance.</span></div>
+                                            <div class="tool-reason"><span>WebRTC + Canvas</span><span>Camera capture
+                                                    and transparent feedback over the live feed.</span></div>
+                                            <div class="tool-reason"><span>Vite + Web Audio</span><span>A small
+                                                    client-only deployment with immediate procedural feedback.</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="brief-cell wide">
+                                        <b>Next</b>
+                                        <p>Move token signing server-side, add liveness and anti-spoofing, self-host
+                                            WASM assets, and explore a WebAuthn bridge.</p>
+                                    </div>
+                                </div>
+                            </details>
                         </div>
                         <div class="project-foot">
                             <div class="project-stack"><span>MediaPipe</span><span>WebAssembly</span><span>WebRTC</span><span>JWT</span></div>
                             <div class="project-actions">
                                 <a href="https://funauth.vercel.app" target="_blank" rel="noopener">Try it live ↗</a>
-                                <a href="https://github.com/udbhavvarma/funauth" target="_blank" rel="noopener">Code</a>
                             </div>
                         </div>
                     </div>
@@ -2974,11 +3176,6 @@
                         <span class="contact-link-label">linkedin</span>
                         <a class="contact-link-val" href="https://linkedin.com/in/udbhav-varma" target="_blank"
                             rel="noopener">linkedin.com/in/udbhav-varma</a>
-                    </div>
-                    <div class="contact-link-row">
-                        <span class="contact-link-label">github</span>
-                        <a class="contact-link-val" href="https://github.com/udbhavvarma" target="_blank"
-                            rel="noopener">github.com/udbhavvarma</a>
                     </div>
                 </div>
                 <!-- <div style="margin-top:1.5rem; color: var(--text-muted);">
@@ -3389,7 +3586,7 @@
                             raw('Auxiliaire     — local-first personal intelligence for daily readiness\nLowCortisolUX  — encrypted browser extension for hostile government portals\nFunAuth         — on-device gesture + expression authentication');
                             focusSection('side-projects');
                         } else if (['contact', 'contact.md'].includes(f)) {
-                            raw('email     varmaudbhav03@gmail.com\nlinkedin  linkedin.com/in/udbhav-varma\ngithub    github.com/udbhavvarma\n\n(if your idea is interesting enough, i reply fast.)');
+                            raw('email     varmaudbhav03@gmail.com\nlinkedin  linkedin.com/in/udbhav-varma\n\n(if your idea is interesting enough, i reply fast.)');
                             focusSection('contact');
                         } else if (f === 'jenkins.log') {
                             err('permission denied. some things are better left unseen.');
