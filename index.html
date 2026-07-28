@@ -2076,6 +2076,265 @@
             transform: scaleX(1);
         }
 
+        /* ── Side projects ── */
+        .project-showcase {
+            display: grid;
+            gap: 1px;
+            margin-top: 3.5rem;
+            border: 1px solid var(--border);
+            background: var(--border);
+        }
+
+        .project-story {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(380px, 1.1fr);
+            min-height: 450px;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .project-story:nth-child(even) {
+            grid-template-columns: minmax(380px, 1.1fr) minmax(0, .9fr);
+        }
+
+        .project-story:nth-child(even) .project-copy { order: 2; }
+
+        .project-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            border-right: 1px solid var(--border);
+        }
+
+        .project-story:nth-child(even) .project-copy {
+            border-right: 0;
+            border-left: 1px solid var(--border);
+        }
+
+        .project-index {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: var(--text-muted);
+            font: 400 .62rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .09em;
+        }
+
+        .project-live { color: var(--green); }
+        .project-live::before { content: '●'; margin-right: .4rem; }
+
+        .project-copy h3 {
+            margin: 2rem 0 1rem;
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: .9;
+            letter-spacing: -.065em;
+        }
+
+        .project-one-liner {
+            max-width: 520px;
+            margin: 0;
+            color: var(--text-dim);
+            font-size: .98rem;
+            line-height: 1.65;
+        }
+
+        .project-decision {
+            margin-top: 1.4rem;
+            padding-left: 1rem;
+            border-left: 1px solid var(--green);
+            color: var(--text-muted);
+            font: 400 .68rem/1.6 var(--mono);
+        }
+
+        .project-foot {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        .project-stack { display: flex; flex-wrap: wrap; gap: .4rem; }
+        .project-stack span {
+            padding: .34rem .48rem;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            font: 400 .56rem var(--mono);
+        }
+
+        .project-actions { display: flex; gap: .55rem; flex: 0 0 auto; }
+        .project-actions a {
+            padding: .62rem .75rem;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            font: 500 .6rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            transition: .25s var(--ease-out-expo);
+        }
+        .project-actions a:first-child {
+            color: var(--bg);
+            border-color: var(--green);
+            background: var(--green);
+        }
+        .project-actions a:hover { transform: translateY(-2px); }
+
+        .project-visual {
+            position: relative;
+            display: grid;
+            place-items: center;
+            min-width: 0;
+            padding: clamp(1.25rem, 4vw, 3rem);
+            background: var(--bg-2);
+            overflow: hidden;
+        }
+
+        .project-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: .35;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(to bottom, black, transparent);
+        }
+
+        .mini-product {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 540px);
+            border: 1px solid var(--border);
+            box-shadow: 16px 16px 0 rgba(0, 0, 0, .18);
+        }
+
+        .mini-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: .65rem .8rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font: 400 .56rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .07em;
+        }
+
+        .aux-preview { padding: 1.5rem; color: #25241f; background: #eee9df; }
+        .aux-preview .mini-bar {
+            margin: -1.5rem -1.5rem 1.35rem;
+            color: #716c61;
+            border-color: rgba(37,36,31,.12);
+            background: #e5ded1;
+        }
+        .aux-state {
+            margin-bottom: 1.2rem;
+            font: 700 clamp(1.45rem, 3vw, 2.35rem)/1.05 var(--sans);
+            letter-spacing: -.05em;
+        }
+        .aux-focus { padding: 1rem; border: 1px solid rgba(37,36,31,.13); background: rgba(255,255,255,.35); }
+        .aux-focus small {
+            display: block;
+            margin-bottom: .5rem;
+            color: #777064;
+            font: 500 .56rem var(--mono);
+            text-transform: uppercase;
+        }
+        .aux-focus strong { font-size: .88rem; }
+        .aux-next {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1rem;
+            color: #777064;
+            font: 400 .62rem var(--mono);
+        }
+
+        .portal-demo { padding: 1.35rem; background: #111114; }
+        .portal-session {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #d4d4d8;
+            font: 500 .66rem var(--mono);
+        }
+        .portal-session span:last-child { color: #34d399; }
+        .portal-form { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; }
+        .portal-field {
+            padding: .72rem;
+            border: 1px solid #2b2b31;
+            color: #71717a;
+            background: #18181b;
+            font: 400 .6rem var(--mono);
+        }
+        .portal-saved {
+            grid-column: 1 / -1;
+            padding: .65rem .72rem;
+            color: #6ee7b7;
+            border: 1px solid rgba(52,211,153,.25);
+            background: rgba(52,211,153,.06);
+            font: 500 .6rem var(--mono);
+        }
+
+        .gesture-demo { padding: 1.35rem; background: #10141d; }
+        .gesture-stage {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 1rem;
+            min-height: 210px;
+            text-align: center;
+        }
+        .gesture-token {
+            display: grid;
+            place-items: center;
+            min-height: 145px;
+            border: 1px solid #2a3040;
+            color: #e2e8f0;
+            background: #171c28;
+        }
+        .gesture-token b {
+            display: block;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1;
+            animation: gesture-float 2.4s ease-in-out infinite;
+        }
+        .gesture-token span {
+            display: block;
+            margin-top: .7rem;
+            color: #64748b;
+            font: 400 .56rem var(--mono);
+            text-transform: uppercase;
+        }
+        .gesture-plus { color: #3b82f6; font: 700 1.35rem var(--mono); }
+        .gesture-verified {
+            margin-top: 1rem;
+            color: #4ade80;
+            font: 500 .6rem var(--mono);
+            text-align: center;
+        }
+        @keyframes gesture-float { 50% { transform: translateY(-7px) rotate(3deg); } }
+
+        @media (max-width: 920px) {
+            .project-story, .project-story:nth-child(even) { grid-template-columns: 1fr; }
+            .project-story:nth-child(even) .project-copy { order: 0; }
+            .project-copy, .project-story:nth-child(even) .project-copy {
+                border: 0;
+                border-bottom: 1px solid var(--border);
+            }
+            .project-visual { min-height: 360px; }
+        }
+
+        @media (max-width: 560px) {
+            .project-foot { align-items: flex-start; flex-direction: column; }
+            .project-visual { min-height: 320px; padding: 1rem; }
+            .portal-form { grid-template-columns: 1fr; }
+            .portal-saved { grid-column: auto; }
+            .gesture-stage { gap: .45rem; }
+            .gesture-token { min-height: 120px; }
+        }
+
         @media (max-width: 768px) {
             .about-statement {
                 grid-template-columns: 1fr;
@@ -2155,6 +2414,7 @@
         <ul class="nav-links">
             <li><a href="#about">about</a></li>
             <li><a href="#skills">skills</a></li>
+            <li><a href="#side-projects">projects</a></li>
             <li><a href="#experience">work</a></li>
             <!-- <li><a href="#projects">projects</a></li> -->
             <li><a href="#principles">principles</a></li>
@@ -2185,6 +2445,7 @@
                     <div class="command-suggestions" aria-label="Suggested terminal commands">
                         <button class="command-chip" type="button" data-command="whoami">whoami</button>
                         <button class="command-chip" type="button" data-command="show impact">show impact</button>
+                        <button class="command-chip" type="button" data-command="open projects">open projects</button>
                         <button class="command-chip" type="button" data-command="open work">open work</button>
                         <button class="command-chip" type="button" data-command="surprise me">surprise me</button>
                     </div>
@@ -2322,6 +2583,111 @@
             </div>
             <p class="heatmap-footnote reveal">* and one more skill: the ability to be put in a situation room
                 with 0 context about anything and still make things happen.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── SIDE PROJECTS ── -->
+    <section id="side-projects">
+        <div class="section-inner">
+            <p class="section-label reveal">// experiments.shipped</p>
+            <h2 class="section-title reveal">Useful, strange,<br>and actually live.</h2>
+            <p class="section-sub reveal">Side projects are where I turn product opinions into working software—across
+                personal intelligence, public-service UX, and biometric authentication that refuses to be boring.</p>
+
+            <div class="project-showcase reveal">
+                <article class="project-story">
+                    <div class="project-copy">
+                        <div>
+                            <div class="project-index"><span>01 / Personal intelligence</span><span class="project-live">Live</span></div>
+                            <h3>Auxiliaire</h3>
+                            <p class="project-one-liner">A calm, local-first operating loop that turns scattered
+                                captures into readiness, memory, decisions, and the next clean action.</p>
+                            <p class="project-decision">AI stays ambient and contextual—not another chatbot demanding
+                                its own workflow.</p>
+                        </div>
+                        <div class="project-foot">
+                            <div class="project-stack"><span>Next.js 16</span><span>Firebase</span><span>Groq</span><span>Whisper</span></div>
+                            <div class="project-actions">
+                                <a href="https://auxiliaire-os.vercel.app" target="_blank" rel="noopener">Open live ↗</a>
+                                <a href="https://github.com/udbhavvarma/pm-os" target="_blank" rel="noopener">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-visual" aria-hidden="true">
+                        <div class="mini-product aux-preview">
+                            <div class="mini-bar"><span>Auxiliaire / Today</span><span>Ready</span></div>
+                            <div class="aux-state">A clear morning,<br>with two open loops.</div>
+                            <div class="aux-focus"><small>Next clean step</small><strong>Turn yesterday’s voice capture into a decision brief.</strong></div>
+                            <div class="aux-next"><span>3 captures structured</span><span>Review in 8 min →</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-story">
+                    <div class="project-copy">
+                        <div>
+                            <div class="project-index"><span>02 / Browser extension</span><span>Manifest V3</span></div>
+                            <h3>Low Cortisol UX</h3>
+                            <p class="project-one-liner">A Chrome extension that makes Indian government portals less
+                                hostile with secure autofill, session keep-alive, draft recovery, and document resizing.</p>
+                            <p class="project-decision">Credentials stay encrypted in the browser with AES-256-GCM. The
+                                workflow gets easier without becoming a new privacy problem.</p>
+                        </div>
+                        <div class="project-foot">
+                            <div class="project-stack"><span>React</span><span>Chrome APIs</span><span>AES-256-GCM</span><span>Vite</span></div>
+                            <div class="project-actions">
+                                <a href="https://github.com/udbhavvarma/lowcortisolux" target="_blank" rel="noopener">View source ↗</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-visual" aria-hidden="true">
+                        <div class="mini-product portal-demo">
+                            <div class="mini-bar"><span>Low Cortisol / EPFO</span><span>Extension active</span></div>
+                            <div class="portal-session"><span>Session heartbeat</span><span>● protected</span></div>
+                            <div class="portal-form">
+                                <div class="portal-field">UAN · •••• 4821</div>
+                                <div class="portal-field">Name · auto-filled</div>
+                                <div class="portal-field">Captcha · focused</div>
+                                <div class="portal-field">Draft · 12 fields</div>
+                                <div class="portal-saved">✓ Progress saved locally. Timeout anxiety cancelled.</div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-story">
+                    <div class="project-copy">
+                        <div>
+                            <div class="project-index"><span>03 / Computer vision</span><span class="project-live">Live</span></div>
+                            <h3>FunAuth</h3>
+                            <p class="project-one-liner">A biometric authentication provider where your password is a
+                                ridiculous choreography of hand gestures and facial expressions.</p>
+                            <p class="project-decision">The joke is real infrastructure: MediaPipe inference stays
+                                on-device, while successful choreography produces a standard JWT session.</p>
+                        </div>
+                        <div class="project-foot">
+                            <div class="project-stack"><span>MediaPipe</span><span>WebAssembly</span><span>WebRTC</span><span>JWT</span></div>
+                            <div class="project-actions">
+                                <a href="https://funauth.vercel.app" target="_blank" rel="noopener">Try it live ↗</a>
+                                <a href="https://github.com/udbhavvarma/funauth" target="_blank" rel="noopener">Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-visual" aria-hidden="true">
+                        <div class="mini-product gesture-demo">
+                            <div class="mini-bar"><span>FunAuth / Verify</span><span>On-device vision</span></div>
+                            <div class="gesture-stage">
+                                <div class="gesture-token"><div><b>✌️</b><span>Peace sign</span></div></div>
+                                <div class="gesture-plus">+</div>
+                                <div class="gesture-token"><div><b>😉</b><span>Left wink</span></div></div>
+                            </div>
+                            <div class="gesture-verified">✓ choreography matched · issuing session token</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -2634,6 +3000,7 @@
             <input class="palette-input" id="palette-input" placeholder="Type a command…  (esc to close)"
                 autocomplete="off" spellcheck="false" />
             <div class="palette-options">
+                <button type="button" data-command="open projects">open projects</button>
                 <button type="button" data-command="open work">open work</button>
                 <button type="button" data-command="show impact">show impact</button>
                 <button type="button" data-command="focus skills">focus skills</button>
@@ -2883,6 +3250,8 @@
                     'open impact': ['proof', 'opening the numbers that survived stakeholder review.'],
                     'open work': ['experience', 'opening work.log — outcomes first, lore on demand.'],
                     'show work': ['experience', 'opening work.log — outcomes first, lore on demand.'],
+                    'open projects': ['side-projects', 'opening experiments.shipped — three products, three very different problems.'],
+                    'show projects': ['side-projects', 'opening experiments.shipped — three products, three very different problems.'],
                     'focus skills': ['skills', 'focusing capability graph. pick a system: product · AI · engineering · growth.'],
                     'open skills': ['skills', 'opening the capability graph.'],
                     'open contact': ['contact', 'connection channel open. sensible pitches preferred.'],
@@ -2910,7 +3279,7 @@
                 switch (base) {
 
                     case 'help':
-                        raw(`available commands\n  whoami            the udbhav himself\n  show impact       move the page to measurable evidence\n  open work         open the work log\n  focus skills      inspect the capability graph\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+                        raw(`available commands\n  whoami            the udbhav himself\n  show impact       move the page to measurable evidence\n  open projects     see the side quests that shipped\n  open work         open the work log\n  focus skills      inspect the capability graph\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
 
                     case 'theme': {
                         let tName = args[0];
@@ -2999,7 +3368,7 @@
                         const flag = args.find(a => a.startsWith('-'));
                         const tgt = args.find(a => !a.startsWith('-')) || '';
                         if (tgt === 'projects' || tgt === 'projects/') {
-                            raw('travelAID/         Llama NL→SQL · 70k+ records\nSymLink/           NER on math symbols · beat SOTA by 5%\nSQLUber/           uber clone · 2FA + Google Maps\nAdSalesPlatform/   Next.js + Firebase · AI assistant');
+                            raw('Auxiliaire/        calm personal intelligence · readiness + memory\nLowCortisolUX/     makes government portals survivable\nFunAuth/           passwords, but make them choreography');
                         } else if (flag && (flag.includes('l') || flag.includes('a'))) {
                             raw('drwxr-xr-x  udbhav  about.md        (bio, vaguely accurate)\ndrwxr-xr-x  udbhav  experience.md   (where the money comes from)\ndrwxr-xr-x  udbhav  projects.md     (where the fun happens)\ndrwxr-xr-x  udbhav  vibes.md        (most important file)\ndrwxr-xr-x  udbhav  contact.md      (sensible pitches only)\n-rw-r--r--  udbhav  roles.json      (what i actually do)\n-rw-------  udbhav  jenkins.log     (do not open)');
                         } else {
@@ -3017,7 +3386,8 @@
                             raw('[current]  Assoc. TPM @ Times Internet (Aug 2025 – now)\n           AI Labs · COO Office · GenAI platforms · 2.5x ROS\n[2025]     AI Product Intern @ Economic Times\n           Conversational AI · Voice Agents · WABA · Fortune 500 clients\n[2024]     SDE Intern @ myKaarma\n           Angular + Spring Boot · +10% engagement\n[2022-24]  Gen Sec @ IEEE IIIT-Delhi\n           70+ members · 30 events · Solana partnership');
                             focusSection('experience');
                         } else if (['projects', 'projects.md', 'proj'].includes(f)) {
-                            raw('travelAID    — Llama NL→SQL, 70k+ records, 95% accuracy\nSymLink      — NER on math symbols, beat SOTA by 5%\nSQLUber      — uber clone, full stack, 2FA + Google Maps\nAdSales      — Next.js + Firebase dashboard with AI assistant');
+                            raw('Auxiliaire     — local-first personal intelligence for daily readiness\nLowCortisolUX  — encrypted browser extension for hostile government portals\nFunAuth         — on-device gesture + expression authentication');
+                            focusSection('side-projects');
                         } else if (['contact', 'contact.md'].includes(f)) {
                             raw('email     varmaudbhav03@gmail.com\nlinkedin  linkedin.com/in/udbhav-varma\ngithub    github.com/udbhavvarma\n\n(if your idea is interesting enough, i reply fast.)');
                             focusSection('contact');
@@ -3169,7 +3539,7 @@
             }
 
             /* ── tab completions ── */
-            const CMDS = ['help', 'whoami', 'show impact', 'open work', 'focus skills', 'open contact', 'surprise me', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
+            const CMDS = ['help', 'whoami', 'show impact', 'open projects', 'open work', 'focus skills', 'open contact', 'surprise me', 'ls', 'ls -la', 'ls projects/', 'cat about', 'cat experience', 'cat projects', 'cat contact', 'cat vibes.md', 'cat roles.json', 'cat jenkins.log', 'pwd', 'date', 'echo ', 'clear', 'neofetch', 'git log', 'git status', 'git push', 'git blame', 'git pull', 'sudo ', 'npm run dev', 'npm install', 'history', 'ps', 'top', 'uname -a', 'ping ', 'curl ', 'theme ', 'theme matrix', 'theme cyberpunk', 'theme light', 'theme default', 'matrix', 'game'];
 
             inp.addEventListener('keydown', e => {
                 if (e.key === 'Enter') {
