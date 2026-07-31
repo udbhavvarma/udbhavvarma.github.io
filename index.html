@@ -2140,46 +2140,30 @@
             line-height: 1.65;
         }
 
-        .project-insight {
+        .project-framing {
             display: grid;
-            gap: .4rem;
-            margin-top: 1.4rem;
-            padding-left: 1rem;
-            border-left: 1px solid var(--green);
-            color: var(--text-muted);
-            font: 400 .68rem/1.6 var(--mono);
-        }
-
-        .project-insight::before {
-            content: attr(data-label);
-            color: var(--green);
-            font-size: .54rem;
-            text-transform: uppercase;
-            letter-spacing: .08em;
-        }
-
-        .project-proof {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 1px;
             margin-top: 1.5rem;
             background: var(--border);
             border: 1px solid var(--border);
         }
 
-        .project-proof span {
-            padding: .68rem .6rem;
+        .project-frame {
+            padding: .9rem;
             color: var(--text-muted);
             background: var(--bg);
-            font: 400 .54rem/1.45 var(--mono);
-            text-align: center;
+            font-size: .72rem;
+            line-height: 1.55;
         }
 
-        .project-proof b {
+        .project-frame b {
             display: block;
-            margin-bottom: .2rem;
-            color: var(--text-dim);
-            font-size: .68rem;
+            margin-bottom: .45rem;
+            color: var(--green);
+            font: 500 .54rem var(--mono);
+            text-transform: uppercase;
+            letter-spacing: .08em;
         }
 
         .project-brief {
@@ -2561,7 +2545,7 @@
         @media (max-width: 560px) {
             .project-foot { align-items: flex-start; flex-direction: column; }
             .project-visual { min-height: 320px; padding: 1rem; }
-            .project-proof { grid-template-columns: 1fr 1fr; }
+            .project-framing { grid-template-columns: 1fr; }
             .project-brief-grid { grid-template-columns: 1fr; }
             .brief-cell.wide { grid-column: auto; }
             .tool-reason { grid-template-columns: 1fr; gap: .15rem; }
@@ -2842,18 +2826,15 @@
                             <p class="project-one-liner">A private personal intelligence system that converts
                                 unstructured inputs into decisions, actions, and living memory—then uses that context
                                 to prepare the day.</p>
-                            <p class="project-insight" data-label="AI's job in the product">The model is the structuring
-                                and synthesis layer: it transcribes voice, classifies captures, extracts actions and
-                                decisions, answers from selected memory, and researches current context with sources.
-                                The user confirms every state change.</p>
-                            <div class="project-proof" aria-label="Auxiliaire implementation highlights">
-                                <span><b>3</b>capture modes</span>
-                                <span><b>4</b>AI jobs</span>
-                                <span><b>1</b>approval boundary</span>
-                                <span><b>0</b>AI auto-writes</span>
+                            <div class="project-framing">
+                                <div class="project-frame"><b>Problem</b>Notes, voice captures, links, and unresolved
+                                    decisions accumulate faster than they can be converted into useful context.</div>
+                                <div class="project-frame"><b>Solution</b>Auxiliaire transcribes and structures raw
+                                    inputs, retrieves relevant memory, and suggests actions, decisions, research, and
+                                    daily guidance for the user to approve.</div>
                             </div>
                             <details class="project-brief">
-                                <summary>System brief · hypothesis → architecture → next proof</summary>
+                                <summary>How it works · architecture · next</summary>
                                 <div class="project-brief-grid">
                                     <div class="brief-cell">
                                         <b>User problem</b>
@@ -2936,18 +2917,16 @@
                             <p class="project-one-liner">A browser intervention layer for high-friction Indian
                                 government portals—protecting form progress, reducing repeated entry, and preparing
                                 documents to exact upload specifications.</p>
-                            <p class="project-insight" data-label="Product strategy">I could not change the portals, so
-                                I built a thin domain-adapter layer around them. Each supported portal gets specific
-                                selectors and timeout behavior; the shared product layer handles encrypted identity,
-                                autosave, recovery, and session continuity.</p>
-                            <div class="project-proof" aria-label="Low Cortisol UX implementation highlights">
-                                <span><b>5</b>portal families</span>
-                                <span><b>90s</b>heartbeat</span>
-                                <span><b>24h</b>draft recovery</span>
-                                <span><b>0</b>credential server</span>
+                            <div class="project-framing">
+                                <div class="project-frame"><b>Problem</b>Government portals repeatedly expire
+                                    sessions, erase long forms, reject documents, and ask users to re-enter the same
+                                    identity information.</div>
+                                <div class="project-frame"><b>Solution</b>A domain-aware Chrome extension that
+                                    securely autofills known fields, keeps active sessions alive, restores drafts, and
+                                    resizes documents locally.</div>
                             </div>
                             <details class="project-brief">
-                                <summary>System brief · failure modes → intervention → next proof</summary>
+                                <summary>How it works · architecture · next</summary>
                                 <div class="project-brief-grid">
                                     <div class="brief-cell">
                                         <b>Observed failure modes</b>
@@ -3037,18 +3016,15 @@
                             <h3>FunAuth</h3>
                             <p class="project-one-liner">A multimodal challenge-response prototype where a user
                                 authenticates by completing a timed sequence of hand gestures and facial expressions.</p>
-                            <p class="project-insight" data-label="Prototype thesis">Could an authentication ceremony be
-                                expressive, legible, and privacy-preserving? I used the absurd choreography as a
-                                demanding interaction test for concurrent vision models, confidence thresholds,
-                                sequence state, hold timing, and recovery feedback.</p>
-                            <div class="project-proof" aria-label="FunAuth implementation highlights">
-                                <span><b>14</b>gesture classes</span>
-                                <span><b>8</b>steps maximum</span>
-                                <span><b>2</b>models in parallel</span>
-                                <span><b>0</b>video uploads</span>
+                            <div class="project-framing">
+                                <div class="project-frame"><b>Problem</b>Biometric authentication is usually passive
+                                    and opaque, while many demos send sensitive camera data away for processing.</div>
+                                <div class="project-frame"><b>Solution</b>An on-device vision prototype that verifies
+                                    ordered hand-and-face challenges using confidence thresholds, hold timing, and
+                                    visible progress feedback.</div>
                             </div>
                             <details class="project-brief">
-                                <summary>System brief · thesis → verification loop → production gap</summary>
+                                <summary>How it works · architecture · production path</summary>
                                 <div class="project-brief-grid">
                                     <div class="brief-cell">
                                         <b>Why build it</b>
