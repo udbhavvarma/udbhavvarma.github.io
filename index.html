@@ -7,7 +7,8 @@
     <link rel="icon" type="image/svg+xml" href="icon.svg" />
     <link rel="canonical" href="https://udbhavvarma.github.io/" />
     <meta property="og:title" content="Udbhav Varma — Technical Product Manager & Builder" />
-    <meta property="og:description" content="Udbhav Varma, technical product manager and builder. Turning everyday friction and new ideas into working products, then improving them through real use." />
+    <meta property="og:description"
+        content="Udbhav Varma, technical product manager and builder. Turning everyday friction and new ideas into working products, then improving them through real use." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://udbhavvarma.github.io/" />
     <meta name="twitter:card" content="summary" />
@@ -2855,50 +2856,255 @@
             }
         }
 
-        .handoff-preview { width: 100%; padding: clamp(1.5rem, 4vw, 3rem); color: var(--text); }
-        .handoff-kicker { color: var(--green); font: 500 .65rem var(--mono); letter-spacing: .1em; }
-        .handoff-preview h4 { font: 600 clamp(1.5rem, 3vw, 2.2rem) var(--sans); letter-spacing: -.04em; margin: 1rem 0 2rem; }
-        .handoff-steps { list-style: none; padding: 0; margin: 0; }
-        .handoff-steps li { display: flex; gap: 1rem; padding: 1.25rem 0; border-top: 1px solid var(--border); }
-        .handoff-steps li > span { color: var(--green); font: 500 .7rem var(--mono); padding-top: .2rem; }
-        .handoff-steps b { font: 600 .95rem var(--sans); }
-        .handoff-steps p { color: var(--text-dim); font-size: .8rem; line-height: 1.7; margin-top: .4rem; }
-        .handoff-note { margin-top: 1.5rem; color: var(--text-dim); font: 400 .6rem var(--mono); line-height: 1.8; }
-        .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 10000; padding: .8rem 1rem; border-radius: .5rem; background: var(--green); color: var(--bg); font-weight: 700; }
-        .skip-link:focus { top: 1rem; }
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-            .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; }
+        .handoff-preview {
+            width: 100%;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            color: var(--text);
         }
 
-        .product-index-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2.5rem 0 1.5rem; border: 1px solid var(--border); }
-        .product-index-nav a { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 16px; border-right: 1px solid var(--border); color: var(--text); text-decoration: none; font-size: 14px; transition: background .18s, color .18s; }
-        .product-index-nav a:last-child { border-right: 0; }
-        .product-index-nav a span { color: var(--green); font: 12px var(--mono); }
-        .product-index-nav a b { margin-left: auto; color: var(--green); font-weight: 400; }
-        .product-index-nav a:hover, .product-index-nav a:focus-visible { background: #c7ff3d12; }
-        .project-story { scroll-margin-top: 90px; }
-        .project-copy { min-width: 0; }
-        .project-copy h3 { letter-spacing: -.045em; }
-        .project-one-liner { text-wrap: pretty; }
-        .project-frame, .brief-cell p { line-height: 1.8; }
-        .project-brief summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; }
-        .project-index, .project-live, .project-frame b, .brief-cell b { font-size: 12px; }
-        a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
-        @media (max-width: 850px) { .product-index-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); } .product-index-nav a:nth-child(2) { border-right: 0; } .product-index-nav a:nth-child(-n+2) { border-bottom: 1px solid var(--border); } }
-        @media (max-width: 480px) { .product-index-nav a { font-size: 12px; padding: 12px; gap: 8px; } .project-copy { padding: 24px 20px; } }
+        .handoff-kicker {
+            color: var(--green);
+            font: 500 .65rem var(--mono);
+            letter-spacing: .1em;
+        }
+
+        .handoff-preview h4 {
+            font: 600 clamp(1.5rem, 3vw, 2.2rem) var(--sans);
+            letter-spacing: -.04em;
+            margin: 1rem 0 2rem;
+        }
+
+        .handoff-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .handoff-steps li {
+            display: flex;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .handoff-steps li>span {
+            color: var(--green);
+            font: 500 .7rem var(--mono);
+            padding-top: .2rem;
+        }
+
+        .handoff-steps b {
+            font: 600 .95rem var(--sans);
+        }
+
+        .handoff-steps p {
+            color: var(--text-dim);
+            font-size: .8rem;
+            line-height: 1.7;
+            margin-top: .4rem;
+        }
+
+        .handoff-note {
+            margin-top: 1.5rem;
+            color: var(--text-dim);
+            font: 400 .6rem var(--mono);
+            line-height: 1.8;
+        }
+
+        .skip-link {
+            position: fixed;
+            left: 1rem;
+            top: -5rem;
+            z-index: 10000;
+            padding: .8rem 1rem;
+            border-radius: .5rem;
+            background: var(--green);
+            color: var(--bg);
+            font-weight: 700;
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal,
+            .reveal-left,
+            .reveal-right {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        .product-index-nav {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin: 2.5rem 0 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .product-index-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 76px;
+            padding: 16px;
+            border-right: 1px solid var(--border);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background .18s, color .18s;
+        }
+
+        .product-index-nav a:last-child {
+            border-right: 0;
+        }
+
+        .product-index-nav a span {
+            color: var(--green);
+            font: 12px var(--mono);
+        }
+
+        .product-index-nav a b {
+            margin-left: auto;
+            color: var(--green);
+            font-weight: 400;
+        }
+
+        .product-index-nav a:hover,
+        .product-index-nav a:focus-visible {
+            background: #c7ff3d12;
+        }
+
+        .project-story {
+            scroll-margin-top: 90px;
+        }
+
+        .project-copy {
+            min-width: 0;
+        }
+
+        .project-copy h3 {
+            letter-spacing: -.045em;
+        }
+
+        .project-one-liner {
+            text-wrap: pretty;
+        }
+
+        .project-frame,
+        .brief-cell p {
+            line-height: 1.8;
+        }
+
+        .project-brief summary {
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .project-index,
+        .project-live,
+        .project-frame b,
+        .brief-cell b {
+            font-size: 12px;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        summary:focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 5px;
+        }
+
+        @media (max-width: 850px) {
+            .product-index-nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .product-index-nav a:nth-child(2) {
+                border-right: 0;
+            }
+
+            .product-index-nav a:nth-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-index-nav a {
+                font-size: 12px;
+                padding: 12px;
+                gap: 8px;
+            }
+
+            .project-copy {
+                padding: 24px 20px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="portfolio.css?v=tall-portrait-20260926" />
-    <noscript><style>
-        .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; animation: none !important; }
-        .terminal-composition, .palette-launch, .handoff-controls, .exhibit-switch, .specimen-controls, .story-picker, .story-steps, .story-navigation, #copy-email { display: none; }
-        .exp-card .exp-bullets { display: block; }
-        .exp-card .exp-tech { display: flex; }
-        .story-demo[hidden], .workbench-product[hidden] { display: block !important; }
-        .story-artifact, .story-narrative, .story-build-button { display: none; }
-        .story-scene { display: block !important; }
-        .hero-inner { grid-template-columns: 1fr; }
-    </style></noscript>
+    <noscript>
+        <style>
+            .reveal,
+            .reveal-left,
+            .reveal-right {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
+
+            .terminal-composition,
+            .palette-launch,
+            .handoff-controls,
+            .exhibit-switch,
+            .specimen-controls,
+            .story-picker,
+            .story-steps,
+            .story-navigation,
+            #copy-email {
+                display: none;
+            }
+
+            .exp-card .exp-bullets {
+                display: block;
+            }
+
+            .exp-card .exp-tech {
+                display: flex;
+            }
+
+            .story-demo[hidden],
+            .workbench-product[hidden] {
+                display: block !important;
+            }
+
+            .story-artifact,
+            .story-narrative,
+            .story-build-button {
+                display: none;
+            }
+
+            .story-scene {
+                display: block !important;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -2929,7 +3135,8 @@
             <li><a href="#principles">principles</a></li>
             <li><a href="#contact">contact</a></li>
         </ul>
-        <button type="button" class="palette-launch" aria-label="Open site commands" aria-haspopup="dialog">Commands <kbd>/</kbd></button>
+        <button type="button" class="palette-launch" aria-label="Open site commands" aria-haspopup="dialog">Commands
+            <kbd>/</kbd></button>
         <details class="mobile-navigation">
             <summary>Menu <span aria-hidden="true">＋</span></summary>
             <div>
@@ -2943,282 +3150,437 @@
     </nav>
 
     <main id="main-content">
-    <!-- ── HERO ── -->
-    <section id="hero">
-        <div class="hero-inner">
-            <div class="portfolio-intro">
-                <div class="hero-title-row">
-                <h1>Some ideas won’t<br><em>leave me alone.</em></h1>
-                <figure class="hero-portrait">
-                    <img src="assets/udbhav-ai-showcase.jpg" width="1023" height="1600" loading="eager" fetchpriority="high" decoding="async" alt="Udbhav Varma presenting at the Times Internet AI Showcase">
-                </figure>
-                </div>
-                <p class="intro-description">A frustrating workflow. A gap nobody has closed. Something I wish existed. I turn those moments into working products, then watch how people use them to figure out what needs to change.</p>
-                <div class="intro-actions"><a class="intro-primary" href="#about">Follow an idea <span aria-hidden="true">↗</span></a><a href="#experience">See the work <span aria-hidden="true">↓</span></a></div>
-                <p class="intro-current">Currently tinkering at AI Labs, Times Internet.</p>
-            </div>
-            <div class="hero-exhibit">
-              <div class="exhibit-switch" role="group" aria-label="Explore the work or terminal"><button type="button" data-exhibit="work" aria-pressed="true">The things I build</button><button type="button" data-exhibit="terminal" aria-pressed="false">Try the terminal <span aria-hidden="true">↗</span></button></div>
-              <div id="exhibit-work">
-                <div class="specimen-stack">
-                  <span class="specimen-layer layer-one" aria-hidden="true"></span><span class="specimen-layer layer-two" aria-hidden="true"></span>
-                  <a href="#about" class="hero-specimen" data-open-story="auxiliaire" data-open-step="0" aria-label="Explore selected product story">
-                    <span class="specimen-question" id="specimen-question">What if decisions<br>had a memory?</span>
-                    <span class="specimen-drawing" aria-hidden="true"><span class="drawing-node" id="specimen-node-one">A conversation</span><svg viewBox="0 0 160 50" fill="none"><path d="M4 28C45 2 80 48 145 23M131 18L146 23L137 35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="drawing-node" id="specimen-node-two">A next step</span></span>
-                    <span class="specimen-bottom"><span><strong id="specimen-name">Auxiliaire</strong></span><span class="specimen-arrow" aria-hidden="true">↗</span></span>
-                  </a>
-                </div>
-                <div class="specimen-controls" role="group" aria-label="Browse things I built"><button type="button" data-specimen="auxiliaire" aria-pressed="true" aria-label="Preview Auxiliaire">01</button><button type="button" data-specimen="low-cortisol" aria-pressed="false" aria-label="Preview Low Cortisol UX">02</button><button type="button" data-specimen="funauth" aria-pressed="false" aria-label="Preview FunAuth">03</button><button type="button" data-specimen="delivery-delegate" aria-pressed="false" aria-label="Preview Delivery Delegate">04</button></div>
-              </div>
-            <div class="terminal-composition" id="exhibit-terminal" hidden>
-            <div class="terminal">
-                <div class="terminal-bar">
-                    <div class="dot dot-r"></div>
-                    <div class="dot dot-y"></div>
-                    <div class="dot dot-g"></div>
-                    <div class="terminal-title">udbhav / working directory</div>
-                </div>
-                <div class="terminal-body">
-                    <div class="terminal-output" id="term-output"></div>
-                    <div class="terminal-input-line">
-                        <span class="prompt-str">→</span>
-                        <input type="text" class="terminal-input" id="term-input" autocomplete="off" spellcheck="false"
-                            autocorrect="off" autocapitalize="off" placeholder="type 'help' to get started..."
-                            aria-label="terminal input" />
+        <!-- ── HERO ── -->
+        <section id="hero">
+            <div class="hero-inner">
+                <div class="portfolio-intro">
+                    <div class="hero-title-row">
+                        <h1>Some ideas won’t<br><em>leave me alone.</em></h1>
+                        <figure class="hero-portrait">
+                            <img src="assets/udbhav-ai-showcase.jpg" width="1023" height="1600" loading="eager"
+                                fetchpriority="high" decoding="async"
+                                alt="Udbhav Varma presenting at the Times Internet AI Showcase">
+                        </figure>
                     </div>
+                    <p class="intro-description">A frustrating workflow. A gap nobody has closed. Something I wish
+                        existed. I turn those moments into working products, then watch how people use them to figure
+                        out what needs to change.</p>
+                    <div class="intro-actions"><a class="intro-primary" href="#about">Follow an idea <span
+                                aria-hidden="true">↗</span></a><a href="#experience">See the work <span
+                                aria-hidden="true">↓</span></a></div>
+                    <p class="intro-current">Currently tinkering at AI Labs, Times Internet.</p>
                 </div>
-                <div class="terminal-toolbar">
-                    <div class="command-suggestions" aria-label="Suggested terminal commands">
-                        <button class="command-chip" type="button" data-command="whoami">whoami</button>
-                        <button class="command-chip" type="button" data-command="show impact">show impact</button>
-                        <button class="command-chip" type="button" data-command="open projects">open projects</button>
-                        <button class="command-chip" type="button" data-command="open work">open work</button>
-                        <button class="command-chip" type="button" data-command="surprise me">surprise me</button>
+                <div class="hero-exhibit">
+                    <div class="exhibit-switch" role="group" aria-label="Explore the work or terminal"><button
+                            type="button" data-exhibit="work" aria-pressed="true">The things I build</button><button
+                            type="button" data-exhibit="terminal" aria-pressed="false">Try the terminal <span
+                                aria-hidden="true">↗</span></button></div>
+                    <div id="exhibit-work">
+                        <div class="specimen-stack">
+                            <span class="specimen-layer layer-one" aria-hidden="true"></span><span
+                                class="specimen-layer layer-two" aria-hidden="true"></span>
+                            <a href="#about" class="hero-specimen" data-open-story="auxiliaire" data-open-step="0"
+                                aria-label="Explore selected product story">
+                                <span class="specimen-question" id="specimen-question">What if decisions<br>had a
+                                    memory?</span>
+                                <span class="specimen-drawing" aria-hidden="true"><span class="drawing-node"
+                                        id="specimen-node-one">A conversation</span><svg viewBox="0 0 160 50"
+                                        fill="none">
+                                        <path d="M4 28C45 2 80 48 145 23M131 18L146 23L137 35" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" />
+                                    </svg><span class="drawing-node" id="specimen-node-two">A next step</span></span>
+                                <span class="specimen-bottom"><span><strong
+                                            id="specimen-name">Auxiliaire</strong></span><span class="specimen-arrow"
+                                        aria-hidden="true">↗</span></span>
+                            </a>
+                        </div>
+                        <div class="specimen-controls" role="group" aria-label="Browse things I built"><button
+                                type="button" data-specimen="auxiliaire" aria-pressed="true"
+                                aria-label="Preview Auxiliaire">01</button><button type="button"
+                                data-specimen="low-cortisol" aria-pressed="false"
+                                aria-label="Preview Low Cortisol UX">02</button><button type="button"
+                                data-specimen="funauth" aria-pressed="false"
+                                aria-label="Preview FunAuth">03</button><button type="button"
+                                data-specimen="delivery-delegate" aria-pressed="false"
+                                aria-label="Preview Delivery Delegate">04</button></div>
                     </div>
-                    <!-- <button class="terminal-max" id="terminal-max" type="button"
+                    <div class="terminal-composition" id="exhibit-terminal" hidden>
+                        <div class="terminal">
+                            <div class="terminal-bar">
+                                <div class="dot dot-r"></div>
+                                <div class="dot dot-y"></div>
+                                <div class="dot dot-g"></div>
+                                <div class="terminal-title">udbhav / working directory</div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-output" id="term-output"></div>
+                                <div class="terminal-input-line">
+                                    <span class="prompt-str">→</span>
+                                    <input type="text" class="terminal-input" id="term-input" autocomplete="off"
+                                        spellcheck="false" autocorrect="off" autocapitalize="off"
+                                        placeholder="type 'help' to get started..." aria-label="terminal input" />
+                                </div>
+                            </div>
+                            <div class="terminal-toolbar">
+                                <div class="command-suggestions" aria-label="Suggested terminal commands">
+                                    <button class="command-chip" type="button" data-command="whoami">whoami</button>
+                                    <button class="command-chip" type="button" data-command="show impact">show
+                                        impact</button>
+                                    <button class="command-chip" type="button" data-command="open projects">open
+                                        projects</button>
+                                    <button class="command-chip" type="button" data-command="open work">open
+                                        work</button>
+                                    <button class="command-chip" type="button" data-command="surprise me">surprise
+                                        me</button>
+                                </div>
+                                <!-- <button class="terminal-max" id="terminal-max" type="button"
                         aria-label="Maximize terminal">maximize</button> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="scroll-hint" aria-hidden="true">
+                <span>scroll</span>
+                <div class="scroll-arrow"></div>
             </div>
-            </div>
-        </div>
-        <div class="scroll-hint" aria-hidden="true">
-            <span>scroll</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+        </section>
 
-    <!-- An interactive route through the decisions behind the work. -->
-    <section id="about" class="story-workbench" aria-labelledby="workbench-title"><span id="side-projects" class="anchor-alias" aria-hidden="true"></span>
-      <div class="section-inner">
+        <!-- An interactive route through the decisions behind the work. -->
+        <section id="about" class="story-workbench" aria-labelledby="workbench-title"><span id="side-projects"
+                class="anchor-alias" aria-hidden="true"></span>
+            <div class="section-inner">
 
-        <div class="workbench-heading"><h2 id="workbench-title">Before it was a product,<br>it was <em>a loose end.</em></h2><p>Choose a problem to follow.</p></div>
-        <div class="story-picker" role="group" aria-label="Choose a product story">
-          <button type="button" data-story="auxiliaire" aria-pressed="true">A decision gets lost.<small>Auxiliaire</small></button>
-          <button type="button" data-story="low-cortisol" aria-pressed="false">A form starts over.<small>Low Cortisol UX</small></button>
-          <button type="button" data-story="funauth" aria-pressed="false">A gesture becomes an idea.<small>FunAuth</small></button>
-          <button type="button" data-story="delivery-delegate" aria-pressed="false">A parcel has to wait.<small>Delivery Delegate</small></button>
-        </div>
-        <div class="decision-board" id="decision-board">
-          <div class="story-steps" role="group" aria-label="Follow the product decisions">
-            <button type="button" data-story-step="0" aria-pressed="true"><span>01</span>The loose end</button>
-            <button type="button" data-story-step="1" aria-pressed="false"><span>02</span>The decision</button>
-            <button type="button" data-story-step="2" aria-pressed="false"><span>03</span>The build</button>
-            <button type="button" data-story-step="3" aria-pressed="false"><span>04</span>The next question</button>
-          </div>
-          <div class="story-scene" data-phase="0" data-product="auxiliaire">
-            <div class="story-demo" hidden><div class="workbench-product" id="auxiliaire" hidden><div class="project-visual" aria-label="Interactive Auxiliaire capture pipeline">
-                        <div class="mini-product aux-preview">
-                            <div class="mini-bar"><span>Auxiliaire / Capture pipeline</span><span>Human in the
-                                    loop</span></div>
-                            <div class="demo-tabs" role="group" aria-label="Auxiliaire pipeline stages">
-                                <button class="demo-tab" type="button" data-aux-stage="capture">01
-                                    Capture</button>
-                                <button class="demo-tab active" type="button" data-aux-stage="structure">02
-                                    Structure</button>
-                                <button class="demo-tab" type="button" data-aux-stage="confirm">03
-                                    Confirm</button>
-                            </div>
-                            <div class="aux-stage" id="aux-demo-content" aria-live="polite"></div>
-                            <div class="demo-boundary"><span>Suggested actions</span><span>You decide what enters the
-                                    system</span></div>
-                        </div>
-                    </div><div class="project-actions"><a href="https://auxiliaire-os.vercel.app/" target="_blank" rel="noopener">Open product ↗</a></div></div><div class="workbench-product" id="low-cortisol" hidden><div class="project-visual" aria-label="Interactive Low Cortisol UX portal adapter">
-                        <div class="mini-product portal-demo">
-                            <div class="mini-bar"><span id="portal-demo-title">Low Cortisol / EPFO</span><span>Extension
-                                    active</span></div>
-                            <div class="demo-tabs" role="group" aria-label="Supported portal examples">
-                                <button class="demo-tab active" type="button"
-                                    data-portal="epfo">EPFO</button>
-                                <button class="demo-tab" type="button"
-                                    data-portal="passport">Passport</button>
-                                <button class="demo-tab" type="button" data-portal="itr">Income tax</button>
-                            </div>
-                            <div class="portal-session"><span id="portal-demo-heartbeat">Session heartbeat ·
-                                    90s</span><span>● protected</span></div>
-                            <div class="portal-pain" id="portal-demo-pain">3-minute timeout can erase the form.</div>
-                            <div class="portal-form">
-                                <div class="portal-field" id="portal-demo-field-1">UAN mapped</div>
-                                <div class="portal-field" id="portal-demo-field-2">Name auto-filled</div>
-                                <div class="portal-field" id="portal-demo-field-3">Captcha focused</div>
-                                <div class="portal-field" id="portal-demo-field-4">Draft: 12 fields</div>
-                                <div class="portal-saved" id="portal-demo-result">Progress saved locally. Timeout
-                                    anxiety cancelled.</div>
-                            </div>
-                            <div class="portal-boundary"><span>Password excluded</span><span>Data stays in
-                                    browser</span></div>
-                        </div>
-                    </div><div class="project-actions"><a href="https://lowcortisolux.vercel.app/" target="_blank" rel="noopener">Open product ↗</a></div></div><div class="workbench-product" id="funauth" hidden><div class="project-visual" aria-label="Interactive FunAuth verification sequence">
-                        <div class="mini-product gesture-demo">
-                            <div class="mini-bar"><span>FunAuth / Signature engine</span><span>On-device vision</span></div>
-                            <div class="gesture-context"><span>Available signals</span><span>Frames uploaded: 0</span>
-                            </div>
-                            <div class="gesture-vocabulary" aria-label="Supported gesture and expression vocabulary">
-                                <span class="gesture-vocabulary-label">Hands</span>
-                                <div class="gesture-vocabulary-icons" aria-label="Thumbs up, peace, fist, palm, pinch, point, rock on, and I love you">
-                                    <span>👍</span><span>✌️</span><span>✊</span><span>🖐️</span><span>👌</span><span>☝️</span><span>🤘</span><span>🤟</span>
+                <div class="workbench-heading">
+                    <h2 id="workbench-title">Before it was a product,<br>it was <em>a loose end.</em></h2>
+                    <p>Choose a problem to follow.</p>
+                </div>
+                <div class="story-picker" role="group" aria-label="Choose a product story">
+                    <button type="button" data-story="auxiliaire" aria-pressed="true">A decision gets
+                        lost.<small>Auxiliaire</small></button>
+                    <button type="button" data-story="low-cortisol" aria-pressed="false">A form starts over.<small>Low
+                            Cortisol UX</small></button>
+                    <button type="button" data-story="funauth" aria-pressed="false">A gesture becomes an
+                        idea.<small>FunAuth</small></button>
+                    <button type="button" data-story="delivery-delegate" aria-pressed="false">A parcel has to
+                        wait.<small>Delivery Delegate</small></button>
+                </div>
+                <div class="decision-board" id="decision-board">
+                    <div class="story-steps" role="group" aria-label="Follow the product decisions">
+                        <button type="button" data-story-step="0" aria-pressed="true"><span>01</span>The loose
+                            end</button>
+                        <button type="button" data-story-step="1" aria-pressed="false"><span>02</span>The
+                            decision</button>
+                        <button type="button" data-story-step="2" aria-pressed="false"><span>03</span>The build</button>
+                        <button type="button" data-story-step="3" aria-pressed="false"><span>04</span>The next
+                            question</button>
+                    </div>
+                    <div class="story-scene" data-phase="0" data-product="auxiliaire">
+                        <div class="story-demo" hidden>
+                            <div class="workbench-product" id="auxiliaire" hidden>
+                                <div class="project-visual" aria-label="Interactive Auxiliaire capture pipeline">
+                                    <div class="mini-product aux-preview">
+                                        <div class="mini-bar"><span>Auxiliaire / Capture pipeline</span><span>Human in
+                                                the
+                                                loop</span></div>
+                                        <div class="demo-tabs" role="group" aria-label="Auxiliaire pipeline stages">
+                                            <button class="demo-tab" type="button" data-aux-stage="capture">01
+                                                Capture</button>
+                                            <button class="demo-tab active" type="button" data-aux-stage="structure">02
+                                                Structure</button>
+                                            <button class="demo-tab" type="button" data-aux-stage="confirm">03
+                                                Confirm</button>
+                                        </div>
+                                        <div class="aux-stage" id="aux-demo-content" aria-live="polite"></div>
+                                        <div class="demo-boundary"><span>Suggested actions</span><span>You decide what
+                                                enters the
+                                                system</span></div>
+                                    </div>
                                 </div>
-                                <span class="gesture-vocabulary-label">Face</span>
-                                <div class="gesture-vocabulary-icons" aria-label="Smile, left wink, right wink, surprise, pucker, and raised eyebrows">
-                                    <span>😄</span><span>😉</span><span>😜</span><span>😲</span><span>😗</span><span>🤨</span>
+                                <div class="project-actions"><a href="https://auxiliaire-os.vercel.app/" target="_blank"
+                                        rel="noopener">Open product ↗</a></div>
+                            </div>
+                            <div class="workbench-product" id="low-cortisol" hidden>
+                                <div class="project-visual" aria-label="Interactive Low Cortisol UX portal adapter">
+                                    <div class="mini-product portal-demo">
+                                        <div class="mini-bar"><span id="portal-demo-title">Low Cortisol /
+                                                EPFO</span><span>Extension
+                                                active</span></div>
+                                        <div class="demo-tabs" role="group" aria-label="Supported portal examples">
+                                            <button class="demo-tab active" type="button"
+                                                data-portal="epfo">EPFO</button>
+                                            <button class="demo-tab" type="button"
+                                                data-portal="passport">Passport</button>
+                                            <button class="demo-tab" type="button" data-portal="itr">Income tax</button>
+                                        </div>
+                                        <div class="portal-session"><span id="portal-demo-heartbeat">Session heartbeat ·
+                                                90s</span><span>● protected</span></div>
+                                        <div class="portal-pain" id="portal-demo-pain">3-minute timeout can erase the
+                                            form.</div>
+                                        <div class="portal-form">
+                                            <div class="portal-field" id="portal-demo-field-1">UAN mapped</div>
+                                            <div class="portal-field" id="portal-demo-field-2">Name auto-filled</div>
+                                            <div class="portal-field" id="portal-demo-field-3">Captcha focused</div>
+                                            <div class="portal-field" id="portal-demo-field-4">Draft: 12 fields</div>
+                                            <div class="portal-saved" id="portal-demo-result">Progress saved locally.
+                                                Timeout
+                                                anxiety cancelled.</div>
+                                        </div>
+                                        <div class="portal-boundary"><span>Password excluded</span><span>Data stays in
+                                                browser</span></div>
+                                    </div>
                                 </div>
+                                <div class="project-actions"><a href="https://lowcortisolux.vercel.app/" target="_blank"
+                                        rel="noopener">Open product ↗</a></div>
                             </div>
-                            <div class="gesture-signature-label"><span>Saved choreography · Double Agent+</span><span>3 steps</span></div>
-                            <div class="gesture-sequence">
-                                <div class="gesture-sequence-step" data-gesture-step="0"><small>01 · combo</small><strong>✌️ + 😉</strong><span>Hold 1.0s</span></div>
-                                <span class="gesture-sequence-arrow">→</span>
-                                <div class="gesture-sequence-step" data-gesture-step="1"><small>02 · combo</small><strong>☝️ + 🤨</strong><span>Hold .9s</span></div>
-                                <span class="gesture-sequence-arrow">→</span>
-                                <div class="gesture-sequence-step" data-gesture-step="2"><small>03 · hand</small><strong>✊</strong><span>Hold .8s</span></div>
+                            <div class="workbench-product" id="funauth" hidden>
+                                <div class="project-visual" aria-label="Interactive FunAuth verification sequence">
+                                    <div class="mini-product gesture-demo">
+                                        <div class="mini-bar"><span>FunAuth / Signature engine</span><span>On-device
+                                                vision</span></div>
+                                        <div class="gesture-context"><span>Available signals</span><span>Frames
+                                                uploaded: 0</span>
+                                        </div>
+                                        <div class="gesture-vocabulary"
+                                            aria-label="Supported gesture and expression vocabulary">
+                                            <span class="gesture-vocabulary-label">Hands</span>
+                                            <div class="gesture-vocabulary-icons"
+                                                aria-label="Thumbs up, peace, fist, palm, pinch, point, rock on, and I love you">
+                                                <span>👍</span><span>✌️</span><span>✊</span><span>🖐️</span><span>👌</span><span>☝️</span><span>🤘</span><span>🤟</span>
+                                            </div>
+                                            <span class="gesture-vocabulary-label">Face</span>
+                                            <div class="gesture-vocabulary-icons"
+                                                aria-label="Smile, left wink, right wink, surprise, pucker, and raised eyebrows">
+                                                <span>😄</span><span>😉</span><span>😜</span><span>😲</span><span>😗</span><span>🤨</span>
+                                            </div>
+                                        </div>
+                                        <div class="gesture-signature-label"><span>Saved choreography · Double
+                                                Agent+</span><span>3 steps</span></div>
+                                        <div class="gesture-sequence">
+                                            <div class="gesture-sequence-step" data-gesture-step="0"><small>01 ·
+                                                    combo</small><strong>✌️ + 😉</strong><span>Hold 1.0s</span></div>
+                                            <span class="gesture-sequence-arrow">→</span>
+                                            <div class="gesture-sequence-step" data-gesture-step="1"><small>02 ·
+                                                    combo</small><strong>☝️ + 🤨</strong><span>Hold .9s</span></div>
+                                            <span class="gesture-sequence-arrow">→</span>
+                                            <div class="gesture-sequence-step" data-gesture-step="2"><small>03 ·
+                                                    hand</small><strong>✊</strong><span>Hold .8s</span></div>
+                                        </div>
+                                        <div class="gesture-progress" aria-hidden="true"><span></span></div>
+                                        <div class="gesture-verified">
+                                            <span id="gesture-demo-status" aria-live="polite">Three challenges · two
+                                                concurrent vision models</span>
+                                            <button class="gesture-run" type="button">Run challenge</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-actions"><a href="https://funauth.vercel.app/" target="_blank"
+                                        rel="noopener">Try it ↗</a></div>
                             </div>
-                            <div class="gesture-progress" aria-hidden="true"><span></span></div>
-                            <div class="gesture-verified">
-                                <span id="gesture-demo-status" aria-live="polite">Three challenges · two concurrent vision models</span>
-                                <button class="gesture-run" type="button">Run challenge</button>
+                            <div class="workbench-product" id="delivery-delegate" hidden>
+                                <div class="project-visual" aria-label="Delivery Delegate OTP availability scenario">
+                                    <div class="handoff-preview" id="delivery-preview">
+                                        <p class="handoff-kicker">At the doorstep</p>
+                                        <h4>One unavailable person.<br>A delivery on hold.</h4>
+                                        <div class="handoff-controls" aria-label="Explore the pickup scenario">
+                                            <button type="button" data-permission="waiting" aria-pressed="true">OTP
+                                                unavailable</button>
+                                            <button type="button" data-permission="planned" aria-pressed="false">Plan
+                                                ahead</button>
+                                        </div>
+                                        <div class="handoff-result" data-state="waiting" aria-live="polite"><b
+                                                id="handoff-status">Rider waiting. Collector ready.</b>
+                                            <p id="handoff-explanation">The OTP went to someone who cannot respond. The
+                                                parcel cannot be handed over yet.</p>
+                                        </div>
+                                        <p class="handoff-note">Illustrative flow · Courier integration pending</p>
+                                    </div>
+                                </div>
+                                <div class="project-actions"><a
+                                        href="https://github.com/udbhavvarma/delivery-delegate-prototype"
+                                        target="_blank" rel="noopener">View source ↗</a><a class="source-link"
+                                        href="https://delivery-delegate.vercel.app/" target="_blank" rel="noopener"
+                                        title="This deployment returned DEPLOYMENT_NOT_FOUND on 6 September 2026">Live
+                                        site · unavailable</a></div>
                             </div>
                         </div>
-                    </div><div class="project-actions"><a href="https://funauth.vercel.app/" target="_blank" rel="noopener">Try it ↗</a></div></div><div class="workbench-product" id="delivery-delegate" hidden><div class="project-visual" aria-label="Delivery Delegate OTP availability scenario">
-                        <div class="handoff-preview" id="delivery-preview">
-                            <p class="handoff-kicker">At the doorstep</p><h4>One unavailable person.<br>A delivery on hold.</h4>
-                            <div class="handoff-controls" aria-label="Explore the pickup scenario">
-                                <button type="button" data-permission="waiting" aria-pressed="true">OTP unavailable</button>
-                                <button type="button" data-permission="planned" aria-pressed="false">Plan ahead</button>
+                        <div class="story-artifact" aria-label="Illustrative product artifact">
+                            <div class="artifact-top"><span id="artifact-label">Meeting notes</span><span
+                                    aria-hidden="true">↗</span></div>
+                            <div id="artifact-body">
+                                <p class="artifact-quote">“Let’s go with the second option.”</p>
+                                <div class="artifact-slip"><span>The missing piece</span><strong>What did we decide—and
+                                        why?</strong></div>
                             </div>
-                            <div class="handoff-result" data-state="waiting" aria-live="polite"><b id="handoff-status">Rider waiting. Collector ready.</b><p id="handoff-explanation">The OTP went to someone who cannot respond. The parcel cannot be handed over yet.</p></div>
-                            <p class="handoff-note">Illustrative flow · Courier integration pending</p>
+                            <p class="artifact-caption">Illustrative preview</p>
                         </div>
-                    </div><div class="project-actions"><a href="https://github.com/udbhavvarma/delivery-delegate-prototype" target="_blank" rel="noopener">View source ↗</a><a class="source-link" href="https://delivery-delegate.vercel.app/" target="_blank" rel="noopener" title="This deployment returned DEPLOYMENT_NOT_FOUND on 6 September 2026">Live site · unavailable</a></div></div></div>
-            <div class="story-artifact" aria-label="Illustrative product artifact"><div class="artifact-top"><span id="artifact-label">Meeting notes</span><span aria-hidden="true">↗</span></div><div id="artifact-body"><p class="artifact-quote">“Let’s go with the second option.”</p><div class="artifact-slip"><span>The missing piece</span><strong>What did we decide—and why?</strong></div></div><p class="artifact-caption">Illustrative preview</p></div>
-            <div class="story-narrative" aria-live="polite" aria-atomic="true"><h3 id="story-title">The meeting ends.<br>The context scatters.</h3><p id="story-description">A decision lives in a conversation, its follow-up in a task list. Later, the reason behind it is hard to recover.</p><div class="story-note"><span id="story-note-label">The opening</span><p id="story-note">Keep the reason attached to the next step.</p></div><button id="story-product-link" class="story-build-button" type="button">See the working version →</button></div>
-          </div>
-          <div class="story-navigation"><div><button id="story-prev" type="button" disabled aria-label="Previous step">← Back</button><button id="story-next" type="button">The decision →</button></div></div>
-        </div>
-        <noscript><p class="story-fallback">Product previews and links appear below. Enable JavaScript to follow the decisions behind them.</p></noscript>
-      </div>
-    </section>
-
-    <section id="skills" class="skills-story">
-      <div class="section-inner"><h2 class="section-title">Skills, in practice.</h2>
-        <div class="skills-path">
-          <article><h3>When the idea is still vague.</h3><p>I turn research and observations into a clear problem, a useful first version, and a way to judge whether it works.</p><p class="skill-methods">User research · Product strategy · Requirements · Experiment design</p></article>
-          <article><h3>When the idea needs a shape.</h3><p>I build the smallest convincing version: tangible enough to try, useful enough to explain the solution, and alive enough to make people curious.</p><p class="skill-methods">Interactive prototypes · Workflow design · Agent experiments · Product design</p></article>
-          <article><h3>When reality has other plans.</h3><p>I use feedback, product analytics, LLM evals, and traces to understand failures and decide what to improve next.</p><p class="skill-methods">Evaluation · Observability · Funnel analysis · Growth experiments</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── EXPERIENCE ── -->
-    <section id="experience">
-        <div class="section-inner">
-
-            <h2 class="section-title reveal">What changed.</h2>
-
-
-            <div class="outcome-ledger" id="proof" aria-label="Results from my work">
-              <details><summary><strong>2.5×</strong><span>Return on spend<small>Times Internet · Model iteration</small></span><b aria-hidden="true">＋</b></summary><p>Model iteration and experimentation improved return on spend across conversational products. The product question: do better interactions translate into better economics?</p><a href="#role-times">See the role ↗</a></details>
-              <details><summary><strong>50%</strong><span>Fewer human handoffs<small>Economic Times · WhatsApp automation</small></span><b aria-hidden="true">＋</b></summary><p>The WhatsApp chatbots I shipped reduced handoffs to human agents by 50%. The product question: how much can the experience resolve before someone needs to step in?</p><a href="#role-et">See the role ↗</a></details>
-              <details><summary><strong>10%</strong><span>Engagement lift<small>myKaarma · Product revamp</small></span><b aria-hidden="true">＋</b></summary><p>A production feature revamp improved engagement by 10%. The product question: does improving an everyday interaction change how people use it?</p><a href="#role-mykaarma">See the role ↗</a></details>
+                        <div class="story-narrative" aria-live="polite" aria-atomic="true">
+                            <h3 id="story-title">The meeting ends.<br>The context scatters.</h3>
+                            <p id="story-description">A decision lives in a conversation, its follow-up in a task list.
+                                Later, the reason behind it is hard to recover.</p>
+                            <div class="story-note"><span id="story-note-label">The opening</span>
+                                <p id="story-note">Keep the reason attached to the next step.</p>
+                            </div><button id="story-product-link" class="story-build-button" type="button">See the
+                                working version →</button>
+                        </div>
+                    </div>
+                    <div class="story-navigation">
+                        <div><button id="story-prev" type="button" disabled aria-label="Previous step">←
+                                Back</button><button id="story-next" type="button">The decision →</button></div>
+                    </div>
+                </div>
+                <noscript>
+                    <p class="story-fallback">Product previews and links appear below. Enable JavaScript to follow the
+                        decisions behind them.</p>
+                </noscript>
             </div>
-            <div class="exp-list">
+        </section>
 
-                <!-- TIL: ATPM -->
-                <div class="exp-card reveal" id="role-times">
-
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-role">Associate Technical Product Manager</div>
-                            <div class="exp-company">@ Times Internet · AI Labs · COO Office</div>
-                        </div>
-                        <div class="exp-date">Aug 2025 – Present · <span style="color:var(--green);font-size:0.65rem;">●
-                                live</span></div>
-                    </div>
-                    <ul class="exp-bullets">
-                        <li>Own the roadmap and architecture for conversational platforms that help users resolve requests through chat and voice.</li>
-                        <li>Turn recurring user problems into prototypes, then test completion and engagement before expanding the product.</li>
-                        <li>Improved ROS by 2.5× through model iteration and experimentation.</li>
-                        <li>Connect model improvements to acquisition, engagement, and unit economics.</li>
-                    </ul>
+        <section id="skills" class="skills-story">
+            <div class="section-inner">
+                <h2 class="section-title">Skills, in practice.</h2>
+                <div class="skills-path">
+                    <article>
+                        <h3>When the idea is still vague.</h3>
+                        <p>I turn research and observations into a clear problem, a useful first version, and a way to
+                            judge whether it works.</p>
+                        <p class="skill-methods">User research · Product strategy · Requirements · Experiment design</p>
+                    </article>
+                    <article>
+                        <h3>When the idea needs a shape.</h3>
+                        <p>I build a convincing version: tangible enough to try, useful enough to sell the solution, and
+                            alive enough to make people curious.</p>
+                        <p class="skill-methods">Interactive prototypes · Workflow design · Agent experiments · Product
+                            design</p>
+                    </article>
+                    <article>
+                        <h3>When reality has other plans.</h3>
+                        <p>I use feedback, product analytics, LLM evals, and traces to understand failures and decide
+                            what to improve next.</p>
+                        <p class="skill-methods">Evaluation · Observability · Funnel analysis · Growth experiments</p>
+                    </article>
                 </div>
-
-                <!-- TIL: AI Product Intern -->
-                <div class="exp-card reveal" id="role-et">
-
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-role">AI Product Intern</div>
-                            <div class="exp-company">@ Economic Times · AI, Automation & Growth · COO Office</div>
-                        </div>
-                        <div class="exp-date">May – Jul 2025 · 3 mos</div>
-                    </div>
-                    <ul class="exp-bullets">
-                        <li>Built conversational products that let users complete requests through LLM voice agents.</li>
-                        <li>Prototyped conversational advertising experiences with FMCG and Fortune 500 clients.</li>
-                        <li>Shipped WhatsApp chatbots that reduced handoffs to human agents by 50%.</li>
-                        <li>Led cross-functional teams from a product hypothesis through a working prototype.</li>
-                    </ul>
-                </div>
-
-                <!-- myKaarma -->
-                <div class="exp-card reveal" id="role-mykaarma">
-
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-role">Software Development Intern</div>
-                            <div class="exp-company">@ myKaarma · Communications Team</div>
-                        </div>
-                        <div class="exp-date">May – Jul 2024 · 3 mos</div>
-                    </div>
-                    <ul class="exp-bullets">
-                        <li>Revamped the Out-of-Office experience for dealership associates, improving a routine communication workflow.</li>
-                        <li>Built reusable interface components and documented their behavior in Storybook.</li>
-                        <li>Connected the interface to backend services through a Spring Boot aggregator.</li>
-                        <li>The shipped revamp produced a 10% lift in engagement.</li>
-                    </ul>
-                </div>
-
-                <!-- IEEE -->
-                <div class="exp-card reveal" id="role-ieee">
-                    <div class="exp-header">
-                        <div>
-                            <div class="exp-role">General Secretary & Coordinator → Head of Comms → ExeCom</div>
-                            <div class="exp-company">@ IEEE IIIT-Delhi Student Branch</div>
-                        </div>
-                        <div class="exp-date">Feb 2022 – May 2024 · 2 yrs 4 mos</div>
-                    </div>
-                    <ul class="exp-bullets">
-                        <li>Led a team of more than 70 members across technical events and community initiatives.</li>
-                        <li>Organized around 30 technical events, including hackathons and cryptic hunts, with 100–120 participants each.</li>
-                        <li>Built partnerships with Solana and other blockchain companies for events attracting more than 200 attendees.</li>
-                        <li>Progressed from the executive committee to Head of Communications, then General Secretary.</li>
-                    </ul>
-                </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="divider"></div>
-    <!-- ═══ PROJECTS — commented out, work in progress ═══
+        <!-- ── EXPERIENCE ── -->
+        <section id="experience">
+            <div class="section-inner">
+
+                <h2 class="section-title reveal">What changed.</h2>
+
+
+                <div class="outcome-ledger" id="proof" aria-label="Results from my work">
+                    <details>
+                        <summary><strong>2.5×</strong><span>Return on spend<small>Times Internet · Model
+                                    iteration</small></span><b aria-hidden="true">＋</b></summary>
+                        <p>Model iteration and experimentation improved return on spend across conversational products.
+                            The product question: do better interactions translate into better economics?</p><a
+                            href="#role-times">See the role ↗</a>
+                    </details>
+                    <details>
+                        <summary><strong>50%</strong><span>Fewer human handoffs<small>Economic Times · WhatsApp
+                                    automation</small></span><b aria-hidden="true">＋</b></summary>
+                        <p>The WhatsApp chatbots I shipped reduced handoffs to human agents by 50%. The product
+                            question: how much can the experience resolve before someone needs to step in?</p><a
+                            href="#role-et">See the role ↗</a>
+                    </details>
+                    <details>
+                        <summary><strong>10%</strong><span>Engagement lift<small>myKaarma · Product
+                                    revamp</small></span><b aria-hidden="true">＋</b></summary>
+                        <p>A production feature revamp improved engagement by 10%. The product question: does improving
+                            an everyday interaction change how people use it?</p><a href="#role-mykaarma">See the role
+                            ↗</a>
+                    </details>
+                </div>
+                <div class="exp-list">
+
+                    <!-- TIL: ATPM -->
+                    <div class="exp-card reveal" id="role-times">
+
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-role">Associate Technical Product Manager</div>
+                                <div class="exp-company">@ Times Internet · AI Labs · COO Office</div>
+                            </div>
+                            <div class="exp-date">Aug 2025 – Present · <span
+                                    style="color:var(--green);font-size:0.65rem;">●
+                                    live</span></div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Own the roadmap and architecture for conversational platforms that help users resolve
+                                requests through chat and voice.</li>
+                            <li>Turn recurring user problems into prototypes, then test completion and engagement before
+                                expanding the product.</li>
+                            <li>Improved ROS by 2.5× through model iteration and experimentation.</li>
+                            <li>Connect model improvements to acquisition, engagement, and unit economics.</li>
+                        </ul>
+                    </div>
+
+                    <!-- TIL: AI Product Intern -->
+                    <div class="exp-card reveal" id="role-et">
+
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-role">AI Product Intern</div>
+                                <div class="exp-company">@ Economic Times · AI, Automation & Growth · COO Office</div>
+                            </div>
+                            <div class="exp-date">May – Jul 2025 · 3 mos</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Built conversational products that let users complete requests through LLM voice agents.
+                            </li>
+                            <li>Prototyped conversational advertising experiences with FMCG and Fortune 500 clients.
+                            </li>
+                            <li>Shipped WhatsApp chatbots that reduced handoffs to human agents by 50%.</li>
+                            <li>Led cross-functional teams from a product hypothesis through a working prototype.</li>
+                        </ul>
+                    </div>
+
+                    <!-- myKaarma -->
+                    <div class="exp-card reveal" id="role-mykaarma">
+
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-role">Software Development Intern</div>
+                                <div class="exp-company">@ myKaarma · Communications Team</div>
+                            </div>
+                            <div class="exp-date">May – Jul 2024 · 3 mos</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Revamped the Out-of-Office experience for dealership associates, improving a routine
+                                communication workflow.</li>
+                            <li>Built reusable interface components and documented their behavior in Storybook.</li>
+                            <li>Connected the interface to backend services through a Spring Boot aggregator.</li>
+                            <li>The shipped revamp produced a 10% lift in engagement.</li>
+                        </ul>
+                    </div>
+
+                    <!-- IEEE -->
+                    <div class="exp-card reveal" id="role-ieee">
+                        <div class="exp-header">
+                            <div>
+                                <div class="exp-role">General Secretary & Coordinator</div>
+                                <div class="exp-company">@ IEEE IIIT-Delhi Student Branch</div>
+                            </div>
+                            <div class="exp-date">Feb 2022 – May 2024 · 2 yrs 4 mos</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Led a team of more than 70 members across technical events and community initiatives.
+                            </li>
+                            <li>Organized around 30 technical events, including hackathons and cryptic hunts, with
+                                100–120 participants each.</li>
+                            <li>Built partnerships with Solana and other blockchain companies for events attracting more
+                                than 200 attendees.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+        <!-- ═══ PROJECTS — commented out, work in progress ═══
 
     <div class="divider"></div>
 
@@ -3301,36 +3663,83 @@
 
     ═══ end PROJECTS ═══ -->
 
-    <!-- ── SERIOUS NOTE (formerly vibes) ── -->
-    <section id="principles" class="principles-story"><div class="section-inner">
-      <div class="principles-heading"><h2 class="section-title">What the work taught me.</h2><p>Six principles I return to when an idea meets reality.</p></div>
-      <div class="principles-list">
-        <details><summary><span><small>When the room needs a shared picture.</small><strong>Clarity is a competitive advantage.</strong></span><b aria-hidden="true">+</b></summary><p>Vague briefs create expensive certainty. I surface assumptions and unknowns early, so the team can disagree with the same problem in view.</p></details>
-        <details><summary><span><small>When the first version meets reality.</small><strong>Ship, then learn.</strong></span><b aria-hidden="true">+</b></summary><p>A useful version in someone’s hands teaches more than a polished idea waiting for permission. I ship to replace opinions with evidence.</p></details>
-        <details><summary><span><small>When every request sounds urgent.</small><strong>The metric is the strategy.</strong></span><b aria-hidden="true">+</b></summary><p>I ask what should change for the user and the business. That answer makes priorities clearer and gives the next decision something concrete to improve.</p></details>
-        <details><summary><span><small>When the solution meets its constraints.</small><strong>Engineering is a partner, not a vendor.</strong></span><b aria-hidden="true">+</b></summary><p>The best product decisions happen with engineering in the room early. Reliability, constraints, and technical debt belong in the product conversation.</p></details>
-        <details><summary><span><small>When a model enters the product loop.</small><strong>AI is infrastructure now.</strong></span><b aria-hidden="true">+</b></summary><p>I treat model behavior as product behavior: something to evaluate, trace, observe, and improve—not a feature label added at the end.</p></details>
-        <details><summary><span><small>When a good product still needs an audience.</small><strong>Distribution beats product.</strong></span><b aria-hidden="true">+</b></summary><p>How people discover, adopt, and return to a product changes what should be built. Growth and distribution are part of the experience from the beginning.</p></details>
-      </div>
-    </div></section>
+        <!-- ── SERIOUS NOTE (formerly vibes) ── -->
+        <section id="principles" class="principles-story">
+            <div class="section-inner">
+                <div class="principles-heading">
+                    <h2 class="section-title">What the work taught me.</h2>
+                    <p>Six principles I return to when an idea meets reality.</p>
+                </div>
+                <div class="principles-list">
+                    <details>
+                        <summary><span><small>When the room needs a shared picture.</small><strong>Clarity is a
+                                    competitive advantage.</strong></span><b aria-hidden="true">+</b></summary>
+                        <p>Vague briefs create expensive certainty. I surface assumptions and unknowns early, so the
+                            team can disagree with the same problem in view.</p>
+                    </details>
+                    <details>
+                        <summary><span><small>When the first version meets reality.</small><strong>Ship, then
+                                    learn.</strong></span><b aria-hidden="true">+</b></summary>
+                        <p>A useful version in someone’s hands teaches more than a polished idea waiting for permission.
+                            I ship to replace opinions with evidence.</p>
+                    </details>
+                    <details>
+                        <summary><span><small>When every request sounds urgent.</small><strong>The metric is the
+                                    strategy.</strong></span><b aria-hidden="true">+</b></summary>
+                        <p>I ask what should change for the user and the business. That answer makes priorities clearer
+                            and gives the next decision something concrete to improve.</p>
+                    </details>
+                    <details>
+                        <summary><span><small>When the solution meets its constraints.</small><strong>Engineering is a
+                                    partner, not a vendor.</strong></span><b aria-hidden="true">+</b></summary>
+                        <p>The best product decisions happen with engineering in the room early. Reliability,
+                            constraints, and technical debt belong in the product conversation.</p>
+                    </details>
+                    <details>
+                        <summary><span><small>When a model enters the product loop.</small><strong>AI is infrastructure
+                                    now.</strong></span><b aria-hidden="true">+</b></summary>
+                        <p>I treat model behavior as product behavior: something to evaluate, trace, observe, and
+                            improve—not a feature label added at the end.</p>
+                    </details>
+                    <details>
+                        <summary><span><small>When a good product still needs an audience.</small><strong>Distribution
+                                    beats product.</strong></span><b aria-hidden="true">+</b></summary>
+                        <p>How people discover, adopt, and return to a product changes what should be built. Growth and
+                            distribution are part of the experience from the beginning.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
 
-    <section id="contact" class="contact-finale">
-      <div class="section-inner">
-        <div class="contact-story"><h2>Keep in <em>touch.</em></h2></div>
-        <div class="contact-direct"><div class="email-copy"><a href="mailto:varmaudbhav03@gmail.com">varmaudbhav03@gmail.com</a><button type="button" id="copy-email" aria-label="Copy email address">Copy</button></div><p id="copy-email-status" role="status" aria-live="polite"></p><a class="contact-social" href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></div>
-      </div>
-    </section>
+        <section id="contact" class="contact-finale">
+            <div class="section-inner">
+                <div class="contact-story">
+                    <h2>Keep in <em>touch.</em></h2>
+                </div>
+                <div class="contact-direct">
+                    <div class="email-copy"><a href="mailto:varmaudbhav03@gmail.com">varmaudbhav03@gmail.com</a><button
+                            type="button" id="copy-email" aria-label="Copy email address">Copy</button></div>
+                    <p id="copy-email-status" role="status" aria-live="polite"></p><a class="contact-social"
+                        href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener">LinkedIn <span
+                            aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
 
     </main>
-    <nav class="chapter-dock" aria-label="Portfolio navigation"><a href="#hero" aria-current="location">Intro</a><a href="#about">Workbench</a><a href="#skills">Skills</a><a href="#experience">Work</a><a href="#principles">Principles</a><a href="#contact">Contact</a></nav>
+    <nav class="chapter-dock" aria-label="Portfolio navigation"><a href="#hero" aria-current="location">Intro</a><a
+            href="#about">Workbench</a><a href="#skills">Skills</a><a href="#experience">Work</a><a
+            href="#principles">Principles</a><a href="#contact">Contact</a></nav>
     <!-- Footer -->
-    <footer class="portfolio-footer"><a href="#hero" aria-label="Return to the beginning">Udbhav Varma <span aria-hidden="true">↑</span></a><span>2026</span></footer>
+    <footer class="portfolio-footer"><a href="#hero" aria-label="Return to the beginning">Udbhav Varma <span
+                aria-hidden="true">↑</span></a><span>2026</span></footer>
 
     <div class="command-palette" id="command-palette" aria-hidden="true">
         <div class="palette-box" role="dialog" aria-modal="true" aria-label="Site command palette">
-            <div class="palette-heading"><span>GO SOMEWHERE. TRY SOMETHING.</span><button type="button" id="palette-close" aria-label="Close site commands">Close <kbd>esc</kbd></button></div>
-            <input aria-label="Site command" class="palette-input" id="palette-input" placeholder="Type a command…  (esc to close)"
-                autocomplete="off" spellcheck="false" />
+            <div class="palette-heading"><span>GO SOMEWHERE. TRY SOMETHING.</span><button type="button"
+                    id="palette-close" aria-label="Close site commands">Close <kbd>esc</kbd></button></div>
+            <input aria-label="Site command" class="palette-input" id="palette-input"
+                placeholder="Type a command…  (esc to close)" autocomplete="off" spellcheck="false" />
             <div class="palette-options">
                 <button type="button" data-command="open projects">open projects</button>
                 <button type="button" data-command="open work">open work</button>
