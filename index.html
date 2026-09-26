@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Udbhav Varma - Product × Tech</title>
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <link rel="canonical" href="https://udbhavvarma.github.io/" />
+    <meta property="og:title" content="Udbhav Varma — Technical Product Manager & Builder" />
+    <meta property="og:description" content="Udbhav Varma, technical product manager and builder. Turning everyday friction and new ideas into working products, then improving them through real use." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://udbhavvarma.github.io/" />
+    <meta name="twitter:card" content="summary" />
+    <title>Udbhav Varma — Technical Product Manager & Builder</title>
     <meta name="description"
-        content="Udbhav Varma is a product-minded engineer who ships fast, thinks in systems, and vibecodes the rest. IIIT Delhi CS + Economics." />
+        content="Udbhav Varma, technical product manager and builder. Turning everyday friction and new ideas into working products, then improving them through real use." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script type="text/javascript">
@@ -356,7 +363,7 @@
         }
 
         /* ── Nav ── */
-        nav {
+        #nav {
             position: fixed;
             top: 0;
             left: 0;
@@ -1331,7 +1338,7 @@
 
         /* ── Media ── */
         @media (max-width: 768px) {
-            nav {
+            #nav {
                 padding: 0 1rem;
             }
 
@@ -1390,7 +1397,7 @@
             mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
         }
 
-        nav {
+        #nav {
             top: 1rem;
             left: 50%;
             right: auto;
@@ -1575,7 +1582,7 @@
         }
 
         @media (max-width: 768px) {
-            nav {
+            #nav {
                 top: 0.6rem;
                 width: calc(100% - 1.2rem);
             }
@@ -2847,10 +2854,55 @@
                 animation: none !important;
             }
         }
+
+        .handoff-preview { width: 100%; padding: clamp(1.5rem, 4vw, 3rem); color: var(--text); }
+        .handoff-kicker { color: var(--green); font: 500 .65rem var(--mono); letter-spacing: .1em; }
+        .handoff-preview h4 { font: 600 clamp(1.5rem, 3vw, 2.2rem) var(--sans); letter-spacing: -.04em; margin: 1rem 0 2rem; }
+        .handoff-steps { list-style: none; padding: 0; margin: 0; }
+        .handoff-steps li { display: flex; gap: 1rem; padding: 1.25rem 0; border-top: 1px solid var(--border); }
+        .handoff-steps li > span { color: var(--green); font: 500 .7rem var(--mono); padding-top: .2rem; }
+        .handoff-steps b { font: 600 .95rem var(--sans); }
+        .handoff-steps p { color: var(--text-dim); font-size: .8rem; line-height: 1.7; margin-top: .4rem; }
+        .handoff-note { margin-top: 1.5rem; color: var(--text-dim); font: 400 .6rem var(--mono); line-height: 1.8; }
+        .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 10000; padding: .8rem 1rem; border-radius: .5rem; background: var(--green); color: var(--bg); font-weight: 700; }
+        .skip-link:focus { top: 1rem; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+            .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; }
+        }
+
+        .product-index-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 2.5rem 0 1.5rem; border: 1px solid var(--border); }
+        .product-index-nav a { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 16px; border-right: 1px solid var(--border); color: var(--text); text-decoration: none; font-size: 14px; transition: background .18s, color .18s; }
+        .product-index-nav a:last-child { border-right: 0; }
+        .product-index-nav a span { color: var(--green); font: 12px var(--mono); }
+        .product-index-nav a b { margin-left: auto; color: var(--green); font-weight: 400; }
+        .product-index-nav a:hover, .product-index-nav a:focus-visible { background: #c7ff3d12; }
+        .project-story { scroll-margin-top: 90px; }
+        .project-copy { min-width: 0; }
+        .project-copy h3 { letter-spacing: -.045em; }
+        .project-one-liner { text-wrap: pretty; }
+        .project-frame, .brief-cell p { line-height: 1.8; }
+        .project-brief summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; }
+        .project-index, .project-live, .project-frame b, .brief-cell b { font-size: 12px; }
+        a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
+        @media (max-width: 850px) { .product-index-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); } .product-index-nav a:nth-child(2) { border-right: 0; } .product-index-nav a:nth-child(-n+2) { border-bottom: 1px solid var(--border); } }
+        @media (max-width: 480px) { .product-index-nav a { font-size: 12px; padding: 12px; gap: 8px; } .project-copy { padding: 24px 20px; } }
     </style>
+    <link rel="stylesheet" href="portfolio.css?v=tall-portrait-20260926" />
+    <noscript><style>
+        .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; animation: none !important; }
+        .terminal-composition, .palette-launch, .handoff-controls, .exhibit-switch, .specimen-controls, .story-picker, .story-steps, .story-navigation, #copy-email { display: none; }
+        .exp-card .exp-bullets { display: block; }
+        .exp-card .exp-tech { display: flex; }
+        .story-demo[hidden], .workbench-product[hidden] { display: block !important; }
+        .story-artifact, .story-narrative, .story-build-button { display: none; }
+        .story-scene { display: block !important; }
+        .hero-inner { grid-template-columns: 1fr; }
+    </style></noscript>
 </head>
 
 <body>
+    <a class="skip-link" href="#side-projects">Skip to products</a>
 
     <!-- Progress bar -->
     <div id="progress-bar"></div>
@@ -2864,31 +2916,67 @@
     <div class="orb orb-3"></div>
 
     <!-- Nav -->
-    <nav id="nav">
-        <div class="nav-logo">
+    <nav id="nav" aria-label="Main navigation">
+        <a class="nav-logo" href="#hero" aria-label="Udbhav Varma home">
             <span class="prompt">~/udbhav</span>
             <span>&nbsp;$</span>
-        </div>
+        </a>
         <ul class="nav-links">
-            <li><a href="#about">about</a></li>
+            <li><a href="#about">workbench</a></li>
             <li><a href="#skills">skills</a></li>
-            <li><a href="#side-projects">projects</a></li>
             <li><a href="#experience">work</a></li>
             <!-- <li><a href="#projects">projects</a></li> -->
             <li><a href="#principles">principles</a></li>
             <li><a href="#contact">contact</a></li>
         </ul>
+        <button type="button" class="palette-launch" aria-label="Open site commands" aria-haspopup="dialog">Commands <kbd>/</kbd></button>
+        <details class="mobile-navigation">
+            <summary>Menu <span aria-hidden="true">＋</span></summary>
+            <div>
+                <a href="#about"><span>Workbench</span> ↗</a>
+                <a href="#skills"><span>Skills</span> ↗</a>
+                <a href="#experience"><span>Experience</span> ↗</a>
+                <a href="#principles"><span>Principles</span> ↗</a>
+                <a href="#contact"><span>Contact</span> ↗</a>
+            </div>
+        </details>
     </nav>
 
+    <main id="main-content">
     <!-- ── HERO ── -->
     <section id="hero">
         <div class="hero-inner">
+            <div class="portfolio-intro">
+                <div class="hero-title-row">
+                <h1>Some ideas won’t<br><em>leave me alone.</em></h1>
+                <figure class="hero-portrait">
+                    <img src="assets/udbhav-ai-showcase.jpg" width="1023" height="1600" loading="eager" fetchpriority="high" decoding="async" alt="Udbhav Varma presenting at the Times Internet AI Showcase">
+                </figure>
+                </div>
+                <p class="intro-description">A frustrating workflow. A gap nobody has closed. Something I wish existed. I turn those moments into working products, then watch how people use them to figure out what needs to change.</p>
+                <div class="intro-actions"><a class="intro-primary" href="#about">Follow an idea <span aria-hidden="true">↗</span></a><a href="#experience">See the work <span aria-hidden="true">↓</span></a></div>
+                <p class="intro-current">Currently tinkering at AI Labs, Times Internet.</p>
+            </div>
+            <div class="hero-exhibit">
+              <div class="exhibit-switch" role="group" aria-label="Explore the work or terminal"><button type="button" data-exhibit="work" aria-pressed="true">The things I build</button><button type="button" data-exhibit="terminal" aria-pressed="false">Try the terminal <span aria-hidden="true">↗</span></button></div>
+              <div id="exhibit-work">
+                <div class="specimen-stack">
+                  <span class="specimen-layer layer-one" aria-hidden="true"></span><span class="specimen-layer layer-two" aria-hidden="true"></span>
+                  <a href="#about" class="hero-specimen" data-open-story="auxiliaire" data-open-step="0" aria-label="Explore selected product story">
+                    <span class="specimen-question" id="specimen-question">What if decisions<br>had a memory?</span>
+                    <span class="specimen-drawing" aria-hidden="true"><span class="drawing-node" id="specimen-node-one">A conversation</span><svg viewBox="0 0 160 50" fill="none"><path d="M4 28C45 2 80 48 145 23M131 18L146 23L137 35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="drawing-node" id="specimen-node-two">A next step</span></span>
+                    <span class="specimen-bottom"><span><strong id="specimen-name">Auxiliaire</strong></span><span class="specimen-arrow" aria-hidden="true">↗</span></span>
+                  </a>
+                </div>
+                <div class="specimen-controls" role="group" aria-label="Browse things I built"><button type="button" data-specimen="auxiliaire" aria-pressed="true" aria-label="Preview Auxiliaire">01</button><button type="button" data-specimen="low-cortisol" aria-pressed="false" aria-label="Preview Low Cortisol UX">02</button><button type="button" data-specimen="funauth" aria-pressed="false" aria-label="Preview FunAuth">03</button><button type="button" data-specimen="delivery-delegate" aria-pressed="false" aria-label="Preview Delivery Delegate">04</button></div>
+              </div>
+            <div class="terminal-composition" id="exhibit-terminal" hidden>
             <div class="terminal">
                 <div class="terminal-bar">
                     <div class="dot dot-r"></div>
                     <div class="dot dot-y"></div>
                     <div class="dot dot-g"></div>
-                    <!-- <div class="terminal-title">udbhav.varma — product × engineering</div> -->
+                    <div class="terminal-title">udbhav / working directory</div>
                 </div>
                 <div class="terminal-body">
                     <div class="terminal-output" id="term-output"></div>
@@ -2911,6 +2999,8 @@
                         aria-label="Maximize terminal">maximize</button> -->
                 </div>
             </div>
+            </div>
+            </div>
         </div>
         <div class="scroll-hint" aria-hidden="true">
             <span>scroll</span>
@@ -2918,334 +3008,51 @@
         </div>
     </section>
 
-    <div class="signal-strip reveal" id="proof" aria-label="Selected impact">
-        <div class="signal" tabindex="0"
-            data-detail="Model iteration + experimentation turned better AI behavior into materially better economics.">
-            <strong>2.5×</strong><span>Return on spend improved through model iteration</span>
+    <!-- An interactive route through the decisions behind the work. -->
+    <section id="about" class="story-workbench" aria-labelledby="workbench-title"><span id="side-projects" class="anchor-alias" aria-hidden="true"></span>
+      <div class="section-inner">
+
+        <div class="workbench-heading"><h2 id="workbench-title">Before it was a product,<br>it was <em>a loose end.</em></h2><p>Choose a problem to follow.</p></div>
+        <div class="story-picker" role="group" aria-label="Choose a product story">
+          <button type="button" data-story="auxiliaire" aria-pressed="true">A decision gets lost.<small>Auxiliaire</small></button>
+          <button type="button" data-story="low-cortisol" aria-pressed="false">A form starts over.<small>Low Cortisol UX</small></button>
+          <button type="button" data-story="funauth" aria-pressed="false">A gesture becomes an idea.<small>FunAuth</small></button>
+          <button type="button" data-story="delivery-delegate" aria-pressed="false">A parcel has to wait.<small>Delivery Delegate</small></button>
         </div>
-        <div class="signal" tabindex="0"
-            data-detail="Shipped WABA automation that resolved more conversations without sending users to a human queue.">
-            <strong>50%</strong><span>Fewer human-agent handoffs with WABA bots</span>
-        </div>
-        <div class="signal" tabindex="0"
-            data-detail="A product revamp at myKaarma translated engineering work into measurable user engagement.">
-            <strong>10%</strong><span>Engagement lift from a shipped product revamp</span>
-        </div>
-        <div class="signal" tabindex="0"
-            data-detail="From ambiguous idea to scoped prototype, validated loop, shipped product and a number worth tracking.">
-            <strong>0→1</strong><span>My favorite distance between idea and product</span>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- ── ABOUT ── -->
-    <section id="about">
-        <div class="section-inner">
-            <p class="section-label reveal">// about.me</p>
-            <div class="about-statement">
-                <h2 class="section-title reveal">I turn ambiguity<br>into shipped product.</h2>
-                <p class="section-sub reveal">Technical enough to understand the constraint. Product-minded enough to
-                    question it. Commercial enough to know which outcome matters.</p>
-            </div>
-            <div class="operating-range reveal">
-                <div class="range-item"><span>Frame</span><strong>Find the real problem beneath the request.</strong>
-                </div>
-                <div class="range-item"><span>Build</span><strong>Prototype until the argument becomes
-                        tangible.</strong></div>
-                <div class="range-item"><span>Grow</span><strong>Measure what changed and iterate from
-                        evidence.</strong></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ── SKILLS ── -->
-    <section id="skills">
-        <div class="section-inner">
-            <p class="section-label reveal">// skills.heat</p>
-            <p style="font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);margin-bottom:0.5rem;"
-                class="reveal">size = depth of damage done with this skill</p>
-            <div class="skill-modes reveal" aria-label="Filter capabilities">
-                <button class="skill-mode active" type="button" data-skill="all">All systems</button>
-                <button class="skill-mode" type="button" data-skill="product">Product</button>
-                <button class="skill-mode" type="button" data-skill="ai">AI</button>
-                <button class="skill-mode" type="button" data-skill="engineering">Engineering</button>
-                <button class="skill-mode" type="button" data-skill="growth">Growth</button>
-            </div>
-            <div class="heatmap-wrap reveal">
-                <span class="skill-node skill-5">Technical Product Management</span>
-                <span class="skill-node skill-5">0 to 1 Products</span>
-                <span class="skill-node skill-5">Large Language Models</span>
-                <span class="skill-node skill-5">Agentic AI</span>
-                <span class="skill-node skill-5">Agentic Development</span>
-                <span class="skill-node skill-5">Retrieval-Augmented Generation</span>
-                <span class="skill-node skill-5">AI Product Strategy</span>
-                <span class="skill-node skill-4">GA4 + GTM</span>
-                <span class="skill-node skill-4">Google Ads</span>
-                <span class="skill-node skill-4">Meta Ads Manager</span>
-                <span class="skill-node skill-4">A/B Testing</span>
-                <span class="skill-node skill-4">Prompt Engineering</span>
-                <span class="skill-node skill-4">Product Design</span>
-                <span class="skill-node skill-4">Machine Learning</span>
-                <span class="skill-node skill-4">Model Evaluation</span>
-                <span class="skill-node skill-4">Voice AI</span>
-                <span class="skill-node skill-4">Conversational AI</span>
-                <span class="skill-node skill-4">React.js</span>
-                <span class="skill-node skill-4">Node.js</span>
-                <span class="skill-node skill-4">Python</span>
-                <span class="skill-node skill-4">TypeScript</span>
-                <span class="skill-node skill-4">NLP</span>
-                <span class="skill-node skill-4">Rapid Prototyping</span>
-                <span class="skill-node skill-3">ROAS Optimization</span>
-                <span class="skill-node skill-3">SQL</span>
-                <span class="skill-node skill-3">REST APIs</span>
-                <span class="skill-node skill-3">n8n</span>
-                <span class="skill-node skill-3">Custom GPTs</span>
-                <span class="skill-node skill-3">Figma</span>
-                <span class="skill-node skill-3">Data Analytics</span>
-                <span class="skill-node skill-3">Market Analysis</span>
-                <span class="skill-node skill-3">Competitive Analysis</span>
-                <span class="skill-node skill-3">Business Strategy</span>
-                <span class="skill-node skill-3">Next.js</span>
-                <span class="skill-node skill-3">Firebase</span>
-                <span class="skill-node skill-3">Vector Databases</span>
-                <span class="skill-node skill-3">Embeddings</span>
-                <span class="skill-node skill-3">Semantic Search</span>
-                <span class="skill-node skill-3">AI Guardrails</span>
-                <span class="skill-node skill-3">WhatsApp Business API</span>
-                <span class="skill-node skill-3">Funnel Optimization</span>
-                <span class="skill-node skill-3">Product Requirements</span>
-                <span class="skill-node skill-3">LangChain</span>
-                <span class="skill-node skill-3">User Research</span>
-                <span class="skill-node skill-2">Mixpanel</span>
-                <span class="skill-node skill-2">PostHog</span>
-                <span class="skill-node skill-2">Flask</span>
-                <span class="skill-node skill-2">Docker</span>
-                <span class="skill-node skill-2">Angular</span>
-                <span class="skill-node skill-2">Spring Boot</span>
-                <span class="skill-node skill-2">Java</span>
-                <span class="skill-node skill-2">Storybook</span>
-                <span class="skill-node skill-2">Trino</span>
-                <span class="skill-node skill-2">Tableau</span>
-                <span class="skill-node skill-2">Jira</span>
-                <span class="skill-node skill-2">Agile</span>
-                <span class="skill-node skill-2">No-Code Platforms</span>
-                <span class="skill-node skill-2">Redis</span>
-                <span class="skill-node skill-2">Market Research</span>
-                <span class="skill-node skill-2">Team Leadership</span>
-                <span class="skill-node skill-1">MySQL</span>
-                <span class="skill-node skill-1">C++</span>
-                <span class="skill-node skill-1">Scrum</span>
-            </div>
-            <p class="heatmap-footnote reveal">* and one more skill: the ability to be put in a situation room
-                with 0 context about anything and still make things happen.</p>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ── SIDE PROJECTS ── -->
-    <section id="side-projects">
-        <div class="section-inner">
-            <p class="section-label reveal">// side.projects</p>
-            <h2 class="section-title reveal">Three problems.<br>Three deliberate bets.</h2>
-            <p class="section-sub reveal">Independent products where I owned the problem framing, product architecture,
-                technical tradeoffs, and working implementation.</p>
-
-            <div class="project-showcase reveal">
-                <article class="project-story">
-                    <div class="project-copy">
-                        <div>
-                            <div class="project-index"><span>01 / Personal intelligence</span><span
-                                    class="project-live">Live</span></div>
-                            <h3>Auxiliaire</h3>
-                            <p class="project-one-liner">A personal intelligence system for turning what you capture
-                                into what you should know and do next.</p>
-                            <div class="project-framing">
-                                <div class="project-frame"><b>Problem</b>People already have places to save notes. The
-                                    failure happens after capture: decisions, follow-ups, and useful knowledge remain
-                                    buried, so every day begins by reconstructing context.</div>
-                                <div class="project-frame"><b>Solution</b>Auxiliaire turns text, links, and voice into
-                                    reviewable memory, linked actions, sourced research, and a daily readiness brief.
-                                    AI proposes the structure; the user controls what becomes durable state.</div>
-                            </div>
-                            <details class="project-brief">
-                                <summary>How it works · architecture · next</summary>
-                                <div class="project-brief-grid">
-                                    <div class="brief-cell">
-                                        <b>User problem</b>
-                                        <p>High-context work creates voice notes, links, decisions, and follow-ups
-                                            faster than a person can reliably classify, connect, and revisit them.</p>
-                                    </div>
-                                    <div class="brief-cell">
-                                        <b>Product hypothesis</b>
-                                        <p>If capture is frictionless and AI does the first-pass structuring, the user
-                                            can spend attention on judgment instead of maintaining a productivity
-                                            system.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>AI system design</b>
-                                        <p><em>Capture intelligence:</em> Whisper transcribes audio; Llama returns
-                                            schema-constrained titles, summaries, types, themes, decisions, and
-                                            suggested actions. <em>Memory intelligence:</em> relevant saved context is
-                                            retrieved before synthesis. <em>Current intelligence:</em> web research is
-                                            stored with sources and kept separate from the original note.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Guardrails & tradeoffs</b>
-                                        <p>AI prepares suggestions but never moves or rewrites user data without
-                                            confirmation. Responses are grounded in selected context, uncertainty is
-                                            preserved, original captures remain recoverable, and every workspace is
-                                            owner-scoped.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Architecture choices</b>
-                                        <div class="tool-reasons">
-                                            <div class="tool-reason"><span>Next.js 16</span><span>Co-locates the
-                                                    responsive product UI with authenticated server-side AI
-                                                    routes.</span></div>
-                                            <div class="tool-reason"><span>Firebase</span><span>Owner-scoped Auth and
-                                                    Firestore sync, including offline persistence across
-                                                    sessions.</span></div>
-                                            <div class="tool-reason"><span>Groq + Llama</span><span>Low-latency
-                                                    structured extraction, contextual synthesis, and sourced web
-                                                    research.</span></div>
-                                            <div class="tool-reason"><span>Whisper + IndexedDB</span><span>Transcribes
-                                                    voice while keeping the raw recording local and recoverable.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Next proof</b>
-                                        <p>Measure suggestion acceptance, edit distance before confirmation, capture
-                                            retrieval success, and whether the daily brief reduces time-to-first-useful
-                                            action. Then graduate keyword retrieval to semantic retrieval where the
-                                            data proves it is needed.</p>
-                                    </div>
-                                </div>
-                            </details>
-                        </div>
-                        <div class="project-foot">
-                            <div class="project-stack"><span>Next.js
-                                    16</span><span>Firebase</span><span>Groq</span><span>Whisper</span></div>
-                            <div class="project-actions">
-                                <a href="https://auxiliaire-os.vercel.app" target="_blank" rel="noopener">Open live
-                                    ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-visual" aria-label="Interactive Auxiliaire capture pipeline">
+        <div class="decision-board" id="decision-board">
+          <div class="story-steps" role="group" aria-label="Follow the product decisions">
+            <button type="button" data-story-step="0" aria-pressed="true"><span>01</span>The loose end</button>
+            <button type="button" data-story-step="1" aria-pressed="false"><span>02</span>The decision</button>
+            <button type="button" data-story-step="2" aria-pressed="false"><span>03</span>The build</button>
+            <button type="button" data-story-step="3" aria-pressed="false"><span>04</span>The next question</button>
+          </div>
+          <div class="story-scene" data-phase="0" data-product="auxiliaire">
+            <div class="story-demo" hidden><div class="workbench-product" id="auxiliaire" hidden><div class="project-visual" aria-label="Interactive Auxiliaire capture pipeline">
                         <div class="mini-product aux-preview">
                             <div class="mini-bar"><span>Auxiliaire / Capture pipeline</span><span>Human in the
                                     loop</span></div>
-                            <div class="demo-tabs" role="tablist" aria-label="Auxiliaire pipeline stages">
-                                <button class="demo-tab" type="button" role="tab" data-aux-stage="capture">01
+                            <div class="demo-tabs" role="group" aria-label="Auxiliaire pipeline stages">
+                                <button class="demo-tab" type="button" data-aux-stage="capture">01
                                     Capture</button>
-                                <button class="demo-tab active" type="button" role="tab" data-aux-stage="structure">02
-                                    AI structure</button>
-                                <button class="demo-tab" type="button" role="tab" data-aux-stage="confirm">03
+                                <button class="demo-tab active" type="button" data-aux-stage="structure">02
+                                    Structure</button>
+                                <button class="demo-tab" type="button" data-aux-stage="confirm">03
                                     Confirm</button>
                             </div>
                             <div class="aux-stage" id="aux-demo-content" aria-live="polite"></div>
-                            <div class="demo-boundary"><span>AI suggests</span><span>You decide what enters the
+                            <div class="demo-boundary"><span>Suggested actions</span><span>You decide what enters the
                                     system</span></div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="project-story">
-                    <div class="project-copy">
-                        <div>
-                            <div class="project-index"><span>02 / Browser extension</span><span
-                                    class="project-live">Live</span></div>
-                            <h3>Low Cortisol UX</h3>
-                            <p class="project-one-liner">A browser extension that adds continuity and recovery to
-                                high-friction Indian government portals.</p>
-                            <div class="project-framing">
-                                <div class="project-frame"><b>Problem</b>Identity re-entry, short sessions, and rigid
-                                    upload rules compound into abandonment and repeated work across EPFO, Passport,
-                                    Income Tax, IRCTC, and Parivahan.</div>
-                                <div class="project-frame"><b>Solution</b>Low Cortisol adds a domain-specific recovery
-                                    layer without replacing the portals: it autofills non-password fields, preserves
-                                    drafts, keeps active sessions alive, and prepares files locally—without a
-                                    credential backend.</div>
-                            </div>
-                            <details class="project-brief">
-                                <summary>How it works · architecture · next</summary>
-                                <div class="project-brief-grid">
-                                    <div class="brief-cell">
-                                        <b>Observed failure modes</b>
-                                        <p>Short sessions erase long forms, identity data is repeatedly entered,
-                                            captchas interrupt flow, and photos or scans fail opaque dimension and
-                                            file-size rules.</p>
-                                    </div>
-                                    <div class="brief-cell">
-                                        <b>Constraints</b>
-                                        <p>No control over portal code, inconsistent field markup, sensitive identity
-                                            data, changing pages, and a permission model that must stay narrow and
-                                            understandable.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Intervention design</b>
-                                        <p>Content scripts detect the active portal, map known fields, exclude
-                                            passwords, focus the captcha for manual completion, autosave non-password
-                                            fields after input, restore recent drafts, and ping only while the user is
-                                            active. The resizer uses preset dimensions and file-size checks before
-                                            download.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Privacy boundary</b>
-                                        <p>The vault is encrypted locally with PBKDF2-derived AES-256-GCM keys. Raw
-                                            identity data has no application server, permissions are restricted to
-                                            five portal domains, and passwords are deliberately excluded from autofill
-                                            and draft storage.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Architecture choices</b>
-                                        <div class="tool-reasons">
-                                            <div class="tool-reason"><span>Manifest V3</span><span>Domain-scoped
-                                                    permissions, a background service worker, and Chrome's current
-                                                    extension lifecycle.</span></div>
-                                            <div class="tool-reason"><span>Content scripts</span><span>Intervene inside
-                                                    the existing workflow instead of asking users to adopt another
-                                                    destination.</span></div>
-                                            <div class="tool-reason"><span>Shadow DOM</span><span>Isolates the helper
-                                                    panel from brittle government-portal CSS.</span></div>
-                                            <div class="tool-reason"><span>Web Crypto + Canvas</span><span>Local
-                                                    credential protection and client-side document preparation with no
-                                                    upload service.</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Next proof</b>
-                                        <p>Instrument locally visible success signals: fields recovered, form re-entry
-                                            avoided, session loss prevented, and documents passing preset checks.
-                                            Then harden selector fallbacks and ship through the Chrome Web Store.</p>
-                                    </div>
-                                </div>
-                            </details>
-                        </div>
-                        <div class="project-foot">
-                            <div class="project-stack"><span>React</span><span>Chrome
-                                    APIs</span><span>AES-256-GCM</span><span>Vite</span></div>
-                            <div class="project-actions">
-                                <a href="https://lowcortisolux.vercel.app" target="_blank" rel="noopener">Open live
-                                    ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-visual" aria-label="Interactive Low Cortisol UX portal adapter">
+                    </div><div class="project-actions"><a href="https://auxiliaire-os.vercel.app/" target="_blank" rel="noopener">Open product ↗</a></div></div><div class="workbench-product" id="low-cortisol" hidden><div class="project-visual" aria-label="Interactive Low Cortisol UX portal adapter">
                         <div class="mini-product portal-demo">
                             <div class="mini-bar"><span id="portal-demo-title">Low Cortisol / EPFO</span><span>Extension
                                     active</span></div>
-                            <div class="demo-tabs" role="tablist" aria-label="Supported portal examples">
-                                <button class="demo-tab active" type="button" role="tab"
+                            <div class="demo-tabs" role="group" aria-label="Supported portal examples">
+                                <button class="demo-tab active" type="button"
                                     data-portal="epfo">EPFO</button>
-                                <button class="demo-tab" type="button" role="tab"
+                                <button class="demo-tab" type="button"
                                     data-portal="passport">Passport</button>
-                                <button class="demo-tab" type="button" role="tab" data-portal="itr">Income tax</button>
+                                <button class="demo-tab" type="button" data-portal="itr">Income tax</button>
                             </div>
                             <div class="portal-session"><span id="portal-demo-heartbeat">Session heartbeat ·
                                     90s</span><span>● protected</span></div>
@@ -3261,91 +3068,7 @@
                             <div class="portal-boundary"><span>Password excluded</span><span>Data stays in
                                     browser</span></div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="project-story">
-                    <div class="project-copy">
-                        <div>
-                            <div class="project-index"><span>03 / Computer vision</span><span
-                                    class="project-live">Live</span></div>
-                            <h3>FunAuth</h3>
-                            <p class="project-one-liner">An on-device computer-vision prototype for gesture-based
-                                challenge-response authentication.</p>
-                            <div class="project-framing">
-                                <div class="project-frame"><b>Problem</b>The hard part of camera-based authentication
-                                    is not only recognition—it is making noisy, ambiguous signals understandable enough
-                                    for a user to complete, correct, and trust the verification flow.</div>
-                                <div class="project-frame"><b>Solution</b>FunAuth converts hand and face detections
-                                    into an explicit sequence: confidence thresholds, timed holds, reset-on-mismatch,
-                                    liveness diagnostics, and live feedback—all processed on-device.</div>
-                            </div>
-                            <details class="project-brief">
-                                <summary>How it works · architecture · production path</summary>
-                                <div class="project-brief-grid">
-                                    <div class="brief-cell">
-                                        <b>Why build it</b>
-                                        <p>Most biometric demos reduce the user to a passive scan. FunAuth explores an
-                                            active, memorable challenge where the interface explains what it detects
-                                            and what remains.</p>
-                                    </div>
-                                    <div class="brief-cell">
-                                        <b>Constraints</b>
-                                        <p>Real-time inference on ordinary browsers, noisy gesture classification,
-                                            camera permission over HTTPS, simultaneous hand and face states, and no
-                                            transmission of raw frames.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Verification loop</b>
-                                        <p>Users compose up to eight steps, practice with live feedback, and then
-                                            verify them in order. Each step requires the expected class to clear a
-                                            confidence threshold and remain stable for its configured hold time; a
-                                            mismatch resets progress instead of silently failing.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Honest production boundary</b>
-                                        <p>This is an interaction and computer-vision prototype—not production
-                                            identity infrastructure. The current session token is client-generated,
-                                            the liveness heuristic is a diagnostic rather than a security gate, and
-                                            credentials use browser storage. Those gaps are explicit.</p>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Architecture choices</b>
-                                        <div class="tool-reasons">
-                                            <div class="tool-reason"><span>MediaPipe Tasks</span><span>Hand landmarks
-                                                    and face blendshapes without the cost of training custom
-                                                    models.</span></div>
-                                            <div class="tool-reason"><span>WASM + GPU delegate</span><span>Keeps
-                                                    inference on-device while maintaining usable frame-by-frame
-                                                    performance.</span></div>
-                                            <div class="tool-reason"><span>WebRTC + Canvas</span><span>Captures the
-                                                    camera and renders landmark feedback directly over the feed.</span>
-                                            </div>
-                                            <div class="tool-reason"><span>Web Audio</span><span>Procedural cues make
-                                                    step progress understandable without forcing visual
-                                                    attention.</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="brief-cell wide">
-                                        <b>Production path</b>
-                                        <p>Server-sign sessions, add challenge-bound liveness and replay protection,
-                                            store credentials behind secure server state or WebAuthn, self-host model
-                                            assets, and evaluate false-accept and false-reject rates by device and
-                                            lighting condition.</p>
-                                    </div>
-                                </div>
-                            </details>
-                        </div>
-                        <div class="project-foot">
-                            <div class="project-stack">
-                                <span>MediaPipe</span><span>WebAssembly</span><span>WebRTC</span><span>Client JWT</span>
-                            </div>
-                            <div class="project-actions">
-                                <a href="https://funauth.vercel.app" target="_blank" rel="noopener">Try it live ↗</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-visual" aria-label="Interactive FunAuth verification sequence">
+                    </div><div class="project-actions"><a href="https://lowcortisolux.vercel.app/" target="_blank" rel="noopener">Open product ↗</a></div></div><div class="workbench-product" id="funauth" hidden><div class="project-visual" aria-label="Interactive FunAuth verification sequence">
                         <div class="mini-product gesture-demo">
                             <div class="mini-bar"><span>FunAuth / Signature engine</span><span>On-device vision</span></div>
                             <div class="gesture-context"><span>Available signals</span><span>Frames uploaded: 0</span>
@@ -3374,26 +3097,53 @@
                                 <button class="gesture-run" type="button">Run challenge</button>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </div>
+                    </div><div class="project-actions"><a href="https://funauth.vercel.app/" target="_blank" rel="noopener">Try it ↗</a></div></div><div class="workbench-product" id="delivery-delegate" hidden><div class="project-visual" aria-label="Delivery Delegate OTP availability scenario">
+                        <div class="handoff-preview" id="delivery-preview">
+                            <p class="handoff-kicker">At the doorstep</p><h4>One unavailable person.<br>A delivery on hold.</h4>
+                            <div class="handoff-controls" aria-label="Explore the pickup scenario">
+                                <button type="button" data-permission="waiting" aria-pressed="true">OTP unavailable</button>
+                                <button type="button" data-permission="planned" aria-pressed="false">Plan ahead</button>
+                            </div>
+                            <div class="handoff-result" data-state="waiting" aria-live="polite"><b id="handoff-status">Rider waiting. Collector ready.</b><p id="handoff-explanation">The OTP went to someone who cannot respond. The parcel cannot be handed over yet.</p></div>
+                            <p class="handoff-note">Illustrative flow · Courier integration pending</p>
+                        </div>
+                    </div><div class="project-actions"><a href="https://github.com/udbhavvarma/delivery-delegate-prototype" target="_blank" rel="noopener">View source ↗</a><a class="source-link" href="https://delivery-delegate.vercel.app/" target="_blank" rel="noopener" title="This deployment returned DEPLOYMENT_NOT_FOUND on 6 September 2026">Live site · unavailable</a></div></div></div>
+            <div class="story-artifact" aria-label="Illustrative product artifact"><div class="artifact-top"><span id="artifact-label">Meeting notes</span><span aria-hidden="true">↗</span></div><div id="artifact-body"><p class="artifact-quote">“Let’s go with the second option.”</p><div class="artifact-slip"><span>The missing piece</span><strong>What did we decide—and why?</strong></div></div><p class="artifact-caption">Illustrative preview</p></div>
+            <div class="story-narrative" aria-live="polite" aria-atomic="true"><h3 id="story-title">The meeting ends.<br>The context scatters.</h3><p id="story-description">A decision lives in a conversation, its follow-up in a task list. Later, the reason behind it is hard to recover.</p><div class="story-note"><span id="story-note-label">The opening</span><p id="story-note">Keep the reason attached to the next step.</p></div><button id="story-product-link" class="story-build-button" type="button">See the working version →</button></div>
+          </div>
+          <div class="story-navigation"><div><button id="story-prev" type="button" disabled aria-label="Previous step">← Back</button><button id="story-next" type="button">The decision →</button></div></div>
         </div>
+        <noscript><p class="story-fallback">Product previews and links appear below. Enable JavaScript to follow the decisions behind them.</p></noscript>
+      </div>
     </section>
 
-    <div class="divider"></div>
+    <section id="skills" class="skills-story">
+      <div class="section-inner"><h2 class="section-title">Skills, in practice.</h2>
+        <div class="skills-path">
+          <article><h3>When the idea is still vague.</h3><p>I turn research and observations into a clear problem, a useful first version, and a way to judge whether it works.</p><p class="skill-methods">User research · Product strategy · Requirements · Experiment design</p></article>
+          <article><h3>When the idea needs a shape.</h3><p>I build the smallest convincing version: tangible enough to try, useful enough to explain the solution, and alive enough to make people curious.</p><p class="skill-methods">Interactive prototypes · Workflow design · Agent experiments · Product design</p></article>
+          <article><h3>When reality has other plans.</h3><p>I use feedback, product analytics, LLM evals, and traces to understand failures and decide what to improve next.</p><p class="skill-methods">Evaluation · Observability · Funnel analysis · Growth experiments</p></article>
+        </div>
+      </div>
+    </section>
 
     <!-- ── EXPERIENCE ── -->
     <section id="experience">
         <div class="section-inner">
-            <p class="section-label reveal">// work.log</p>
-            <h2 class="section-title reveal">Where I've been.</h2>
-            <p class="section-sub reveal">Building at the intersection of product and engineering. Currently @ Times
-                Internet.</p>
 
+            <h2 class="section-title reveal">What changed.</h2>
+
+
+            <div class="outcome-ledger" id="proof" aria-label="Results from my work">
+              <details><summary><strong>2.5×</strong><span>Return on spend<small>Times Internet · Model iteration</small></span><b aria-hidden="true">＋</b></summary><p>Model iteration and experimentation improved return on spend across conversational products. The product question: do better interactions translate into better economics?</p><a href="#role-times">See the role ↗</a></details>
+              <details><summary><strong>50%</strong><span>Fewer human handoffs<small>Economic Times · WhatsApp automation</small></span><b aria-hidden="true">＋</b></summary><p>The WhatsApp chatbots I shipped reduced handoffs to human agents by 50%. The product question: how much can the experience resolve before someone needs to step in?</p><a href="#role-et">See the role ↗</a></details>
+              <details><summary><strong>10%</strong><span>Engagement lift<small>myKaarma · Product revamp</small></span><b aria-hidden="true">＋</b></summary><p>A production feature revamp improved engagement by 10%. The product question: does improving an everyday interaction change how people use it?</p><a href="#role-mykaarma">See the role ↗</a></details>
+            </div>
             <div class="exp-list">
 
                 <!-- TIL: ATPM -->
-                <div class="exp-card reveal">
+                <div class="exp-card reveal" id="role-times">
+
                     <div class="exp-header">
                         <div>
                             <div class="exp-role">Associate Technical Product Manager</div>
@@ -3403,28 +3153,16 @@
                                 live</span></div>
                     </div>
                     <ul class="exp-bullets">
-                        <li>Own E2E architecture and roadmap for AI conversational platforms at B2C and enterprise scale
-                            — basically the person who gets paged when the bot says something weird</li>
-                        <li>0→1 product incubation: rapid prototyping, POC validation, A/B experiments, and convincing
-                            engineers it was their idea (hardest part)</li>
-                        <li>Improved ROS by 2.5× through model iteration and data-driven experimentation — that number
-                            is real and I'm very proud of it</li>
-                        <li>Full-funnel growth ownership: Meta Ads Manager, Google Ads, GA4. ROAS &lt; 1 is a bad dream.
-                            I say good morning to my marketing person right after I tell them to fix the underperforming
-                            campaign</li>
+                        <li>Own the roadmap and architecture for conversational platforms that help users resolve requests through chat and voice.</li>
+                        <li>Turn recurring user problems into prototypes, then test completion and engagement before expanding the product.</li>
+                        <li>Improved ROS by 2.5× through model iteration and experimentation.</li>
+                        <li>Connect model improvements to acquisition, engagement, and unit economics.</li>
                     </ul>
-                    <div class="exp-tech">
-                        <span class="tech-pill">GenAI</span>
-                        <span class="tech-pill">LLMs</span>
-                        <span class="tech-pill">Voice Agents</span>
-                        <span class="tech-pill">Meta Ads</span>
-                        <span class="tech-pill">GA4</span>
-                        <span class="tech-pill">GTM</span>
-                    </div>
                 </div>
 
                 <!-- TIL: AI Product Intern -->
-                <div class="exp-card reveal">
+                <div class="exp-card reveal" id="role-et">
+
                     <div class="exp-header">
                         <div>
                             <div class="exp-role">AI Product Intern</div>
@@ -3433,25 +3171,16 @@
                         <div class="exp-date">May – Jul 2025 · 3 mos</div>
                     </div>
                     <ul class="exp-bullets">
-                        <li>Built 0→1 conversational AI apps that made LLM voice agents actually useful to real humans —
-                            not just demo videos</li>
-                        <li>Collaborated with FMCG and Fortune 500 clients on AI chatbot advertising prototypes — yes,
-                            ads can have vibes too</li>
-                        <li>Shipped WABA chatbots that cut human-agent handoffs in half. Support team wrote a thank-you
-                            note. Kind of.</li>
-                        <li>Conceived POCs for new AI products and shepherded cross-functional teams through MVPs — the
-                            universal language of "just ship it"</li>
+                        <li>Built conversational products that let users complete requests through LLM voice agents.</li>
+                        <li>Prototyped conversational advertising experiences with FMCG and Fortune 500 clients.</li>
+                        <li>Shipped WhatsApp chatbots that reduced handoffs to human agents by 50%.</li>
+                        <li>Led cross-functional teams from a product hypothesis through a working prototype.</li>
                     </ul>
-                    <div class="exp-tech">
-                        <span class="tech-pill">LLM Voice Agents</span>
-                        <span class="tech-pill">WhatsApp BA</span>
-                        <span class="tech-pill">Conversational AI</span>
-                        <span class="tech-pill">Product Design</span>
-                    </div>
                 </div>
 
                 <!-- myKaarma -->
-                <div class="exp-card reveal">
+                <div class="exp-card reveal" id="role-mykaarma">
+
                     <div class="exp-header">
                         <div>
                             <div class="exp-role">Software Development Intern</div>
@@ -3460,27 +3189,15 @@
                         <div class="exp-date">May – Jul 2024 · 3 mos</div>
                     </div>
                     <ul class="exp-bullets">
-                        <li>Revamped the Out-of-Office feature for dealership associates — wrote more unit tests than I
-                            care to admit</li>
-                        <li>Built a scalable Angular UI with reusable components. Storybook stories included. Yes, I'm
-                            that person.</li>
-                        <li>Spring Boot aggregator service routing HTTP across the backend — microservices talking to
-                            microservices talking to microservices</li>
-                        <li>Shipped it → 10% lift in engagement. Impact analysis doc: 47 pages. Actual fix: 200 lines of
-                            code.</li>
+                        <li>Revamped the Out-of-Office experience for dealership associates, improving a routine communication workflow.</li>
+                        <li>Built reusable interface components and documented their behavior in Storybook.</li>
+                        <li>Connected the interface to backend services through a Spring Boot aggregator.</li>
+                        <li>The shipped revamp produced a 10% lift in engagement.</li>
                     </ul>
-                    <div class="exp-tech">
-                        <span class="tech-pill">Angular</span>
-                        <span class="tech-pill">TypeScript</span>
-                        <span class="tech-pill">Storybook</span>
-                        <span class="tech-pill">Spring Boot</span>
-                        <span class="tech-pill">Java</span>
-                        <span class="tech-pill">Jira</span>
-                    </div>
                 </div>
 
                 <!-- IEEE -->
-                <div class="exp-card reveal">
+                <div class="exp-card reveal" id="role-ieee">
                     <div class="exp-header">
                         <div>
                             <div class="exp-role">General Secretary & Coordinator → Head of Comms → ExeCom</div>
@@ -3489,19 +3206,11 @@
                         <div class="exp-date">Feb 2022 – May 2024 · 2 yrs 4 mos</div>
                     </div>
                     <ul class="exp-bullets">
-                        <li>Led a 70+ member team — first managerial job, survived it, still have all my hair</li>
-                        <li>Organized ~30 technical events (hackathons, cryptic hunts) with 100–120 participants each —
-                            logistics is just project management with food</li>
-                        <li>Partnered with Solana and other blockchain companies for joint events that pulled 200+
-                            attendees. Web3 hype was real. We rode it.</li>
-                        <li>Progressed from ExeCom → Head of Comms → Gen Sec. Classic speedrun.</li>
+                        <li>Led a team of more than 70 members across technical events and community initiatives.</li>
+                        <li>Organized around 30 technical events, including hackathons and cryptic hunts, with 100–120 participants each.</li>
+                        <li>Built partnerships with Solana and other blockchain companies for events attracting more than 200 attendees.</li>
+                        <li>Progressed from the executive committee to Head of Communications, then General Secretary.</li>
                     </ul>
-                    <div class="exp-tech">
-                        <span class="tech-pill">Team Leadership</span>
-                        <span class="tech-pill">Event Management</span>
-                        <span class="tech-pill">Partnerships</span>
-                        <span class="tech-pill">Community Building</span>
-                    </div>
                 </div>
 
             </div>
@@ -3593,95 +3302,34 @@
     ═══ end PROJECTS ═══ -->
 
     <!-- ── SERIOUS NOTE (formerly vibes) ── -->
-    <section id="principles">
-        <div class="section-inner">
-            <p class="section-label reveal">// principles.md</p>
-            <h2 class="section-title reveal">On a serious note.</h2>
-            <p class="section-sub reveal" style="font-style:normal;">A few things I genuinely believe about building
-                products. No irony here.</p>
+    <section id="principles" class="principles-story"><div class="section-inner">
+      <div class="principles-heading"><h2 class="section-title">What the work taught me.</h2><p>Six principles I return to when an idea meets reality.</p></div>
+      <div class="principles-list">
+        <details><summary><span><small>When the room needs a shared picture.</small><strong>Clarity is a competitive advantage.</strong></span><b aria-hidden="true">+</b></summary><p>Vague briefs create expensive certainty. I surface assumptions and unknowns early, so the team can disagree with the same problem in view.</p></details>
+        <details><summary><span><small>When the first version meets reality.</small><strong>Ship, then learn.</strong></span><b aria-hidden="true">+</b></summary><p>A useful version in someone’s hands teaches more than a polished idea waiting for permission. I ship to replace opinions with evidence.</p></details>
+        <details><summary><span><small>When every request sounds urgent.</small><strong>The metric is the strategy.</strong></span><b aria-hidden="true">+</b></summary><p>I ask what should change for the user and the business. That answer makes priorities clearer and gives the next decision something concrete to improve.</p></details>
+        <details><summary><span><small>When the solution meets its constraints.</small><strong>Engineering is a partner, not a vendor.</strong></span><b aria-hidden="true">+</b></summary><p>The best product decisions happen with engineering in the room early. Reliability, constraints, and technical debt belong in the product conversation.</p></details>
+        <details><summary><span><small>When a model enters the product loop.</small><strong>AI is infrastructure now.</strong></span><b aria-hidden="true">+</b></summary><p>I treat model behavior as product behavior: something to evaluate, trace, observe, and improve—not a feature label added at the end.</p></details>
+        <details><summary><span><small>When a good product still needs an audience.</small><strong>Distribution beats product.</strong></span><b aria-hidden="true">+</b></summary><p>How people discover, adopt, and return to a product changes what should be built. Growth and distribution are part of the experience from the beginning.</p></details>
+      </div>
+    </div></section>
 
-            <div class="vibe-grid">
-                <div class="vibe-card reveal">
-                    <div class="vibe-emoji">01</div>
-                    <div class="vibe-title">Clarity is a competitive advantage</div>
-                    <div class="vibe-desc">The best product decisions come from being brutally honest about what you
-                        know and what you don't. Vague specs are expensive. Clear ones are underrated.</div>
-                </div>
-                <div class="vibe-card reveal">
-                    <div class="vibe-emoji">02</div>
-                    <div class="vibe-title">Ship, then learn</div>
-                    <div class="vibe-desc">Perfect is the enemy of useful. I'd rather have a working MVP in the hands of
-                        users than a polished prototype in a Figma file. Feedback is data. Ship to get it.</div>
-                </div>
-                <div class="vibe-card reveal">
-                    <div class="vibe-emoji">03</div>
-                    <div class="vibe-title">The metric is the strategy</div>
-                    <div class="vibe-desc">If you can't tie a decision back to a number that matters, you're guessing. I
-                        define north star metrics before writing a single line of a PRD.</div>
-                </div>
-                <div class="vibe-card reveal">
-                    <div class="vibe-emoji">04</div>
-                    <div class="vibe-title">Engineering is a partner, not a vendor</div>
-                    <div class="vibe-desc">The best products I've shipped happened when engineering was in the room from
-                        day one. Constraints are features. Technical debt is a product risk.</div>
-                </div>
-                <div class="vibe-card reveal">
-                    <div class="vibe-emoji">05</div>
-                    <div class="vibe-title">AI is infrastructure now</div>
-                    <div class="vibe-desc">We're past the "AI features" phase. The question is how deeply and
-                        responsibly it's embedded into the core product loop — not whether it should be.</div>
-                </div>
-                <div class="vibe-card reveal">
-                    <div class="vibe-emoji">06</div>
-                    <div class="vibe-title">Distribution beats product</div>
-                    <div class="vibe-desc">A great product no one finds is a prototype. Growth, GTM, and performance
-                        marketing aren't afterthoughts — they're part of the product. I take them seriously.</div>
-                </div>
-            </div>
-        </div>
+    <section id="contact" class="contact-finale">
+      <div class="section-inner">
+        <div class="contact-story"><h2>Keep in <em>touch.</em></h2></div>
+        <div class="contact-direct"><div class="email-copy"><a href="mailto:varmaudbhav03@gmail.com">varmaudbhav03@gmail.com</a><button type="button" id="copy-email" aria-label="Copy email address">Copy</button></div><p id="copy-email-status" role="status" aria-live="polite"></p><a class="contact-social" href="https://linkedin.com/in/udbhav-varma" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></div>
+      </div>
     </section>
 
-    <div class="divider"></div>
-
-    <!-- ── CONTACT ── -->
-    <section id="contact">
-        <div class="contact-inner">
-            <p class="section-label reveal">// contact.sh</p>
-            <h2 class="section-title reveal">Let's build something.</h2>
-            <p class="section-sub reveal" style="margin: 0 auto 0; text-align:center;">I'm always up for interesting
-                problems, cool collabs, and good conversations about product and tech.</p>
-
-            <div class="contact-terminal reveal">
-                <!-- <div class="contact-status">channel open · accepting interesting problems</div> -->
-                <div class="line"><span class="prompt-str">→</span><span class="cmd">open connections</span></div>
-                <div class="contact-links">
-                    <div class="contact-link-row">
-                        <span class="contact-link-label">email</span>
-                        <a class="contact-link-val" href="mailto:varmaudbhav03@gmail.com">varmaudbhav03@gmail.com</a>
-                    </div>
-                    <div class="contact-link-row">
-                        <span class="contact-link-label">linkedin</span>
-                        <a class="contact-link-val" href="https://linkedin.com/in/udbhav-varma" target="_blank"
-                            rel="noopener">linkedin.com/in/udbhav-varma</a>
-                    </div>
-                </div>
-                <!-- <div style="margin-top:1.5rem; color: var(--text-muted);">
-                    <span class="prompt-str">→</span> <span style="color:var(--green);">status:</span> <span
-                        style="color:var(--text-dim);">shipping things @ Times Internet</span> <span
-                        style="animation:blink 1s step-end infinite; display:inline-block; width:8px; height:15px; background:var(--green); vertical-align:middle;"></span>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
+    </main>
+    <nav class="chapter-dock" aria-label="Portfolio navigation"><a href="#hero" aria-current="location">Intro</a><a href="#about">Workbench</a><a href="#skills">Skills</a><a href="#experience">Work</a><a href="#principles">Principles</a><a href="#contact">Contact</a></nav>
     <!-- Footer -->
-    <footer>
-        <p>designed with restraint. engineered with personality. fueled by a suspicious amount of diet coke. © 2026</p>
-    </footer>
+    <footer class="portfolio-footer"><a href="#hero" aria-label="Return to the beginning">Udbhav Varma <span aria-hidden="true">↑</span></a><span>2026</span></footer>
 
     <div class="command-palette" id="command-palette" aria-hidden="true">
         <div class="palette-box" role="dialog" aria-modal="true" aria-label="Site command palette">
-            <input class="palette-input" id="palette-input" placeholder="Type a command…  (esc to close)"
+            <div class="palette-heading"><span>GO SOMEWHERE. TRY SOMETHING.</span><button type="button" id="palette-close" aria-label="Close site commands">Close <kbd>esc</kbd></button></div>
+            <input aria-label="Site command" class="palette-input" id="palette-input" placeholder="Type a command…  (esc to close)"
                 autocomplete="off" spellcheck="false" />
             <div class="palette-options">
                 <button type="button" data-command="open projects">open projects</button>
@@ -3863,10 +3511,9 @@
             sp();
             cmd('whoami');
             sp();
-            el('div', 'font-family:var(--sans);font-size:clamp(2.7rem,7vw,6.6rem);font-weight:800;letter-spacing:-0.065em;color:var(--text);line-height:0.86;padding:0.35rem 0 0.8rem;text-transform:uppercase;',
+            el('div', 'font-family:var(--sans);font-size:clamp(2.5rem,4.5vw,4.3rem);font-weight:800;letter-spacing:-0.065em;color:var(--text);line-height:0.86;padding:0.35rem 0 0.8rem;text-transform:uppercase;',
                 'Udbhav <span style="display:block;color:var(--green)">Varma.</span>');
-            el('div', '', '<div class="terminal-identity-meta"><span class="terminal-role">Associate Technical PM</span><span class="terminal-company">Times Internet · AI Labs · COO Office</span></div>');
-            el('div', 'padding:0;', '<div class="terminal-positioning">Building AI products that move metrics.</div>');
+            el('div', 'padding:0;', '<div class="terminal-positioning">Product manager. Hands-on builder.</div>');
             sp();
 
             /* ── sarcastic fallbacks (escalating) ── */
@@ -3934,10 +3581,10 @@
                     'open impact': ['proof', 'opening the numbers that survived stakeholder review.'],
                     'open work': ['experience', 'opening work.log — outcomes first, lore on demand.'],
                     'show work': ['experience', 'opening work.log — outcomes first, lore on demand.'],
-                    'open projects': ['side-projects', 'opening experiments.shipped — three products, three very different problems.'],
-                    'show projects': ['side-projects', 'opening experiments.shipped — three products, three very different problems.'],
-                    'focus skills': ['skills', 'focusing capability graph. pick a system: product · AI · engineering · growth.'],
-                    'open skills': ['skills', 'opening the capability graph.'],
+                    'open projects': ['side-projects', 'Opening four product stories.'],
+                    'show projects': ['side-projects', 'Opening four product stories.'],
+                    'focus skills': ['skills', 'Agent workflows · Evals and traces · Product delivery.'],
+                    'open skills': ['skills', 'Opening how I design and evaluate agent workflows.'],
                     'open contact': ['contact', 'connection channel open. sensible pitches preferred.'],
                     'connect udbhav': ['contact', 'routing to the actual human.'],
                     'open principles': ['principles', 'loading operating principles. no corporate wallpaper detected.']
@@ -3963,7 +3610,7 @@
                 switch (base) {
 
                     case 'help':
-                        raw(`available commands\n  whoami            the udbhav himself\n  show impact       move the page to measurable evidence\n  open projects     see the side quests that shipped\n  open work         open the work log\n  focus skills      inspect the capability graph\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
+                        raw(`available commands\n  whoami            the udbhav himself\n  show impact       move the page to measurable evidence\n  open projects     see the side quests that shipped\n  open work         open the work log\n  focus skills      how I take an idea into the world\n  open contact      establish a connection\n  surprise me       surrender control responsibly\n  ls                what's in here\n  cat <file>        read a file (about · experience · projects · contact)\n  pwd               existential geography\n  date              current timestamp\n  echo <text>       repeats after you\n  neofetch          the only command that matters\n  theme <name>      override udbhav's color preferences (matrix · cyberpunk · light · default)\n  matrix            full-screen matrix rain. completely useful now\n  game              simulate a typical friday release window\n  git log           questionable commit history\n  git status        spoiler: it's clean\n  git push          always shipping\n  ps / top          running processes (portfolio edition)\n  uname -a          OS info\n  sudo <anything>   nice try\n  clear             fresh start\n  help              you're already here\n\n(for the record: dude it's a portfolio website, it's not that serious.)`); break;
 
                     case 'theme': {
                         let tName = args[0];
@@ -4046,13 +3693,13 @@
                     case 'whoami':
                         el('div', 'font-family:var(--sans);font-size:clamp(1.1rem,2vw,1.6rem);font-weight:800;letter-spacing:-0.03em;color:var(--text);padding:0.2rem 0 0.2rem 1.1rem;',
                             'Udbhav <span style="color:var(--green)">Varma.</span>');
-                        raw('ATPM @ Times Internet · AI Labs · COO Office\nCS + Economics, IIIT Delhi\nBuilt so many conversational AI platforms I can make you talk to anyone.\n90% of my jenkins builds fail. the 10% that succeed change the game.'); break;
+                        raw('Technical product manager · Times Internet\nI notice a gap, build a response, and keep improving it.\nCS + Economics, IIIT Delhi'); break;
 
                     case 'ls': {
                         const flag = args.find(a => a.startsWith('-'));
                         const tgt = args.find(a => !a.startsWith('-')) || '';
                         if (tgt === 'projects' || tgt === 'projects/') {
-                            raw('Auxiliaire/        calm personal intelligence · readiness + memory\nLowCortisolUX/     makes government portals survivable\nFunAuth/           passwords, but make them choreography');
+                            raw('Auxiliaire/        decision memory · evidence + actions + outcomes\nLowCortisolUX/     makes government portals survivable\nFunAuth/           passwords, but make them choreography\nDeliveryDelegate/  reducing OTP-related pickup delays');
                         } else if (flag && (flag.includes('l') || flag.includes('a'))) {
                             raw('drwxr-xr-x  udbhav  about.md        (bio, vaguely accurate)\ndrwxr-xr-x  udbhav  experience.md   (where the money comes from)\ndrwxr-xr-x  udbhav  projects.md     (where the fun happens)\ndrwxr-xr-x  udbhav  vibes.md        (most important file)\ndrwxr-xr-x  udbhav  contact.md      (sensible pitches only)\n-rw-r--r--  udbhav  roles.json      (what i actually do)\n-rw-------  udbhav  jenkins.log     (do not open)');
                         } else {
@@ -4064,13 +3711,13 @@
                     case 'cat': {
                         const f = args[0] || '';
                         if (['about', 'about.md', 'about.txt', 'bio'].includes(f)) {
-                            raw('Name:      Udbhav Varma\nRole:      Associate Technical Product Manager\nCompany:   Times Internet · AI Labs · COO Office\nEducation: CS + Economics, IIIT Delhi\n\nOne part PM. One part engineer. One part chaos.\nAsks "why are we building this?", gets told to just build it,\nships it faster than the meeting was scheduled.');
+                            raw('Name:      Udbhav Varma\nRole:      Associate Technical Product Manager\nCompany:   Times Internet · AI Labs · COO Office\nEducation: CS + Economics, IIIT Delhi\nFocus:     Ideas made tangible, improved through real use');
                             focusSection('about');
                         } else if (['experience', 'exp', 'experience.md', 'exp.md', 'work'].includes(f)) {
                             raw('[current]  Assoc. TPM @ Times Internet (Aug 2025 – now)\n           AI Labs · COO Office · GenAI platforms · 2.5x ROS\n[2025]     AI Product Intern @ Economic Times\n           Conversational AI · Voice Agents · WABA · Fortune 500 clients\n[2024]     SDE Intern @ myKaarma\n           Angular + Spring Boot · +10% engagement\n[2022-24]  Gen Sec @ IEEE IIIT-Delhi\n           70+ members · 30 events · Solana partnership');
                             focusSection('experience');
                         } else if (['projects', 'projects.md', 'proj'].includes(f)) {
-                            raw('Auxiliaire     — AI capture triage, grounded memory, sourced research\nLowCortisolUX  — browser-layer recovery for hostile government portals\nFunAuth         — on-device multimodal challenge-response prototype');
+                            raw('Auxiliaire     — speech and notes to reviewable, source-linked actions\nLowCortisolUX  — browser-layer recovery for hostile government portals\nFunAuth         — on-device gesture recognition\nDeliveryDelegate — reducing OTP-related pickup delays');
                             focusSection('side-projects');
                         } else if (['contact', 'contact.md'].includes(f)) {
                             raw('email     varmaudbhav03@gmail.com\nlinkedin  linkedin.com/in/udbhav-varma\n\n(if your idea is interesting enough, i reply fast.)');
@@ -4080,11 +3727,11 @@
                         } else if (f === 'vibes.md') {
                             raw('90% chaos, 10% clarity.\nthe 10% always ships on time.\nhaving the dawg in me: confirmed.');
                         } else if (['roles.json', 'roles'].includes(f)) {
-                            raw('[\n  {\n    "role": "Product Manager",\n    "vibe": "tag-green"\n  },\n  {\n    "role": "AI Builder",\n    "vibe": "tag-blue"\n  }\n]');
+                            raw('[\n  {\n    "role": "Product Manager",\n    "vibe": "tag-green"\n  },\n  {\n    "role": "Builder",\n    "vibe": "tag-blue"\n  }\n]');
                             sp();
                             const rDiv = document.createElement('div');
                             rDiv.style.cssText = 'display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.25rem 0 0.25rem 1.1rem;';
-                            [['Product Manager', 'tag-green'], ['AI Builder', 'tag-blue']]
+                            [['Product Manager', 'tag-green'], ['Builder', 'tag-blue']]
                                 .forEach(([l, c]) => {
                                     const s = document.createElement('span');
                                     s.className = 'tag ' + c;
@@ -4100,7 +3747,7 @@
                         break;
                     }
 
-                    case 'pwd': raw('/home/udbhav/somewhere-between-product-and-engineering'); break;
+                    case 'pwd': raw('/home/udbhav/ai-products'); break;
                     case 'cd': raw(args.length && !['~', '/', '..'].includes(args[0]) ? 'cd: ' + esc(rargs[0]) + ": you're already exactly where you need to be." : "you're already home."); break;
                     case 'date': raw(new Date().toString()); break;
                     case 'echo': raw(rargs.length ? rargs.join(' ') : ''); break;
@@ -4252,9 +3899,7 @@
             term.addEventListener('click', () => inp.focus());
             window.portfolioRun = run;
             window.portfolioInput = inp;
-            if (matchMedia('(pointer:fine)').matches) {
-                setTimeout(() => { try { inp.focus(); } catch (e) { } }, 300);
-            }
+
         })();
 
         /* Suggested commands and mobile terminal mode */
@@ -4292,39 +3937,23 @@
             toggle.type = 'button';
             toggle.setAttribute('aria-label', 'Expand role details');
             toggle.setAttribute('aria-expanded', 'false');
-            toggle.textContent = '+';
-            card.querySelector('.exp-header')?.after(outcome);
+            toggle.textContent = 'View details +';
+            const roleName = card.querySelector('.exp-role').textContent;
+            toggle.setAttribute('aria-label', `View details: ${roleName}`);
+            const controlled = [...card.querySelectorAll('.exp-bullets, .exp-tech')];
+            controlled.forEach((el, n) => { el.id = `role-detail-${i}-${n}`; });
+            toggle.setAttribute('aria-controls', controlled.map(el => el.id).join(' '));
+
             card.appendChild(toggle);
             function toggleCard(event) {
                 if (event?.target.closest('a')) return;
                 const open = card.classList.toggle('open');
                 toggle.setAttribute('aria-expanded', String(open));
-                toggle.setAttribute('aria-label', open ? 'Collapse role details' : 'Expand role details');
+                toggle.textContent = open ? 'Hide details −' : 'View details +';
+                toggle.setAttribute('aria-label', `${open ? 'Hide' : 'View'} details: ${roleName}`);
             }
-            card.addEventListener('click', toggleCard);
+            toggle.addEventListener('click', toggleCard);
         });
-
-        /* Capability map */
-        const skillGroups = {
-            product: ['product', '0 to 1', 'a/b', 'design', 'research', 'market', 'competitive', 'business', 'requirements', 'agile', 'scrum', 'jira', 'leadership'],
-            ai: ['language model', 'agentic', 'retrieval', 'ai product', 'prompt', 'machine learning', 'model evaluation', 'voice ai', 'conversational ai', 'nlp', 'custom gpt', 'vector', 'embedding', 'semantic', 'guardrail', 'langchain'],
-            engineering: ['react', 'node', 'python', 'typescript', 'sql', 'api', 'n8n', 'next', 'firebase', 'flask', 'docker', 'angular', 'spring boot', 'java', 'storybook', 'trino', 'redis', 'c++'],
-            growth: ['ga4', 'gtm', 'ads', 'roas', 'funnel', 'mixpanel', 'posthog', 'analytics', 'tableau']
-        };
-        const skillWrap = document.querySelector('.heatmap-wrap');
-        const skillNodes = [...document.querySelectorAll('.skill-node')];
-        document.querySelectorAll('.skill-mode').forEach(button => {
-            button.addEventListener('click', () => {
-                const group = button.dataset.skill;
-                document.querySelectorAll('.skill-mode').forEach(b => b.classList.toggle('active', b === button));
-                skillWrap.classList.toggle('has-filter', group !== 'all');
-                skillNodes.forEach(node => {
-                    const label = node.textContent.toLowerCase();
-                    node.classList.toggle('skill-active', group !== 'all' && skillGroups[group].some(term => label.includes(term)));
-                });
-            });
-        });
-        document.querySelector('.skill-mode[data-skill="all"]')?.click();
 
         /* Product showcases: small, truthful simulations of the shipped systems */
         const auxStages = {
@@ -4375,7 +4004,7 @@
             document.querySelectorAll('[data-aux-stage]').forEach(button => {
                 const active = button.dataset.auxStage === stage;
                 button.classList.toggle('active', active);
-                button.setAttribute('aria-selected', String(active));
+                button.setAttribute('aria-pressed', String(active));
             });
         }
         document.querySelectorAll('[data-aux-stage]').forEach(button => {
@@ -4419,12 +4048,14 @@
             document.querySelectorAll('[data-portal]').forEach(button => {
                 const active = button.dataset.portal === portal;
                 button.classList.toggle('active', active);
-                button.setAttribute('aria-selected', String(active));
+                button.setAttribute('aria-pressed', String(active));
             });
         }
         document.querySelectorAll('[data-portal]').forEach(button => {
             button.addEventListener('click', () => renderPortalExample(button.dataset.portal));
         });
+
+        renderPortalExample('epfo');
 
         const gestureDemo = document.querySelector('.gesture-demo');
         const gestureRun = document.querySelector('.gesture-run');
@@ -4474,15 +4105,19 @@
         /* Global command palette — the terminal follows the viewer */
         const palette = document.getElementById('command-palette');
         const paletteInput = document.getElementById('palette-input');
+        let palettePreviousFocus = null;
         function openPalette() {
+            palettePreviousFocus = document.activeElement;
             palette.classList.add('open');
             palette.setAttribute('aria-hidden', 'false');
-            setTimeout(() => paletteInput.focus(), 30);
+            paletteInput.focus();
         }
         function closePalette() {
+            if (!palette.classList.contains('open')) return;
             palette.classList.remove('open');
             palette.setAttribute('aria-hidden', 'true');
             paletteInput.value = '';
+            palettePreviousFocus?.focus({ preventScroll: true });
         }
         document.addEventListener('keydown', e => {
             const typing = ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName);
@@ -4498,6 +4133,15 @@
                 closePalette();
                 if (heroTerminal.classList.contains('maximized')) terminalMax.click();
             }
+        });
+        document.querySelector('.palette-launch').addEventListener('click', openPalette);
+        document.getElementById('palette-close').addEventListener('click', closePalette);
+        palette.addEventListener('keydown', event => {
+            if (event.key !== 'Tab') return;
+            const controls = [...palette.querySelectorAll('input, button')];
+            const first = controls[0], last = controls[controls.length - 1];
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+            if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
         });
         palette.addEventListener('click', e => { if (e.target === palette) closePalette(); });
         paletteInput.addEventListener('keydown', e => {
@@ -4526,6 +4170,7 @@
         }, { rootMargin: '-35% 0px -55%', threshold: 0 });
         navTargets.forEach(target => navObserver.observe(target));
     </script>
+    <script src="portfolio.js?v=tall-portrait-20260926"></script>
 </body>
 
 </html>
