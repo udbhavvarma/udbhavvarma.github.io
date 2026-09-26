@@ -26,7 +26,7 @@ kbd { font: inherit; padding: 2px 5px; border: 1px solid var(--border); }
 .terminal-caption, .terminal-footnote { display: flex; justify-content: space-between; gap: 20px; color: var(--text-muted); font: 10px/1.8 var(--mono); letter-spacing: .04em; }
 .terminal-caption { margin-bottom: 16px; }
 .terminal-footnote { margin: 23px 0 0 5px; font-size: 11px; letter-spacing: 0; }
-#hero .terminal { transform: rotate(1deg); animation: none; border-color: color-mix(in srgb, var(--green) 28%, transparent); box-shadow: 12px 12px 0 color-mix(in srgb, var(--green) 9%, transparent), 0 30px 80px #0005; }
+#hero .terminal { transform: none; animation: none; border-color: color-mix(in srgb, var(--green) 28%, transparent); box-shadow: 0 12px 0 color-mix(in srgb, var(--green) 9%, transparent), 0 30px 80px #0005; }
 #hero .terminal-body { height: 395px; padding: 25px; }
 #hero .terminal-output { max-height: calc(100% - 3rem); }
 #hero .terminal-identity-meta { gap: 9px; flex-wrap: wrap; }
