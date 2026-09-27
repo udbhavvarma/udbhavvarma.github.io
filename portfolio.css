@@ -644,6 +644,13 @@ main > #hero { scroll-margin-top:0; }
   text-decoration-thickness:2px;
   text-underline-offset:4px;
 }
+.intro-description cite { font-style:normal; }
+.intro-description cite a {
+  color:var(--text-dim);
+  text-decoration-color:color-mix(in srgb,var(--text-dim) 45%,transparent);
+  text-underline-offset:3px;
+}
+.intro-description cite a:hover { color:var(--green); }
 .intro-actions { justify-content:center; }
 .intro-current { justify-content:center; max-width:690px; margin-inline:auto; }
 .hero-portrait {
