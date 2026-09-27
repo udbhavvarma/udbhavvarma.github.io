@@ -464,7 +464,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 2rem 4rem;
+            padding: 3rem 2rem 4rem;
         }
 
         .hero-inner {
@@ -1426,7 +1426,7 @@
 
         #hero {
             min-height: 100svh;
-            padding: 6.5rem 2rem 2.5rem;
+            padding: 3rem 2rem 2.5rem;
             align-items: center;
         }
 
@@ -1589,7 +1589,7 @@
             }
 
             #hero {
-                padding: 7.5rem 1.25rem 4rem;
+                padding: 3.5rem 1.25rem 4rem;
             }
 
             .terminal-body {
@@ -3110,8 +3110,6 @@
 <body>
     <a class="skip-link" href="#side-projects">Skip to products</a>
 
-    <!-- Progress bar -->
-    <div id="progress-bar"></div>
     <div class="site-fx" id="site-fx" aria-hidden="true"></div>
     <!-- Spotlight -->
     <div class="spotlight" id="spotlight"></div>
@@ -3761,13 +3759,6 @@
             spotlight.style.left = mouseX + 'px';
             spotlight.style.top = mouseY + 'px';
         });
-
-        /* ── Progress bar ── */
-        const bar = document.getElementById('progress-bar');
-        window.addEventListener('scroll', () => {
-            const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
-            bar.style.width = Math.min(pct, 100) + '%';
-        }, { passive: true });
 
         /* ── Scroll-driven animation fallback (IntersectionObserver) ── */
         if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {

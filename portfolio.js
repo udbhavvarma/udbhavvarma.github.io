@@ -156,17 +156,160 @@
   }));
   const links = [...document.querySelectorAll('.chapter-dock a')];
   const sections = links.map(link => document.querySelector(link.hash));
+  const dock = document.querySelector('.chapter-dock');
   let scheduled = false;
+
+  /* Apple Liquid Glass — Section Accent & Backdrop Detection */
+  const sectionAccents = {
+    'hero': {
+      accent: '#c7ff3d',
+      tint: 'rgba(199, 255, 61, 0.08)',
+      border: 'rgba(199, 255, 61, 0.28)',
+      pill: 'rgba(199, 255, 61, 0.16)',
+      text: '#c7ff3d',
+      glow: 'rgba(199, 255, 61, 0.20)'
+    },
+    'about': {
+      accent: '#c5b5ff',
+      tint: 'rgba(197, 181, 255, 0.08)',
+      border: 'rgba(197, 181, 255, 0.28)',
+      pill: 'rgba(197, 181, 255, 0.16)',
+      text: '#c5b5ff',
+      glow: 'rgba(197, 181, 255, 0.20)'
+    },
+    'skills': {
+      accent: '#91caff',
+      tint: 'rgba(145, 202, 255, 0.08)',
+      border: 'rgba(145, 202, 255, 0.28)',
+      pill: 'rgba(145, 202, 255, 0.16)',
+      text: '#91caff',
+      glow: 'rgba(145, 202, 255, 0.20)'
+    },
+    'experience': {
+      accent: '#ffd36a',
+      tint: 'rgba(255, 211, 106, 0.08)',
+      border: 'rgba(255, 211, 106, 0.28)',
+      pill: 'rgba(255, 211, 106, 0.16)',
+      text: '#ffd36a',
+      glow: 'rgba(255, 211, 106, 0.20)'
+    },
+    'principles': {
+      accent: '#ff8a70',
+      tint: 'rgba(255, 138, 112, 0.08)',
+      border: 'rgba(255, 138, 112, 0.28)',
+      pill: 'rgba(255, 138, 112, 0.16)',
+      text: '#ff8a70',
+      glow: 'rgba(255, 138, 112, 0.20)'
+    },
+    'contact': {
+      accent: '#c7ff3d',
+      tint: 'rgba(199, 255, 61, 0.08)',
+      border: 'rgba(199, 255, 61, 0.28)',
+      pill: 'rgba(199, 255, 61, 0.16)',
+      text: '#c7ff3d',
+      glow: 'rgba(199, 255, 61, 0.20)'
+    }
+  };
+  const defaultAccent = sectionAccents['hero'];
+  let currentSectionId = '';
+  let currentBackdrop = '';
+
+  function detectBackdropTheme() {
+    if (!dock) return 'dark';
+    const rect = dock.getBoundingClientRect();
+    const samplePoints = [
+      { x: rect.left + rect.width * 0.2, y: rect.top + rect.height * 0.5 },
+      { x: rect.left + rect.width * 0.5, y: rect.top + rect.height * 0.5 },
+      { x: rect.left + rect.width * 0.8, y: rect.top + rect.height * 0.5 }
+    ];
+
+    let lightCount = 0;
+    for (const pt of samplePoints) {
+      const x = Math.max(5, Math.min(window.innerWidth - 5, pt.x));
+      const y = Math.max(5, Math.min(window.innerHeight - 5, pt.y));
+      const elements = document.elementsFromPoint(x, y);
+
+      for (const el of elements) {
+        if (el === dock || dock.contains(el)) continue;
+
+        if (el.closest('.story-workbench, #about, #contact, .contact-finale, .hero-specimen, .story-artifact, .decision-board, .story-scene, .light-theme, [data-theme="light"]')) {
+          lightCount++;
+          break;
+        }
+
+        const bg = window.getComputedStyle(el).backgroundColor;
+        if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
+          const rgb = bg.match(/\d+/g);
+          if (rgb && rgb.length >= 3) {
+            const r = Number(rgb[0]), g = Number(rgb[1]), b = Number(rgb[2]);
+            const a = rgb.length >= 4 ? Number(rgb[3]) : 1;
+            if (a > 0.4) {
+              const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+              if (lum > 0.52) lightCount++;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    return lightCount >= 2 ? 'light' : 'dark';
+  }
+
   function updateChapter() {
+    if (!dock) return;
+
     let active = sections[0];
-    for (const section of sections) if (section.getBoundingClientRect().top < innerHeight * .45) active = section;
-    links.forEach(link => {
-      if (link.hash === '#' + active.id) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
+    const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
+    if (isAtBottom && sections.length > 0) {
+      active = sections[sections.length - 1];
+    } else {
+      for (const section of sections) {
+        if (section && section.getBoundingClientRect().top < innerHeight * 0.45) {
+          active = section;
+        }
+      }
+    }
+
+    if (active) {
+      links.forEach(link => {
+        if (link.hash === '#' + active.id) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+
+      if (active.id !== currentSectionId) {
+        currentSectionId = active.id;
+        const config = sectionAccents[active.id] || defaultAccent;
+        dock.style.setProperty('--glass-accent', config.accent);
+        dock.style.setProperty('--glass-tint', config.tint);
+        dock.style.setProperty('--glass-border', config.border);
+        dock.style.setProperty('--glass-pill', config.pill);
+        dock.style.setProperty('--glass-text', config.text);
+        dock.style.setProperty('--glass-glow', config.glow);
+      }
+    }
+
+    const backdrop = detectBackdropTheme();
+    if (backdrop !== currentBackdrop) {
+      currentBackdrop = backdrop;
+      dock.setAttribute('data-backdrop', backdrop);
+    }
+
     scheduled = false;
   }
-  addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateChapter); } }, { passive: true });
+
+  addEventListener('scroll', () => {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(updateChapter);
+    }
+  }, { passive: true });
+  addEventListener('resize', () => {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(updateChapter);
+    }
+  }, { passive: true });
   updateChapter();
 })();
 
