@@ -1,4 +1,88 @@
 /* Enhancements use local illustrative data; no account or delivery is created. */
+/* Event-driven motion: no idle render loop, no scroll interception. */
+(() => {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+  const preference = matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+  const portrait = hero.querySelector('.hero-portrait');
+  const sections = [...document.querySelectorAll('#about, #skills, #experience, #principles, #contact')];
+  const targets = [...document.querySelectorAll('.workbench-heading, .story-picker, .decision-board, .skills-path article, .principles-heading, .principles-list details, .contact-finale')];
+  let frame = 0;
+  let observer;
+  let pointerX = 0;
+  let pointerY = 0;
+  const clamp = value => Math.max(0, Math.min(1, value));
+
+  function render() {
+    frame = 0;
+    if (preference.matches || document.hidden) return;
+    // Read geometry before writing styles to avoid repeated layouts per frame.
+    const rect = hero.getBoundingClientRect();
+    const viewHeight = innerHeight;
+    const progress = clamp(-rect.top / Math.max(1, rect.height * .65));
+    const sectionProgress = sections.map(section => clamp((viewHeight - section.getBoundingClientRect().top) / (viewHeight * .75)));
+    if (rect.bottom > 0 && rect.top < viewHeight) {
+      const strength = innerWidth > 700 ? 1 : .35;
+      hero.style.setProperty('--title-drift', `${-32 * progress * strength}px`);
+      hero.style.setProperty('--portrait-drift', `${40 * progress * strength}px`);
+      hero.style.setProperty('--drawing-drift', `${85 * progress * strength}px`);
+      hero.style.setProperty('--thread-offset', String(.7 * (1 - progress)));
+      hero.style.setProperty('--exhibit-drift', `${20 * (1 - progress) * strength}px`);
+      hero.style.setProperty('--exhibit-scale', String(1 - .025 * (1 - progress) * strength));
+      portrait.style.setProperty('--portrait-rx', `${-pointerY * 3}deg`);
+      portrait.style.setProperty('--portrait-ry', `${pointerX * 4}deg`);
+      portrait.style.setProperty('--frame-x', `${pointerX * 5}px`);
+      portrait.style.setProperty('--frame-y', `${pointerY * 5}px`);
+      portrait.style.setProperty('--shine-x', `${50 + pointerX * 50}%`);
+      portrait.style.setProperty('--shine-y', `${50 + pointerY * 50}%`);
+    }
+    sections.forEach((section, index) => section.style.setProperty('--section-progress', sectionProgress[index]));
+  }
+
+  function schedule() {
+    if (!frame && !preference.matches && !document.hidden) frame = requestAnimationFrame(render);
+  }
+
+  function configure() {
+    observer?.disconnect();
+    cancelAnimationFrame(frame);
+    frame = 0;
+    document.documentElement.classList.toggle('motion-active', !preference.matches);
+    if (preference.matches) return;
+    sections.forEach(section => section.classList.add('motion-section'));
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('motion-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold:0, rootMargin:'0px 0px -35px 0px' });
+    targets.forEach((target, index) => {
+      target.dataset.motionReveal = '';
+      target.style.setProperty('--reveal-delay', `${(index % 3) * 65}ms`);
+      // Content already on screen stays visible, including restored anchor positions.
+      if (target.getBoundingClientRect().top < innerHeight - 35) target.classList.add('motion-visible');
+      observer.observe(target);
+    });
+    schedule();
+  }
+
+  portrait.addEventListener('pointermove', event => {
+    if (preference.matches || !finePointer.matches) return;
+    const rect = portrait.getBoundingClientRect();
+    pointerX = Math.max(-1, Math.min(1, (event.clientX - rect.left) / rect.width * 2 - 1));
+    pointerY = Math.max(-1, Math.min(1, (event.clientY - rect.top) / rect.height * 2 - 1));
+    schedule();
+  }, { passive:true });
+  portrait.addEventListener('pointerleave', () => { pointerX = pointerY = 0; schedule(); });
+  addEventListener('scroll', schedule, { passive:true });
+  addEventListener('resize', schedule, { passive:true });
+  document.addEventListener('visibilitychange', schedule);
+  preference.addEventListener('change', configure);
+  configure();
+})();
+
 (() => {
   const menu = document.querySelector('.mobile-navigation');
   menu.addEventListener('click', event => {
