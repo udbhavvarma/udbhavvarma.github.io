@@ -180,7 +180,10 @@
     scene.querySelector('.story-demo').hidden = chapter !== 2;
     scene.querySelectorAll('.workbench-product').forEach(panel => { panel.hidden = panel.id !== product; });
     scene.dataset.phase = chapter; scene.dataset.product = product;
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) scene.animate([{opacity:.65,transform:'translateY(4px)'},{opacity:1,transform:'translateY(0)'}],{duration:220,easing:'ease-out'});
+    root.style.setProperty('--story-stage', chapter);
+    root.style.setProperty('--story-column', chapter % 2);
+    root.style.setProperty('--story-row', Math.floor(chapter / 2));
+    root.dispatchEvent(new CustomEvent('portfolio:story-change', { detail: { product, chapter } }));
     choices.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.story === product)));
     steps.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.storyStep) === chapter)));
     prev.disabled = chapter === 0; next.disabled = chapter === 3;
@@ -236,7 +239,7 @@
     card.dataset.openStory = key;
     card.style.setProperty('--specimen-paper', color);
     specimenButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) card.animate([{ transform: 'translateY(6px) rotate(-1deg)', opacity: .6 }, { transform: 'translateY(0) rotate(0)', opacity: 1 }], { duration: 280, easing: 'ease-out' });
+    card.dispatchEvent(new CustomEvent('portfolio:card-change', { detail: { index } }));
   }));
   const links = [...document.querySelectorAll('.chapter-dock a')];
   const sections = links.map(link => document.querySelector(link.hash));
