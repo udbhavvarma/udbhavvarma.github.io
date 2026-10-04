@@ -4,42 +4,17 @@
   if (!main) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
-  const sections = [...main.querySelectorAll(':scope > section[id]')];
   const stack = document.querySelector('.specimen-stack');
   const card = document.querySelector('.hero-specimen');
   const skills = [...document.querySelectorAll('.skills-path article')];
   const trackedAnimations = new Set();
   const counters = [];
+  const pixelLayers = new Set();
+  let typingFrame = 0;
+  let finishTyping = () => {};
   let frame = 0;
-  let dirty = true;
-  let geometry = [];
-  let mainTop = 0;
   let pointer = { x:0, y:0 };
   const clamp = value => Math.max(0, Math.min(1, value));
-  const svgNS = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(svgNS, 'svg');
-  svg.classList.add('page-thread');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.setAttribute('focusable', 'false');
-  main.prepend(svg);
-  const colors = ['#c7ff3d', '#667345', '#91caff', '#ffd36a', '#ff8a70', '#567533'];
-  const pieces = sections.map((section, index) => {
-    const group = document.createElementNS(svgNS, 'g');
-    group.style.color = colors[index] || '#c7ff3d';
-    const track = document.createElementNS(svgNS, 'path');
-    track.classList.add('thread-track');
-    const ink = document.createElementNS(svgNS, 'path');
-    ink.classList.add('thread-ink');
-    ink.setAttribute('pathLength', '1');
-    const node = document.createElementNS(svgNS, 'circle');
-    node.setAttribute('r', '3');
-    const tip = document.createElementNS(svgNS, 'circle');
-    tip.classList.add('thread-tip'); tip.setAttribute('r', '3.5');
-    group.append(track, ink, node, tip);
-    svg.append(group);
-    return { section, group, track, ink, node, tip, length:0 };
-  });
-
   function animate(element, frames, options = {}) {
     if (!element || reduced.matches || document.hidden) return;
     element.getAnimations().forEach(animation => animation.cancel());
@@ -48,54 +23,77 @@
     const release = () => trackedAnimations.delete(animation);
     animation.onfinish = release;
     animation.oncancel = release;
+    return animation;
   }
 
-  function measure() {
-    const rect = main.getBoundingClientRect();
-    mainTop = rect.top + scrollY;
-    const textLeft = Math.min(...sections.slice(1).map(section => section.querySelector('h2').getBoundingClientRect().left - rect.left));
-    const x = innerWidth < 700 ? 9 : Math.max(9, textLeft - 24);
-    const bend = innerWidth < 700 ? 5 : 10;
-    geometry = pieces.map(({section}, index) => {
-      const bounds = section.getBoundingClientRect();
-      const top = bounds.top - rect.top;
-      const end = top + bounds.height;
-      return { top:index === 0 ? end - 150 : top, end };
-    });
-    svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
-    svg.style.height = `${rect.height}px`;
-    pieces.forEach((piece, index) => {
-      const {top, end} = geometry[index];
-      const next = geometry[index + 1]?.top ?? end;
-      const turn = Math.min(top + 100, end - 35);
-      const path = `M ${x} ${top} V ${turn - 24} C ${x} ${turn - 10}, ${x + bend} ${turn - 10}, ${x + bend} ${turn} S ${x} ${turn + 14}, ${x} ${turn + 28} V ${next}`;
-      piece.track.setAttribute('d', path);
-      piece.ink.setAttribute('d', path);
-      piece.length = piece.ink.getTotalLength();
-      piece.node.setAttribute('cx', x + bend);
-      piece.node.setAttribute('cy', turn);
-    });
-    dirty = false;
+  // Small, finite tile reveals keep the pixels inside the object being introduced.
+  function revealPixels(surface, columns, rows) {
+    if (reduced.matches || document.hidden) return;
+    const previous = surface.querySelector(':scope > .pixel-reveal');
+    if (previous) {
+      previous.querySelectorAll('i').forEach(tile => tile.getAnimations().forEach(animation => animation.cancel()));
+      previous.remove(); pixelLayers.delete(previous);
+    }
+    const layer = document.createElement('span');
+    layer.className = 'pixel-reveal'; layer.setAttribute('aria-hidden','true');
+    layer.style.setProperty('--pixel-columns', columns);
+    layer.style.setProperty('--pixel-rows', rows);
+    surface.classList.add('pixel-surface');
+    surface.append(layer); pixelLayers.add(layer);
+    const effects = [];
+    for (let index = 0; index < columns * rows; index++) {
+      const tile = document.createElement('i');
+      tile.style.setProperty('--tile-color', index % 17 === 0 ? '#c7ff3d' : index % 11 === 0 ? '#c5b5ff' : '#17241e');
+      layer.append(tile);
+      const delay = (Math.floor(index / columns) + index % columns) * 22 + (index * 37 % 90);
+      effects.push(animate(tile, [{opacity:1,transform:'scale(1.02)'},{opacity:0,transform:'scale(.15)'}], {duration:260,delay,easing:'steps(3,end)',fill:'backwards'}));
+    }
+    Promise.all(effects.map(effect => effect.finished.catch(() => {}))).then(() => {layer.remove(); pixelLayers.delete(layer);});
   }
+
+  const intro = document.querySelector('.intro-description strong');
+  function typeIntroduction() {
+    if (!intro || reduced.matches || document.hidden) return;
+    const text = intro.textContent;
+    const source = document.createElement('span');
+    source.className = 'typewriter-source'; source.textContent = text;
+    const output = document.createElement('span');
+    output.className = 'typewriter-output'; output.setAttribute('aria-hidden','true');
+    intro.replaceChildren(source,output); intro.classList.add('typewriter','is-typing');
+    let start;
+    finishTyping = () => {
+      cancelAnimationFrame(typingFrame); typingFrame = 0;
+      output.textContent = text; intro.classList.remove('is-typing');
+    };
+    const tick = time => {
+      start ??= time;
+      const characters = Math.min(text.length, Math.floor((time - start) / 30));
+      output.textContent = text.slice(0, characters);
+      if (characters < text.length) typingFrame = requestAnimationFrame(tick);
+      else finishTyping();
+    };
+    typingFrame = requestAnimationFrame(tick);
+  }
+  const entrance = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entrance.unobserve(entry.target);
+      if (entry.target === intro) typeIntroduction();
+      else revealPixels(entry.target,8,12);
+    });
+  }, {threshold:.35});
+  if (intro) entrance.observe(intro);
+  const portrait = document.querySelector('.hero-portrait');
+  const photo = portrait?.querySelector('img');
+  if (photo?.complete && photo.naturalWidth) entrance.observe(portrait);
+  else photo?.addEventListener('load', () => entrance.observe(portrait), {once:true});
 
   function render() {
     frame = 0;
     if (document.hidden) return;
-    if (dirty) measure();
     if (reduced.matches) return;
-    const readAt = scrollY + innerHeight * .68 - mainTop;
     const stackRect = stack.getBoundingClientRect();
     const skillRects = skills.map(skill => skill.getBoundingClientRect());
-    pieces.forEach((piece, index) => {
-      const {top, end} = geometry[index];
-      const progress = clamp((readAt - top) / Math.max(1, end - top));
-      piece.ink.style.strokeDashoffset = 1 - progress;
-      const point = piece.ink.getPointAtLength(piece.length * progress);
-      piece.tip.setAttribute('cx', point.x);
-      piece.tip.setAttribute('cy', point.y);
-      piece.tip.style.display = progress > 0 && progress < 1 ? '' : 'none';
-      piece.group.classList.toggle('thread-passed', progress > .08);
-    });
     const spread = clamp((innerHeight - stackRect.top) / (innerHeight * .8));
     stack.style.setProperty('--deck-spread', spread);
     stack.style.setProperty('--deck-rx', `${-pointer.y * 2}deg`);
@@ -105,15 +103,11 @@
     const closest = skillRects.reduce((best, rect, index) => Math.abs(rect.top + rect.height / 2 - innerHeight * .48) < best.distance ? {index, distance:Math.abs(rect.top + rect.height / 2 - innerHeight * .48)} : best, {index:-1, distance:Infinity});
     skills.forEach((skill, index) => {
       skill.classList.toggle('reading-now', index === closest.index && skillRects[index].top < innerHeight && skillRects[index].bottom > 0);
-      skill.style.setProperty('--skill-progress', clamp((innerHeight * .7 - skillRects[index].top) / skillRects[index].height));
     });
   }
   function schedule() { if (!frame && !document.hidden) frame = requestAnimationFrame(render); }
-  const resize = new ResizeObserver(() => { dirty = true; schedule(); });
-  resize.observe(main);
-  sections.forEach(section => resize.observe(section));
   addEventListener('scroll', () => { if (!reduced.matches) schedule(); }, {passive:true});
-  addEventListener('resize', () => { dirty = true; schedule(); }, {passive:true});
+  addEventListener('resize', schedule, {passive:true});
 
   stack.addEventListener('pointermove', event => {
     if (reduced.matches || !fine.matches) return;
@@ -126,7 +120,8 @@
   card.addEventListener('portfolio:card-change', event => {
     const direction = event.detail.index >= previousCard ? 1 : -1;
     previousCard = event.detail.index;
-    animate(card, [{opacity:.35, transform:`translate3d(${direction * 30}px,12px,0) rotate(${direction * 3}deg)`}, {opacity:1, transform:'none'}], {duration:600});
+    revealPixels(card,12,8);
+    animate(card.querySelector('.specimen-question'), [{opacity:.4, transform:`translateX(${direction * 10}px)`}, {opacity:1, transform:'none'}], {duration:400});
     animate(card.querySelector('.specimen-drawing'), [{opacity:0, transform:'translateY(14px)'}, {opacity:1, transform:'none'}], {delay:80});
   });
 
@@ -181,8 +176,10 @@
   });
 
   function stopTransientMotion() {
+    finishTyping();
     trackedAnimations.forEach(animation => animation.cancel());
     trackedAnimations.clear();
+    pixelLayers.forEach(layer => layer.remove()); pixelLayers.clear();
     counters.forEach(counter => { cancelAnimationFrame(counter.frame); counter.frame = 0; counter.visual.textContent = counter.label; });
   }
   reduced.addEventListener('change', () => { stopTransientMotion(); pointer={x:0,y:0}; schedule(); });

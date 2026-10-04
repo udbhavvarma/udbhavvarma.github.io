@@ -6,7 +6,6 @@
   const preference = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const portrait = hero.querySelector('.hero-portrait');
-  const sections = [...document.querySelectorAll('#about, #skills, #experience, #principles, #contact')];
   const targets = [...document.querySelectorAll('.workbench-heading, .story-picker, .decision-board, .skills-path article, .principles-heading, .principles-list details, .contact-finale')];
   let frame = 0;
   let observer;
@@ -21,13 +20,10 @@
     const rect = hero.getBoundingClientRect();
     const viewHeight = innerHeight;
     const progress = clamp(-rect.top / Math.max(1, rect.height * .65));
-    const sectionProgress = sections.map(section => clamp((viewHeight - section.getBoundingClientRect().top) / (viewHeight * .75)));
     if (rect.bottom > 0 && rect.top < viewHeight) {
       const strength = innerWidth > 700 ? 1 : .35;
       hero.style.setProperty('--title-drift', `${-32 * progress * strength}px`);
       hero.style.setProperty('--portrait-drift', `${40 * progress * strength}px`);
-      hero.style.setProperty('--drawing-drift', `${85 * progress * strength}px`);
-      hero.style.setProperty('--thread-offset', String(.7 * (1 - progress)));
       hero.style.setProperty('--exhibit-drift', `${20 * (1 - progress) * strength}px`);
       hero.style.setProperty('--exhibit-scale', String(1 - .025 * (1 - progress) * strength));
       portrait.style.setProperty('--portrait-rx', `${-pointerY * 3}deg`);
@@ -37,7 +33,6 @@
       portrait.style.setProperty('--shine-x', `${50 + pointerX * 50}%`);
       portrait.style.setProperty('--shine-y', `${50 + pointerY * 50}%`);
     }
-    sections.forEach((section, index) => section.style.setProperty('--section-progress', sectionProgress[index]));
   }
 
   function schedule() {
@@ -50,7 +45,6 @@
     frame = 0;
     document.documentElement.classList.toggle('motion-active', !preference.matches);
     if (preference.matches) return;
-    sections.forEach(section => section.classList.add('motion-section'));
     observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
