@@ -1,82 +1,4 @@
 /* Enhancements use local illustrative data; no account or delivery is created. */
-/* Event-driven motion: no idle render loop, no scroll interception. */
-(() => {
-  const hero = document.getElementById('hero');
-  if (!hero) return;
-  const preference = matchMedia('(prefers-reduced-motion: reduce)');
-  const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  const portrait = hero.querySelector('.hero-portrait');
-  const targets = [...document.querySelectorAll('.workbench-heading, .story-picker, .decision-board, .skills-path article, .principles-heading, .principles-list details, .contact-finale')];
-  let frame = 0;
-  let observer;
-  let pointerX = 0;
-  let pointerY = 0;
-  const clamp = value => Math.max(0, Math.min(1, value));
-
-  function render() {
-    frame = 0;
-    if (preference.matches || document.hidden) return;
-    // Read geometry before writing styles to avoid repeated layouts per frame.
-    const rect = hero.getBoundingClientRect();
-    const viewHeight = innerHeight;
-    const progress = clamp(-rect.top / Math.max(1, rect.height * .65));
-    if (rect.bottom > 0 && rect.top < viewHeight) {
-      const strength = innerWidth > 700 ? 1 : .35;
-      hero.style.setProperty('--title-drift', `${-32 * progress * strength}px`);
-      hero.style.setProperty('--portrait-drift', `${40 * progress * strength}px`);
-      hero.style.setProperty('--exhibit-drift', `${20 * (1 - progress) * strength}px`);
-      hero.style.setProperty('--exhibit-scale', String(1 - .025 * (1 - progress) * strength));
-      portrait.style.setProperty('--portrait-rx', `${-pointerY * 3}deg`);
-      portrait.style.setProperty('--portrait-ry', `${pointerX * 4}deg`);
-      portrait.style.setProperty('--frame-x', `${pointerX * 5}px`);
-      portrait.style.setProperty('--frame-y', `${pointerY * 5}px`);
-      portrait.style.setProperty('--shine-x', `${50 + pointerX * 50}%`);
-      portrait.style.setProperty('--shine-y', `${50 + pointerY * 50}%`);
-    }
-  }
-
-  function schedule() {
-    if (!frame && !preference.matches && !document.hidden) frame = requestAnimationFrame(render);
-  }
-
-  function configure() {
-    observer?.disconnect();
-    cancelAnimationFrame(frame);
-    frame = 0;
-    document.documentElement.classList.toggle('motion-active', !preference.matches);
-    if (preference.matches) return;
-    observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('motion-visible');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold:0, rootMargin:'0px 0px -35px 0px' });
-    targets.forEach((target, index) => {
-      target.dataset.motionReveal = '';
-      target.style.setProperty('--reveal-delay', `${(index % 3) * 65}ms`);
-      // Content already on screen stays visible, including restored anchor positions.
-      if (target.getBoundingClientRect().top < innerHeight - 35) target.classList.add('motion-visible');
-      observer.observe(target);
-    });
-    schedule();
-  }
-
-  portrait.addEventListener('pointermove', event => {
-    if (preference.matches || !finePointer.matches) return;
-    const rect = portrait.getBoundingClientRect();
-    pointerX = Math.max(-1, Math.min(1, (event.clientX - rect.left) / rect.width * 2 - 1));
-    pointerY = Math.max(-1, Math.min(1, (event.clientY - rect.top) / rect.height * 2 - 1));
-    schedule();
-  }, { passive:true });
-  portrait.addEventListener('pointerleave', () => { pointerX = pointerY = 0; schedule(); });
-  addEventListener('scroll', schedule, { passive:true });
-  addEventListener('resize', schedule, { passive:true });
-  document.addEventListener('visibilitychange', schedule);
-  preference.addEventListener('change', configure);
-  configure();
-})();
-
 (() => {
   const menu = document.querySelector('.mobile-navigation');
   menu.addEventListener('click', event => {
@@ -154,8 +76,9 @@
   const next = document.getElementById('story-next');
   let product = 'auxiliaire';
   let chapter = 0;
-  function render() {
+  function render(syncLocation = false) {
     const story = stories[product];
+    if (syncLocation) history.replaceState(null, '', chapter === 2 ? `#${product}` : '#about');
     const [title, description, noteLabel, note, artifactLabel, quote, rows] = story.chapters[chapter];
     for (const [id, value] of Object.entries({ 'story-title': title, 'story-description': description, 'story-note-label': noteLabel, 'story-note': note, 'artifact-label': artifactLabel })) document.getElementById(id).textContent = value;
     document.getElementById('story-note-label').hidden = chapter !== 3;
@@ -174,6 +97,8 @@
     scene.querySelector('.story-demo').hidden = chapter !== 2;
     scene.querySelectorAll('.workbench-product').forEach(panel => { panel.hidden = panel.id !== product; });
     scene.dataset.phase = chapter; scene.dataset.product = product;
+    document.getElementById('active-project-name').textContent = story.name;
+    root.querySelectorAll('[data-project-card]').forEach(card => card.classList.toggle('is-selected', card.dataset.projectCard === product));
     root.style.setProperty('--story-stage', chapter);
     root.style.setProperty('--story-column', chapter % 2);
     root.style.setProperty('--story-row', Math.floor(chapter / 2));
@@ -183,23 +108,24 @@
     prev.disabled = chapter === 0; next.disabled = chapter === 3;
     next.textContent = chapter === 3 ? 'End of story ✓' : `${labels[chapter + 1]} →`;
   }
-  document.getElementById('story-product-link').addEventListener('click', () => { chapter = 2; render(); steps[2].focus({preventScroll:true}); });
-  choices.forEach(button => button.addEventListener('click', () => { product = button.dataset.story; chapter = 0; render(); }));
-  steps.forEach(button => button.addEventListener('click', () => { chapter = Number(button.dataset.storyStep); render(); }));
-  prev.addEventListener('click', () => { if (chapter > 0) { chapter--; render(); } });
-  next.addEventListener('click', () => { if (chapter < 3) { chapter++; render(); } });
+  document.getElementById('story-product-link').addEventListener('click', () => { chapter = 2; render(true); steps[2].focus({preventScroll:true}); });
+  choices.forEach(button => button.addEventListener('click', () => { product = button.dataset.story; chapter = 0; render(true); steps[0].focus({preventScroll:true}); document.getElementById('decision-board').scrollIntoView({block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'}); }));
+  steps.forEach(button => button.addEventListener('click', () => { chapter = Number(button.dataset.storyStep); render(true); }));
+  prev.addEventListener('click', () => { if (chapter > 0) { chapter--; render(true); } });
+  next.addEventListener('click', () => { if (chapter < 3) { chapter++; render(true); } });
   document.querySelectorAll('[data-open-story]').forEach(link => link.addEventListener('click', event => {
     event.preventDefault();
     product = link.dataset.openStory; chapter = Number(link.dataset.openStep || 1); render();
-    if (location.hash !== '#about') history.pushState(null, '', '#about');
-    root.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+    const hash = chapter === 2 ? `#${product}` : '#about';
+    if (location.hash !== hash) history.pushState(null, '', hash);
+    document.getElementById('decision-board').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
     steps[chapter].focus({ preventScroll: true });
   }));
   function openProductHash() {
     const key = location.hash.slice(1);
     if (!stories[key]) return;
     product = key; chapter = 2; render();
-    requestAnimationFrame(() => root.scrollIntoView({block:'start',behavior:'instant'}));
+    requestAnimationFrame(() => document.getElementById('decision-board').scrollIntoView({block:'start',behavior:'instant'}));
   }
   addEventListener('hashchange', openProductHash);
   render();
@@ -295,58 +221,17 @@
   let currentSectionId = '';
   let currentBackdrop = '';
 
-  function detectBackdropTheme() {
-    if (!dock) return 'dark';
-    const rect = dock.getBoundingClientRect();
-    const samplePoints = [
-      { x: rect.left + rect.width * 0.2, y: rect.top + rect.height * 0.5 },
-      { x: rect.left + rect.width * 0.5, y: rect.top + rect.height * 0.5 },
-      { x: rect.left + rect.width * 0.8, y: rect.top + rect.height * 0.5 }
-    ];
-
-    let lightCount = 0;
-    for (const pt of samplePoints) {
-      const x = Math.max(5, Math.min(window.innerWidth - 5, pt.x));
-      const y = Math.max(5, Math.min(window.innerHeight - 5, pt.y));
-      const elements = document.elementsFromPoint(x, y);
-
-      for (const el of elements) {
-        if (el === dock || dock.contains(el)) continue;
-
-        if (el.closest('.story-workbench, #about, #contact, .contact-finale, .hero-specimen, .story-artifact, .decision-board, .story-scene, .light-theme, [data-theme="light"]')) {
-          lightCount++;
-          break;
-        }
-
-        const bg = window.getComputedStyle(el).backgroundColor;
-        if (bg && bg !== 'transparent' && bg !== 'rgba(0, 0, 0, 0)') {
-          const rgb = bg.match(/\d+/g);
-          if (rgb && rgb.length >= 3) {
-            const r = Number(rgb[0]), g = Number(rgb[1]), b = Number(rgb[2]);
-            const a = rgb.length >= 4 ? Number(rgb[3]) : 1;
-            if (a > 0.4) {
-              const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-              if (lum > 0.52) lightCount++;
-              break;
-            }
-          }
-        }
-      }
-    }
-
-    return lightCount >= 2 ? 'light' : 'dark';
-  }
-
   function updateChapter() {
     if (!dock) return;
 
+    const bounds = sections.filter(Boolean).map(section => ({section, rect:section.getBoundingClientRect()}));
     let active = sections[0];
     const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
     if (isAtBottom && sections.length > 0) {
       active = sections[sections.length - 1];
     } else {
-      for (const section of sections) {
-        if (section && section.getBoundingClientRect().top < innerHeight * 0.45) {
+      for (const {section, rect} of bounds) {
+        if (rect.top < innerHeight * 0.45) {
           active = section;
         }
       }
@@ -370,7 +255,9 @@
       }
     }
 
-    const backdrop = detectBackdropTheme();
+    const dockY = dock.getBoundingClientRect().top;
+    const behind = bounds.find(({rect}) => rect.top <= dockY && rect.bottom > dockY)?.section;
+    const backdrop = ['about','contact'].includes(behind?.id) || document.body.classList.contains('theme-light') ? 'light' : 'dark';
     if (backdrop !== currentBackdrop) {
       currentBackdrop = backdrop;
       dock.setAttribute('data-backdrop', backdrop);
