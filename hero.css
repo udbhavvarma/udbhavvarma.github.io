@@ -1,0 +1,57 @@
+/* A quiet introduction. Project exploration belongs in the workbench below. */
+#hero.hero-calm { padding:100px 32px 110px; min-height:620px; display:flex; align-items:center; }
+#hero.hero-calm .hero-inner { display:grid; grid-template-columns:minmax(0,1fr) 220px; max-width:1080px; gap:100px; align-items:center; text-align:left; }
+#hero.hero-calm .portfolio-intro { max-width:730px; }
+#hero.hero-calm .identity-line { display:flex; flex-wrap:wrap; gap:8px 18px; margin:0 0 40px; font-size:14px; line-height:1.6; }
+#hero.hero-calm .identity-line span { font-size:13px; }
+#hero.hero-calm .hero-title-row { display:block; width:auto; margin:0 0 28px; }
+#hero.hero-calm h1 { font-size:clamp(42px,5.1vw,68px); line-height:1.1; max-width:none; margin:0; letter-spacing:-.055em; }
+#hero.hero-calm .headline-line { display:block; padding-bottom:.08em; }
+#hero.hero-calm .headline-line em { font-size:1em; letter-spacing:-.045em; }
+#hero.hero-calm .intro-description { max-width:510px; margin:0; font-size:17px; line-height:1.85; }
+#hero.hero-calm .intro-actions { margin-top:30px; justify-content:flex-start; }
+#hero.hero-calm .intro-primary { min-height:48px; padding:13px 20px; font-size:13px; border-radius:8px; box-shadow:none; }
+#hero.hero-calm .hero-portrait { width:220px; aspect-ratio:3/4; margin:0; justify-self:end; }
+#hero.hero-calm .hero-portrait img { border-radius:6px; border:1px solid var(--border); filter:grayscale(1); box-shadow:0 20px 45px #0003; }
+#hero.hero-calm .hero-portrait::before,#hero.hero-calm .hero-portrait::after { display:none; }
+.terminal-disclosure { margin-top:32px; padding:0 24px; border:1px solid #26392d26; border-radius:12px; background:#ffffff30; scroll-margin-top:30px; }
+.terminal-disclosure > summary { display:flex; justify-content:space-between; align-items:center; gap:25px; min-height:64px; cursor:pointer; list-style:none; font:500 13px var(--sans); color:#526057; }
+.terminal-disclosure > summary::-webkit-details-marker { display:none; }
+.terminal-disclosure > summary span { font-size:20px; }
+.terminal-disclosure[open] > summary span { transform:rotate(45deg); }
+.terminal-disclosure > p { margin:0 0 20px; color:#526057; font:13px/1.7 var(--sans); }
+.terminal-disclosure .terminal-composition { max-width:720px; margin:0 auto 24px; }
+.terminal-disclosure .terminal { --text:#e2e8f0; --text-dim:#94a3b8; --text-muted:#94a3b8; --green:#c7ff3d; color:var(--text); background:#111811; border:1px solid #26392d; border-radius:12px; box-shadow:none; animation:none; }
+.terminal-disclosure .terminal-body { height:340px; padding:22px; }
+.terminal-disclosure .terminal-input { color:#f2efe7; }
+.terminal-disclosure .terminal-toolbar { padding:12px 16px; }
+.terminal-disclosure .command-suggestions { flex-wrap:wrap; }
+.terminal-disclosure .command-chip { font-size:11px; min-height:36px; }
+.terminal-disclosure summary:focus-visible { outline:2px solid #486827; outline-offset:4px; border-radius:4px; }
+@media(max-width:1000px) {
+  #hero.hero-calm { padding-block:85px 95px; min-height:560px; }
+  #hero.hero-calm .hero-inner { grid-template-columns:minmax(0,1fr) 180px; gap:60px; }
+  #hero.hero-calm h1 { font-size:clamp(38px,5vw,54px); }
+  #hero.hero-calm .hero-portrait { width:180px; }
+}
+@media(max-width:700px) {
+  #hero.hero-calm { padding:65px 24px 75px; min-height:0; }
+  #hero.hero-calm .hero-inner { grid-template-columns:minmax(0,1fr) 110px; gap:24px; max-width:600px; }
+  #hero.hero-calm .identity-line { flex-direction:column; gap:2px; margin-bottom:28px; font-size:13px; }
+  #hero.hero-calm .identity-line span { font-size:11px; }
+  #hero.hero-calm h1 { font-size:clamp(31px,5.3vw,40px); line-height:1.12; }
+  #hero.hero-calm .hero-title-row { margin-bottom:22px; }
+  #hero.hero-calm .intro-description { font-size:14px; }
+  #hero.hero-calm .hero-portrait { width:110px; }
+  .terminal-disclosure { padding-inline:16px; }
+}
+@media(max-width:480px) {
+  #hero.hero-calm .hero-inner { position:relative; display:block; }
+  #hero.hero-calm .identity-line { min-height:72px; margin-bottom:28px; justify-content:center; padding-right:85px; }
+  #hero.hero-calm h1 { font-size:clamp(31px,8.2vw,38px); }
+  #hero.hero-calm .hero-portrait { position:absolute; top:0; right:0; width:64px; aspect-ratio:3/4; }
+  #hero.hero-calm .intro-description { max-width:340px; }
+  #hero.hero-calm .intro-actions { margin-top:26px; }
+  .terminal-disclosure .terminal-body { padding:15px; font-size:12px; }
+  .terminal-disclosure .terminal-input { font-size:16px; }
+}

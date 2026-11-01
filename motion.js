@@ -5,14 +5,11 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const portrait = hero.querySelector('.hero-portrait');
-  const stack = hero.querySelector('.specimen-stack');
-  const card = hero.querySelector('.hero-specimen');
   const targets = [...document.querySelectorAll('.experience-heading, .impact-grid details, .exp-card, .workbench-heading, .project-choice, .decision-board, .skills-path article, .principles-heading, .principles-list details, .contact-direct')];
   const animations = new Set();
   let observer;
   let frame = 0;
   let portraitPointer = {x:0, y:0};
-  let deckPointer = {x:0, y:0};
   const clamp = value => Math.max(0, Math.min(1, value));
 
   function animate(element, frames, options = {}) {
@@ -34,10 +31,6 @@
     portrait.style.setProperty('--portrait-ry', `${portraitPointer.x * 3}deg`);
     portrait.style.setProperty('--shine-x', `${50 + portraitPointer.x * 45}%`);
     portrait.style.setProperty('--shine-y', `${50 + portraitPointer.y * 45}%`);
-    stack.style.setProperty('--deck-rx', `${-deckPointer.y * 2}deg`);
-    stack.style.setProperty('--deck-ry', `${deckPointer.x * 3}deg`);
-    stack.style.setProperty('--deck-light-x', `${50 + deckPointer.x * 45}%`);
-    stack.style.setProperty('--deck-light-y', `${50 + deckPointer.y * 45}%`);
   }
   function schedule() {
     if (!frame && !reduced.matches && !document.hidden) frame = requestAnimationFrame(render);
@@ -52,7 +45,6 @@
     element.addEventListener('pointerleave', () => { update({x:0, y:0}); schedule(); });
   }
   trackPointer(portrait, value => {portraitPointer = value;});
-  trackPointer(stack, value => {deckPointer = value;});
 
   function configure() {
     observer?.disconnect();
@@ -76,9 +68,6 @@
     });
     schedule();
   }
-  card.addEventListener('portfolio:card-change', () => {
-    animate(card, [{opacity:.55,transform:'translateY(8px) rotate(.7deg)'},{opacity:1,transform:'none'}]);
-  });
   document.querySelector('.story-workbench').addEventListener('portfolio:story-change', event => {
     const scene = document.querySelector('.story-scene');
     animate(scene.querySelector('.story-narrative'), [{opacity:.25,transform:'translateY(12px)'},{opacity:1,transform:'none'}]);
@@ -91,10 +80,6 @@
       [...details.children].filter(child => child.tagName !== 'SUMMARY').forEach(child => animate(child,[{opacity:0,transform:'translateY(-5px)'},{opacity:1,transform:'none'}],{duration:320}));
     });
   });
-  document.querySelectorAll('[data-exhibit]').forEach(button => button.addEventListener('click', () => {
-    const panel = document.getElementById(`exhibit-${button.dataset.exhibit}`);
-    animate(panel,[{opacity:.2,transform:'translateY(8px)'},{opacity:1,transform:'none'}]);
-  }));
   addEventListener('scroll',schedule,{passive:true});
   addEventListener('resize',schedule,{passive:true});
   document.addEventListener('visibilitychange', () => {
@@ -102,6 +87,6 @@
     else schedule();
   });
   reduced.addEventListener('change',configure);
-  finePointer.addEventListener('change', () => {portraitPointer = deckPointer = {x:0,y:0}; schedule();});
+  finePointer.addEventListener('change', () => {portraitPointer = {x:0,y:0}; schedule();});
   configure();
 })();

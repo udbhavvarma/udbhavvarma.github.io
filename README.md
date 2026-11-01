@@ -16,7 +16,7 @@ Open `http://127.0.0.1:3105/`. No dependency installation or build step is requi
 
 - `index.html`: content, existing visual system, terminal, and original product interactions.
 - `portfolio.css`: responsive presentation, mobile navigation, and product refinements and typography. Monospace is reserved for the terminal and command palette.
-- `portfolio.js`: the four-product card stack, 16 workbench chapters, direct demo links, chapter navigation, email copy, mobile menu, and OTP-availability preview.
+- `portfolio.js`: the four-product catalogue, 16 workbench chapters, direct demo links, chapter navigation, email copy, mobile menu, and OTP-availability preview.
 - `motion.js`: the shared event-driven reveal, tilt, and transition system. Respects reduced motion and cancels transient effects when the tab is hidden.
 - `icon.svg`: vector browser icon.
 
@@ -36,19 +36,23 @@ The introduction tells a personal story: notice friction or a possibility, make 
 
 ## Story and interaction design
 
-The page follows introduction → professional evidence → independent projects → skills → principles → contact. The hero offers a product-card stack and the original terminal. Each card opens the matching workbench story. Product articles and open-question cards return to the relevant chapter.
+The page follows introduction → professional evidence → independent projects → skills → principles → contact. The hero has one introduction, a portrait, and one primary action. Project stories and demos live in the project catalogue; the terminal is available in a disclosure below the workbench. Product articles and open-question cards return to the relevant chapter.
 
 The workbench uses illustrative artifacts, not customer data. Its final chapters describe proposed validation and dependencies, not measured results. The result ledger uses the owner-supplied Times Internet metrics: 1M+ users, 2.5× ROAS improvement in three months, 85% lower LLM costs, and 90% less workflow turnaround time for 500+ internal users. The monthly revenue amount is intentionally omitted until an approved figure is provided. Avoid converting plans into achievement claims.
 
-Interaction checks: browse each hero card, use the terminal, step through all four chapters of each story, follow product links, expand result and career rows, and use the open-question links. Verify keyboard focus moves to the selected chapter. Check layouts at desktop and 390px width; reduced-motion preferences suppress transitions. Without JavaScript, the first story and complete product articles remain available. The copy-email action reports success only after the clipboard write succeeds; the email link remains available if it fails.
+Interaction checks: open the terminal disclosure, step through all four chapters of each story, follow product links, expand result and career rows, and use the open-question links. Verify keyboard focus moves to the selected chapter. Check layouts at desktop and 390px width; reduced-motion preferences suppress transitions. Without JavaScript, the first story and complete product articles remain available. The copy-email action reports success only after the clipboard write succeeds; the email link remains available if it fails.
 
 Presentation guidance: keep the contact section neutral and professional, with direct email and LinkedIn links. Avoid freelance service pitches, project-intake language, repeated taglines, or decorative technology chips. Preserve navigational controls and prototype/validation context that affect how the work is understood.
 
 The workbench is the only project catalogue. Its four project summaries have direct demo entry points and accessible story-selection controls. Its Build step contains the selected interactive preview and product/source links; legacy product hashes select that preview. Skills and all six original principles have their own sections. Career controls use plain “View details” labels. Do not duplicate the name-and-title strapline around the page.
 
-The responsive hero pairs the personal introduction with the product specimen. Glass surfaces use readable fallback backgrounds; motion is finite and event-driven. Skills distinguish product prototyping from production engineering: the portfolio claims ownership of problem framing, tangible experiments, evaluation, and iteration. Principles retain their original meaning but are introduced through the moments that made each belief useful.
+The responsive hero pairs a short introduction with a quiet portrait. Glass surfaces use readable fallback backgrounds; motion is finite and event-driven. Skills distinguish product prototyping from production engineering: the portfolio claims ownership of problem framing, tangible experiments, evaluation, and iteration. Principles retain their original meaning but are introduced through the moments that made each belief useful.
 
 
 ## October 2026 refresh validation
 
 JavaScript syntax and internal anchors were checked. Browser checks covered desktop (1440px), phone (390px and 320px), all 16 story chapters, direct demo entry with focus management, keyboard disclosures, command-palette focus trapping, and responsive overflow. Four public product URLs and Auxiliaire’s public source link returned HTTP 200. Reduced-motion CSS and JavaScript follow the operating-system preference; there is no typewriter or pixel-mask animation.
+
+## Hero simplification — 1 November 2026
+
+The opening has a two-line headline, one short description and one action. The redundant rotating project cards, scope strip, secondary action and repeated role copy were removed from the hero. All four product demos remain in Selected projects. The terminal is collapsed by default beneath the workbench. `hero.css` holds the scoped introduction and terminal-disclosure layout.

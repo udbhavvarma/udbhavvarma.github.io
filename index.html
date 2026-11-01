@@ -3054,7 +3054,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="portfolio.css?v=portfolio-20261020" />
+    <link rel="stylesheet" href="portfolio.css?v=portfolio-20261101" />
+    <link rel="stylesheet" href="hero.css?v=portfolio-20261101" />
     <noscript>
         <style>
             .reveal,
@@ -3065,6 +3066,7 @@
                 animation: none !important;
             }
 
+            .terminal-disclosure,
             .terminal-composition,
             .palette-launch,
             .handoff-controls,
@@ -3149,102 +3151,23 @@
 
     <main id="main-content">
         <!-- ── HERO ── -->
-        <section id="hero">
+        <section id="hero" class="hero-calm">
             <div class="hero-inner">
                 <div class="portfolio-intro">
-                    <p class="identity-line">Udbhav Varma <span>Technical Product Manager &amp; Builder</span></p>
+                    <p class="identity-line">Udbhav Varma <span>Technical Product Manager</span></p>
                     <div class="hero-title-row">
-                        <h1 class="hero-headline"><span class="headline-line"><span>I shape, build,</span></span>
-                            <span class="headline-line"><span>and scale products.</span></span>
+                        <h1 class="hero-headline"><span class="headline-line">I build products.</span>
                             <span class="headline-line"><em>From idea to impact.</em></span></h1>
-                        <figure class="hero-portrait">
-                            <img src="assets/udbhav-ai-showcase.jpg" width="1023" height="1600" loading="eager"
-                                fetchpriority="high" decoding="async"
-                                alt="Udbhav Varma presenting at the Times Internet AI Showcase">
-                        </figure>
                     </div>
-                    <p class="intro-description"><strong>Curiosity gets it started. Ownership takes it further.</strong>
-                        I turn everyday friction into products people use. At Times Internet, I lead AI-native
-                        consumer and enterprise products—from the first hypothesis to the next stage of growth.</p>
-                    <p class="intro-current"><span class="status-dot" aria-hidden="true"></span>AI Labs · Times Internet · COO Office</p>
-                    <div class="intro-actions"><a class="intro-primary" href="#experience">Explore my work <span aria-hidden="true">↗</span></a>
-                        <a href="#about">See what I build <span aria-hidden="true">↓</span></a></div>
-                    <div class="hero-scope" aria-label="Product scope"><span><strong>0 → 1</strong> Build the first version</span>
-                        <span><strong>1 → N</strong> Find the next scale</span><span><strong>B2C + B2B</strong> Own the full product arc</span></div>
+                    <p class="intro-description">I lead AI-native consumer and enterprise products at Times Internet—from
+                        the first version to the next stage of growth.</p>
+                    <div class="intro-actions"><a class="intro-primary" href="#experience">Explore my work <span aria-hidden="true">↗</span></a></div>
                 </div>
-                <div class="hero-exhibit">
-                    <div class="exhibit-switch" role="group" aria-label="Explore the work or terminal"><button
-                            type="button" data-exhibit="work" aria-pressed="true">The things I build</button><button
-                            type="button" data-exhibit="terminal" aria-pressed="false">Try the terminal <span
-                                aria-hidden="true">↗</span></button></div>
-                    <div id="exhibit-work">
-                        <div class="specimen-stack">
-                            <span class="specimen-layer layer-one" aria-hidden="true"></span><span
-                                class="specimen-layer layer-two" aria-hidden="true"></span>
-                            <a href="#about" class="hero-specimen" data-open-story="auxiliaire" data-open-step="0"
-                                aria-label="Explore selected product story">
-                                <span class="specimen-question" id="specimen-question">What if decisions<br>had a
-                                    memory?</span>
-                                <span class="specimen-drawing" aria-hidden="true"><span class="drawing-node"
-                                        id="specimen-node-one">A conversation</span><svg viewBox="0 0 160 50"
-                                        fill="none">
-                                        <path d="M4 28C45 2 80 48 145 23M131 18L146 23L137 35" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" />
-                                    </svg><span class="drawing-node" id="specimen-node-two">A next step</span></span>
-                                <span class="specimen-bottom"><span><strong
-                                            id="specimen-name">Auxiliaire</strong></span><span class="specimen-arrow"
-                                        aria-hidden="true">↗</span></span>
-                            </a>
-                        </div>
-                        <div class="specimen-controls" role="group" aria-label="Browse things I built"><button
-                                type="button" data-specimen="auxiliaire" aria-pressed="true"
-                                aria-label="Preview Auxiliaire">01</button><button type="button"
-                                data-specimen="low-cortisol" aria-pressed="false"
-                                aria-label="Preview Low Cortisol UX">02</button><button type="button"
-                                data-specimen="funauth" aria-pressed="false"
-                                aria-label="Preview FunAuth">03</button><button type="button"
-                                data-specimen="delivery-delegate" aria-pressed="false"
-                                aria-label="Preview Delivery Delegate">04</button></div>
-                    </div>
-                    <div class="terminal-composition" id="exhibit-terminal" hidden>
-                        <div class="terminal">
-                            <div class="terminal-bar">
-                                <div class="dot dot-r"></div>
-                                <div class="dot dot-y"></div>
-                                <div class="dot dot-g"></div>
-                                <div class="terminal-title">udbhav / working directory</div>
-                            </div>
-                            <div class="terminal-body">
-                                <div class="terminal-output" id="term-output"></div>
-                                <div class="terminal-input-line">
-                                    <span class="prompt-str">→</span>
-                                    <input type="text" class="terminal-input" id="term-input" autocomplete="off"
-                                        spellcheck="false" autocorrect="off" autocapitalize="off"
-                                        placeholder="type 'help' to get started..." aria-label="terminal input" />
-                                </div>
-                            </div>
-                            <div class="terminal-toolbar">
-                                <div class="command-suggestions" aria-label="Suggested terminal commands">
-                                    <button class="command-chip" type="button" data-command="whoami">whoami</button>
-                                    <button class="command-chip" type="button" data-command="show impact">show
-                                        impact</button>
-                                    <button class="command-chip" type="button" data-command="open projects">open
-                                        projects</button>
-                                    <button class="command-chip" type="button" data-command="open work">open
-                                        work</button>
-                                    <button class="command-chip" type="button" data-command="surprise me">surprise
-                                        me</button>
-                                </div>
-                                <!-- <button class="terminal-max" id="terminal-max" type="button"
-                        aria-label="Maximize terminal">maximize</button> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-hint" aria-hidden="true">
-                <span>scroll</span>
-                <div class="scroll-arrow"></div>
+                <figure class="hero-portrait">
+                    <img src="assets/udbhav-ai-showcase.jpg" width="1023" height="1600" loading="eager"
+                        fetchpriority="high" decoding="async"
+                        alt="Udbhav Varma presenting at the Times Internet AI Showcase">
+                </figure>
             </div>
         </section>
 
@@ -3567,6 +3490,44 @@
                                 Back</button><button id="story-next" type="button">The decision →</button></div>
                     </div>
                 </div>
+                <details class="terminal-disclosure" id="portfolio-terminal">
+                    <summary>Try the portfolio terminal <span aria-hidden="true">＋</span></summary>
+                    <p>A different way to explore. Type <code>help</code> for commands.</p>
+                    <div class="terminal-composition" id="exhibit-terminal">
+                        <div class="terminal">
+                            <div class="terminal-bar">
+                                <div class="dot dot-r"></div>
+                                <div class="dot dot-y"></div>
+                                <div class="dot dot-g"></div>
+                                <div class="terminal-title">udbhav / working directory</div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="terminal-output" id="term-output"></div>
+                                <div class="terminal-input-line">
+                                    <span class="prompt-str">→</span>
+                                    <input type="text" class="terminal-input" id="term-input" autocomplete="off"
+                                        spellcheck="false" autocorrect="off" autocapitalize="off"
+                                        placeholder="type 'help' to get started..." aria-label="terminal input" />
+                                </div>
+                            </div>
+                            <div class="terminal-toolbar">
+                                <div class="command-suggestions" aria-label="Suggested terminal commands">
+                                    <button class="command-chip" type="button" data-command="whoami">whoami</button>
+                                    <button class="command-chip" type="button" data-command="show impact">show
+                                        impact</button>
+                                    <button class="command-chip" type="button" data-command="open projects">open
+                                        projects</button>
+                                    <button class="command-chip" type="button" data-command="open work">open
+                                        work</button>
+                                    <button class="command-chip" type="button" data-command="surprise me">surprise
+                                        me</button>
+                                </div>
+                                <!-- <button class="terminal-max" id="terminal-max" type="button"
+                        aria-label="Maximize terminal">maximize</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </details>
                 <noscript>
                     <p class="story-fallback">Product previews and links appear below. Enable JavaScript to follow the
                         decisions behind them.</p>
@@ -4295,7 +4256,7 @@
         });
 
         const terminalMax = document.getElementById('terminal-max');
-        const heroTerminal = document.querySelector('#hero .terminal');
+        const heroTerminal = document.querySelector('.terminal');
         terminalMax?.addEventListener('click', () => {
             const open = heroTerminal.classList.toggle('maximized');
             document.body.classList.toggle('terminal-open', open);
@@ -4509,11 +4470,7 @@
             const typing = ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName);
             if (e.key === '/' && !typing) {
                 e.preventDefault();
-                if (scrollY < innerHeight * 0.8 && !document.getElementById('exhibit-terminal').hidden) {
-                    window.portfolioInput?.focus();
-                } else {
-                    openPalette();
-                }
+                openPalette();
             }
             if (e.key === 'Escape') {
                 closePalette();
@@ -4556,8 +4513,8 @@
         }, { rootMargin: '-35% 0px -55%', threshold: 0 });
         navTargets.forEach(target => navObserver.observe(target));
     </script>
-    <script src="portfolio.js?v=portfolio-20261020"></script>
-    <script src="motion.js?v=portfolio-20261020"></script>
+    <script src="portfolio.js?v=portfolio-20261101"></script>
+    <script src="motion.js?v=portfolio-20261101"></script>
 </body>
 
 </html>

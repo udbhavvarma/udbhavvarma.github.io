@@ -133,33 +133,11 @@
 })();
 
 (() => {
-  const panels = { work: document.getElementById('exhibit-work'), terminal: document.getElementById('exhibit-terminal') };
-  const switches = [...document.querySelectorAll('[data-exhibit]')];
-  function showExhibit(name) {
-    Object.entries(panels).forEach(([key, panel]) => { panel.hidden = key !== name; });
-    switches.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.exhibit === name)));
-  }
-  switches.forEach(button => button.addEventListener('click', () => showExhibit(button.dataset.exhibit)));
-  // Terminal commands elsewhere can still bring the original terminal into view.
+  const terminalDisclosure = document.getElementById('portfolio-terminal');
   document.querySelectorAll('.palette-options [data-command]').forEach(button => button.addEventListener('click', () => {
-    if (['theme cyberpunk', 'surprise me'].includes(button.dataset.command)) showExhibit('terminal');
-  }));
-  const cards = {
-    'auxiliaire': ['Auxiliaire', 'What if decisions had a memory?', 'A conversation', 'A next step', 'Working product', '#e4ecc8'],
-    'low-cortisol': ['Low Cortisol UX', 'Why fill the same form twice?', 'An interruption', 'A way back', 'Browser companion', '#ded4ef'],
-    'funauth': ['FunAuth', 'What if a gesture was your signature?', 'A movement', 'An interaction', 'An experiment', '#f0d4c5'],
-    'delivery-delegate': ['Delivery Delegate', 'Someone is home. So why can’t the parcel stay?', 'An absent OTP', 'A handoff plan', 'Prototype', '#ece0ba'],
-  };
-  const card = document.querySelector('.hero-specimen');
-  const specimenButtons = [...document.querySelectorAll('[data-specimen]')];
-  specimenButtons.forEach((button, index) => button.addEventListener('click', () => {
-    const key = button.dataset.specimen;
-    const [name, question, from, to, state, color] = cards[key];
-    for (const [id, value] of Object.entries({ 'specimen-name': name, 'specimen-question': question, 'specimen-node-one': from, 'specimen-node-two': to })) document.getElementById(id).textContent = value;
-    card.dataset.openStory = key;
-    card.style.setProperty('--specimen-paper', color);
-    specimenButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    card.dispatchEvent(new CustomEvent('portfolio:card-change', { detail: { index } }));
+    if (!['theme cyberpunk', 'surprise me'].includes(button.dataset.command)) return;
+    terminalDisclosure.open = true;
+    terminalDisclosure.scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
   }));
   const links = [...document.querySelectorAll('.chapter-dock a')];
   const sections = links.map(link => document.querySelector(link.hash));
